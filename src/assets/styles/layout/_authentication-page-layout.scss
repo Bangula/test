@@ -1,0 +1,13 @@
+.authentication-page-layout__wrapper {
+  background: black;
+  height: 100vh;
+}
+
+.authentication-page-layout__content {
+  background: #fff;
+  height: 100vh;
+  max-width: 620px;
+  margin: 0 auto;
+  transform: skew(-10deg, 0deg);
+  text-align: center;
+}
