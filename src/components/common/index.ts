@@ -1,0 +1,1 @@
+export { AuthenticationPageLayout } from './AuthenticationPageLayout';

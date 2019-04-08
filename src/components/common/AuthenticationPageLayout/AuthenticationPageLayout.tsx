@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const AuthenticationPageLayout = ({children}) => {
+const AuthenticationPageLayout: React.FC = ({ children }) => {
   return (
     <div className="authentication-page-layout__wrapper">
       <div className="authentication-page-layout__content">{children}</div>
     </div>
-  )
-}
+  );
+};
 
-export default AuthenticationPageLayout
+export default AuthenticationPageLayout;
