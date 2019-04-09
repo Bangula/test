@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
 
 const ForgotPassword = () => {
@@ -17,9 +18,9 @@ const ForgotPassword = () => {
 
         <button className="btn wide">send reset link</button>
 
-        <a className="back-link" href="#">
+        <Link to="/auth/sign-in" className="back-link" href="#">
           Back to sign in
-        </a>
+        </Link>
       </div>
     </AuthenticationPageLayout>
   );

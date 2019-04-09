@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
 
 const SignedOut = () => {
@@ -10,7 +11,9 @@ const SignedOut = () => {
           You have successfully signed out <br /> of your account.
         </p>
 
-        <button className="btn">sign in</button>
+        <Link to="/auth/sign-in">
+          <button className="btn">sign in</button>
+        </Link>
       </div>
     </AuthenticationPageLayout>
   );

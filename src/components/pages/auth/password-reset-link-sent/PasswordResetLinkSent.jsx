@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
 
 const PasswordResetLinkSent = () => {
@@ -15,11 +16,13 @@ const PasswordResetLinkSent = () => {
           choose a new password for your account.
         </p>
 
-        <button className="btn wide">done</button>
+        <Link to="/auth/reset-password">
+          <button className="btn wide">done</button>
+        </Link>
 
-        <a className="back-link" href="#">
+        <Link to="/auth/sign-in" className="back-link" href="#">
           Back to sign in
-        </a>
+        </Link>
       </div>
     </AuthenticationPageLayout>
   );

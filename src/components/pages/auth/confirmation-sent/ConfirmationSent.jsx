@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
 
 const ConfirmationSent = () => {
@@ -15,7 +16,9 @@ const ConfirmationSent = () => {
           link in the email to complete your registration.
         </p>
 
-        <button className="btn">sign in</button>
+        <Link to="/auth/sign-in">
+          <button className="btn">sign in</button>
+        </Link>
         <p className="title-subtext confirmation">
           Did not receive an email?&nbsp;
           <a className="auth-link-text" href="#">

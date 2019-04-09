@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
 
 const SignUp = () => {
@@ -18,9 +19,9 @@ const SignUp = () => {
 
         <p className="title-subtext confirmation">
           Already got an account?&nbsp;
-          <a className="auth-link-text" href="#">
+          <Link to="/auth/sign-in" className="auth-link-text">
             Sign In
-          </a>
+          </Link>
         </p>
       </div>
     </AuthenticationPageLayout>
