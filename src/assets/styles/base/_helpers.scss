@@ -12,3 +12,39 @@
     text-align: center;
     font-family: 'BebasNeue';
 }
+
+.btn {
+    min-width: 190px;
+    min-height: 45px;
+    border-radius: 4px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    margin: 0 auto;
+    transition: all .1s ease;
+    text-transform: uppercase;
+    font-family: 'BebasNeue';
+    font-weight: 400;
+    font-size: 24px;
+    color: $white;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.small {
+        min-width: 75px;
+    }
+
+    &.wide {
+        min-width: 215px;
+    }
+}
+
+.back-link {
+    text-decoration: underline;
+    color: $black;
+}

@@ -1,5 +1,19 @@
 .auth-page-layout__wrapper {
   height: 100vh;
+  position: relative;
+}
+
+.auth-logo {
+  position: absolute;
+  right: 50px;
+  bottom: 40px;
+  width: 175px;
+  height: 67px;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .auth-page-layout__content {
@@ -21,5 +35,67 @@
 
 .title-primary {
   color: $lightbrown;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+}
+
+.title-subtext {
+  padding: 0 20px;
+
+  &.bold {
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  &.welcome {
+    padding: 0 80px;
+    margin-bottom: 30px;
+  }
+
+  &.confirmation {
+    margin-top: 10px;
+  }
+}
+
+.auth-link-text {
+  color: $lightbrown;
+  font-weight: bold;
+}
+
+.btn {
+  background: $lightbrown;
+
+  &:hover {
+    background: darken($lightbrown, 10%);
+  }
+}
+
+.form-holder {
+  margin: 20px 0;
+}
+
+.back-link {
+  margin-top: 45px;
+  display: block;
+}
+
+.password-reset {
+
+  .btn {
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
+}
+
+.reset-password {
+
+  .form-holder {
+    margin-bottom: 50px;
+  }
+}
+
+.signed-out {
+
+  .title-subtext {
+    margin-bottom: 70px;
+  }
 }
