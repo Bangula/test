@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '@images/white-axe-logo@3x.png';
 
-const AuthenticationPageLayout: React.FC = ({ children }) => {
+const AuthenticationPageLayout = ({ children }) => {
   return (
     <div className="auth-page-layout__wrapper">
       <div className="auth-page-layout__content">

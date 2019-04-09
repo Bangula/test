@@ -1,7 +1,7 @@
 import React from 'react';
-import { AuthenticationPageLayout } from '@components/index';
+import { AuthenticationPageLayout } from '@components';
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   return (
     <AuthenticationPageLayout>
       <div className="sign-in">

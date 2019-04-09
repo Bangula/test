@@ -1,7 +1,7 @@
 import React from 'react';
-import { AuthenticationPageLayout } from '@components/index';
+import { AuthenticationPageLayout } from '@components';
 
-const PasswordResetLinkSent: React.FC = () => {
+const PasswordResetLinkSent = () => {
   return (
     <AuthenticationPageLayout>
       <div className="password-reset">

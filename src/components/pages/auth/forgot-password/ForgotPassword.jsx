@@ -1,7 +1,7 @@
 import React from 'react';
-import { AuthenticationPageLayout } from '@components/index';
+import { AuthenticationPageLayout } from '@components';
 
-const ForgotPassword: React.FC = () => {
+const ForgotPassword = () => {
   return (
     <AuthenticationPageLayout>
       <div className="forgot-password">

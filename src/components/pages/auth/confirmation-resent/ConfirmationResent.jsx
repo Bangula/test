@@ -1,6 +1,6 @@
 import React from 'react';
-import { AuthenticationPageLayout } from '@components/index';
-const ConfirmationResent: React.FC = () => {
+import { AuthenticationPageLayout } from '@components';
+const ConfirmationResent = () => {
   return (
     <AuthenticationPageLayout>
       <div className="confirmation-resent">

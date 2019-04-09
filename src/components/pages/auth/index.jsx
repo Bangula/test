@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { AUTH_ROUTES } from '@constants/routes';
 
-const AuthPages: React.FC = () => {
+const AuthPages = () => {
   return (
     <>
       {AUTH_ROUTES.map(route => (
