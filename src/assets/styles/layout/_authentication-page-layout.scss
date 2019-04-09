@@ -1,13 +1,25 @@
-.authentication-page-layout__wrapper {
-  background: black;
+.auth-page-layout__wrapper {
   height: 100vh;
 }
 
-.authentication-page-layout__content {
+.auth-page-layout__content {
   background: #fff;
-  height: 100vh;
+  height: 100%;
   max-width: 620px;
   margin: 0 auto;
-  transform: skew(-10deg, 0deg);
+  transform: skew(-5deg);
   text-align: center;
+  padding: 145px 0 100px;
+  color: $black-text;
+}
+
+.auth-page-layout__content--holder {
+  margin: 0 auto;
+  width: 85%;
+  transform: skew(5deg);
+}
+
+.title-primary {
+  color: $lightbrown;
+  margin-bottom: 16px;
 }

@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <div>AXE.</div>
+        {/* <div>AXE.</div>
         <Link to="/auth/sign-up">Sign Up</Link>
         <Link to="/auth/sign-in">Sign In</Link>
         <Link to="/auth/signed-out">Sign Out</Link>
@@ -17,7 +17,7 @@ class App extends Component {
         <Link to="/auth/password-reset-link-sent">
           Password-reset-link-sent
         </Link>
-        <Link to="/auth/reset-password">Reset Password</Link>
+        <Link to="/auth/reset-password">Reset Password</Link> */}
         <Pages />
       </Router>
     );
