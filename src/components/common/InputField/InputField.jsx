@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputField = ({ label, type, placeholder, hasError }) => {
+const InputField = ({ label, type, placeholder, hasError, ...props }) => {
   const [inputType, setInputType] = React.useState(type);
 
   return (
@@ -8,9 +8,10 @@ const InputField = ({ label, type, placeholder, hasError }) => {
       <label className="label">
         <span className="label-txt">{label}</span>
         <input
-          className={`input-field${hasError ? 'input-error' : ''}`}
+          className={`input-field${hasError ? ' input-error' : ''}`}
           type={inputType}
           placeholder={placeholder}
+          {...props}
         />
 
         {hasError ? <span className="input-error__sign">!</span> : ''}
