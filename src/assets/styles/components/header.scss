@@ -1,0 +1,85 @@
+.header {
+  font-family: 'BebasNeue';
+}
+
+.header-top {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bottom {
+  padding: 10px 0;
+}
+
+.logo-holder {
+  width: 75px;
+  height: 60px;
+
+  a {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.account-nav {
+  display: flex;
+  align-items: center;
+}
+
+.account-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 43px;
+  border-radius: 100%;
+  border: 1.5px solid $tirques;
+  margin-right: 10px;
+
+  i {
+    color: $white;
+    font-size: 14px;
+  }
+}
+
+.header__link {
+  font-size: 24px;
+  color: $white;
+  text-transform: uppercase;
+
+  &.logout {
+    color: $tirques;
+  }
+
+  .header-top & {
+    margin: 0 10px;
+  }
+
+  &:hover,
+  .active {
+    font-weight: bold;
+  }
+}
+
+ul.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    margin-right: 55px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .pipe {
+      color: $tirques;
+      font-size: 24px;
+    }
+  }
+}
