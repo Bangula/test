@@ -1,14 +1,18 @@
 import React, { Suspense } from 'react';
-import { Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import AuthPages from './auth';
+import WelcomePage from './welcome';
+import MainPages from './main';
 
-export default () => {
+const Pages = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <AuthPages />
-      </Switch>
+      <Route path="/auth" component={AuthPages} />
+      <Route path="/welcome" component={WelcomePage} />
+      <Route path="/main" component={MainPages} />
     </Suspense>
   );
 };
+
+export default Pages;
