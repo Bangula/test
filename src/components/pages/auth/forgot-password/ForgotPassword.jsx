@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
+import InputField from '@components/InputField';
 
 const ForgotPassword = () => {
   return (
@@ -13,7 +14,13 @@ const ForgotPassword = () => {
         </p>
 
         <div className="form-holder">
-          <form action="">form</form>
+          <form action="">
+            <InputField
+              type="email"
+              label="email"
+              placeholder="example@axe.com"
+            />
+          </form>
         </div>
 
         <button className="btn wide">send reset link</button>

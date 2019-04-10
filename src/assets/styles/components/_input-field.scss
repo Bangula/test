@@ -1,0 +1,62 @@
+.input-field__holder {
+  margin: 15px 0;
+}
+
+.input-field {
+  height: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 0.5px solid $lightgray;
+  max-width: 175px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  font-family: 'BebasNeue';
+  font-weight: normal;
+
+  &::placeholder {
+    text-transform: uppercase;
+    color: $lightgray;
+  }
+
+  &:focus {
+    border-bottom: 0.5px solid $black;
+  }
+}
+
+.label {
+  font-family: 'BebasNeue';
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-error__sign {
+  position: absolute;
+  right: -30px;
+  width: 22px;
+  height: 22px;
+  background: $red;
+  color: $white;
+  font-size: 14px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-txt {
+  margin-right: 20px;
+}
+
+.input-error {
+  border-color: $red;
+  color: $red;
+  position: relative;
+
+  &:focus {
+    border-color: $red;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
+import InputField from '@components/InputField';
 
 const SignIn = () => {
   return (
@@ -13,7 +14,17 @@ const SignIn = () => {
         </p>
 
         <div className="form-holder">
-          <form action="">form</form>
+          <form action="">
+            <InputField label="email" placeholder="email" type="email" />
+            <InputField
+              label="password"
+              placeholder="password"
+              type="password"
+            />
+            <div className="forgot-pass">
+              <Link to="/auth/forgot-password">Forgot Password?</Link>
+            </div>
+          </form>
         </div>
 
         <button className="btn">sign in</button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthenticationPageLayout } from '@components';
+import InputField from '@components/InputField';
 
 const SignUp = () => {
   return (
@@ -12,10 +13,28 @@ const SignUp = () => {
         </p>
 
         <div className="form-holder">
-          <form>form</form>
+          <form>
+            <InputField type="text" label="name" placeholder="name" />
+            <InputField type="text" label="surname" placeholder="surname" />
+            <InputField
+              type="email"
+              label="email"
+              placeholder="example@axe.com"
+            />
+            <InputField
+              type="number"
+              label="phone number"
+              placeholder="+44 (0) 0000 000 000"
+            />
+            <InputField type="text" label="market" placeholder="market" />
+            <InputField
+              type="password"
+              label="password"
+              placeholder="password"
+            />
+            <button className="btn">sign up</button>
+          </form>
         </div>
-
-        <button className="btn">sign up</button>
 
         <p className="title-subtext confirmation">
           Already got an account?&nbsp;

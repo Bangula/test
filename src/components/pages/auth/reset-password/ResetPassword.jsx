@@ -1,5 +1,6 @@
 import React from 'react';
 import { AuthenticationPageLayout } from '@components';
+import InputField from '@components/InputField';
 
 const ResetPassword = () => {
   return (
@@ -12,10 +13,15 @@ const ResetPassword = () => {
         </p>
 
         <div className="form-holder">
-          <form>form</form>
+          <form>
+            <InputField
+              type="password"
+              label="password"
+              placeholder="password"
+            />
+            <button className="btn wide">reset and sign in</button>
+          </form>
         </div>
-
-        <button className="btn wide">reset and sign in</button>
       </div>
     </AuthenticationPageLayout>
   );

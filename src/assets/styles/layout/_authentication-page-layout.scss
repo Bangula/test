@@ -59,10 +59,16 @@
 .auth-link-text {
   color: $lightbrown;
   font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .btn {
   background: $lightbrown;
+  margin: 0 auto;
+  margin-top: 35px;
 
   &:hover {
     background: darken($lightbrown, 10%);
@@ -70,7 +76,10 @@
 }
 
 .form-holder {
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 350px;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .back-link {
@@ -79,7 +88,6 @@
 }
 
 .password-reset {
-
   .btn {
     margin-top: 80px;
     margin-bottom: 50px;
@@ -87,15 +95,64 @@
 }
 
 .reset-password {
-
   .form-holder {
     margin-bottom: 50px;
   }
 }
 
 .signed-out {
-
   .title-subtext {
     margin-bottom: 70px;
+  }
+}
+
+// input field
+.label {
+  justify-content: flex-end;
+}
+
+.label-txt {
+  text-align: right;
+  min-width: 115px;
+}
+
+.input-field {
+  max-width: 175px;
+}
+
+.forgot-password {
+  .form-holder {
+    max-width: 370px;
+  }
+
+  .label-txt {
+    max-width: 95px;
+  }
+
+  .input-field {
+    max-width: 195px;
+  }
+
+  .btn {
+    margin-top: 50px;
+  }
+}
+
+.forgot-pass {
+  text-align: right;
+
+  a {
+    font-size: 14px;
+    color: $black-text;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sign-in {
+  .input-field__holder:nth-child(2) {
+    margin-bottom: 0;
   }
 }
