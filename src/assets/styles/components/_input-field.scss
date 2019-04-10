@@ -33,6 +33,24 @@
   position: relative;
 }
 
+.password-eye {
+  position: absolute;
+  width: 13px;
+  height: 12px;
+  right: 0;
+  bottom: 5px;
+
+  > i {
+    width: 13px;
+    height: 12px;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+}
+
 .input-error__sign {
   position: absolute;
   right: -30px;
