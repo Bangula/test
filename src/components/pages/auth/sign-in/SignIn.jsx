@@ -58,7 +58,9 @@ const SignIn = () => {
                     />
                   )}
                 />
-                <button className="btn">sign in</button>
+                <button type="submit" className="btn">
+                  sign in
+                </button>
               </Form>
             </div>
 

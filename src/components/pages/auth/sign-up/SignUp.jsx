@@ -5,8 +5,6 @@ import * as Yup from 'yup';
 import AuthenticationPageLayout from '@components/AuthenticationPageLayout';
 import InputField from '@components/InputField';
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
     .min(5, 'Too Short!')
@@ -23,7 +21,8 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
 
   phone_number: Yup.string()
-    // .matches(phoneRegExp, 'Phone number is not valid')
+    .min(8, 'Too Short!')
+    .max(15, 'Too Long!')
     .required(),
 
   // market: Yup.string().required('Required'),
@@ -99,11 +98,11 @@ const SignUp = () => {
 
                 <Field
                   name="phone_number"
-                  type="text"
+                  type="number"
                   render={({ field }) => (
                     <InputField
                       {...field}
-                      type="text"
+                      type="number"
                       label="phone number"
                       placeholder="+44 (0) 0000 000 000"
                       hasError={touched.phone_number && errors.phone_number}
