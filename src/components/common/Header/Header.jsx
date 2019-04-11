@@ -17,7 +17,9 @@ const Header = () => {
             <Link className="account-btn">
               <i className="fas fa-user-alt" />
             </Link>
-            <Link className="header__link">full name</Link>
+            <Link to="my-profile" className="header__link">
+              full name
+            </Link>
             <Link className="header__link logout">log out</Link>
           </div>
         </div>
