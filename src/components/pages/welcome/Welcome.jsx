@@ -1,9 +1,8 @@
 import React from 'react';
 
 const Welcome = () => {
-  console.log('sadasdasd');
   return (
-    <div>
+    <div className="welcome-page">
       <p>Welcome</p>
     </div>
   );
