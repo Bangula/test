@@ -2954,6 +2954,14 @@ table {
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
+.font-arial {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.font-bebas {
+  font-family: BebasNeue;
+}
+
 .font-hairline {
   font-weight: 100;
 }
@@ -8580,6 +8588,14 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
+  .sm\:font-arial {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  }
+
+  .sm\:font-bebas {
+    font-family: BebasNeue;
+  }
+
   .sm\:font-hairline {
     font-weight: 100;
   }
@@ -14189,6 +14205,14 @@ table {
 
   .md\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .md\:font-arial {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  }
+
+  .md\:font-bebas {
+    font-family: BebasNeue;
   }
 
   .md\:font-hairline {
@@ -19802,6 +19826,14 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
+  .lg\:font-arial {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  }
+
+  .lg\:font-bebas {
+    font-family: BebasNeue;
+  }
+
   .lg\:font-hairline {
     font-weight: 100;
   }
@@ -25411,6 +25443,14 @@ table {
 
   .xl\:font-mono {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
+
+  .xl\:font-arial {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  }
+
+  .xl\:font-bebas {
+    font-family: BebasNeue;
   }
 
   .xl\:font-hairline {

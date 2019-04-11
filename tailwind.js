@@ -228,6 +228,15 @@ module.exports = {
       'Courier New',
       'monospace',
     ],
+    'arial': [
+      'Arial',
+      'Helvetica Neue',
+      'Helvetica',
+      'sans-serif'
+    ],
+    'bebas': [
+      'BebasNeue'
+    ]
   },
 
 
