@@ -1,5 +1,5 @@
 .header {
-  font-family: 'BebasNeue';
+  font-family: $font-family-1;
 }
 
 .header-top {
@@ -51,18 +51,29 @@
   font-size: 24px;
   color: $white;
   text-transform: uppercase;
+  font-weight: 300;
 
   &.logout {
     color: $tirques;
+
+    &:hover {
+      @include hoverBold($tirques);
+    }
   }
 
   .header-top & {
-    margin: 0 10px;
+    margin: 0 15px;
   }
 
   &:hover,
   .active {
-    font-weight: bold;
+    // text-shadow: 0 0 2px $white, 0 0 2px $white;
+    @include hoverBold($white);
+    padding: 0px;
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 
@@ -73,13 +84,18 @@ ul.header-nav {
   li {
     margin-right: 55px;
 
+    &:first-child {
+      max-width: 100px;
+    }
+
     &:last-child {
-      margin-right: 0;
+      margin-left: 10px;
     }
 
     .pipe {
+      font-weight: 300;
       color: $tirques;
-      font-size: 24px;
+      font-size: 28px;
     }
   }
 }

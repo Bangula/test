@@ -2,12 +2,13 @@ import React, { lazy } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { MAIN_ROUTES } from '@constants/routes';
 import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 const MainPage = ({ match: { path } }) => {
   return (
-    <div>
+    <>
       <Header />
-      <div>
+      <div className="main">
         <Switch>
           {MAIN_ROUTES.map(route => (
             <Route
@@ -18,8 +19,8 @@ const MainPage = ({ match: { path } }) => {
           ))}
         </Switch>
       </div>
-      <div>Footer</div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

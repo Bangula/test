@@ -13,7 +13,7 @@
   line-height: 0.86;
   letter-spacing: -1.5px;
   text-align: center;
-  font-family: 'BebasNeue';
+  font-family: $font-family-1;
 }
 
 .btn {
@@ -29,7 +29,7 @@
   outline: none;
   transition: all 0.1s ease;
   text-transform: uppercase;
-  font-family: 'BebasNeue';
+  font-family: $font-family-1;
   font-weight: 400;
   font-size: 24px;
   color: $white;
@@ -50,4 +50,8 @@
 .back-link {
   text-decoration: underline;
   color: $black;
+}
+
+.main {
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
