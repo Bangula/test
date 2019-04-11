@@ -53,5 +53,5 @@
 }
 
 .main {
-  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+  min-height: calc(100vh - #{$header-height});
 }
