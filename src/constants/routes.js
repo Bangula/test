@@ -36,7 +36,7 @@ export const AXE_MUSIC_ROUTES = [
 ];
 
 export const MY_PROFILE_ROUTES = [
-  { path: '' },
-  { path: 'edit' },
+  { path: 'my-profile' },
+  { path: 'edit-profile' },
   { path: 'change-password' },
 ];
