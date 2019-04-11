@@ -1,0 +1,80 @@
+.input-field__holder {
+  margin: 15px 0;
+}
+
+.input-field {
+  height: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 0.5px solid $lightgray;
+  max-width: 175px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  font-family: $font-family-1;
+  font-weight: normal;
+
+  &::placeholder {
+    text-transform: uppercase;
+    color: $lightgray;
+  }
+
+  &:focus {
+    border-bottom: 0.5px solid $black;
+  }
+}
+
+.label {
+  font-family: $font-family-1;
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-eye {
+  position: absolute;
+  width: 13px;
+  height: 12px;
+  right: 0;
+  bottom: 5px;
+
+  > i {
+    width: 13px;
+    height: 12px;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+}
+
+.input-error__sign {
+  position: absolute;
+  right: -30px;
+  width: 22px;
+  height: 22px;
+  background: $red;
+  color: $white;
+  font-size: 14px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-txt {
+  margin-right: 20px;
+}
+
+.input-error {
+  border-color: $red;
+  color: $red;
+  position: relative;
+
+  &:focus {
+    border-color: $red;
+  }
+}

@@ -1,0 +1,101 @@
+.header {
+  font-family: $font-family-1;
+}
+
+.header-top {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bottom {
+  padding: 10px 0 25px;
+}
+
+.logo-holder {
+  width: 75px;
+  height: 60px;
+
+  a {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.account-nav {
+  display: flex;
+  align-items: center;
+}
+
+.account-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 43px;
+  border-radius: 100%;
+  border: 1.5px solid $tirques;
+  margin-right: 10px;
+
+  i {
+    color: $white;
+    font-size: 14px;
+  }
+}
+
+.header__link {
+  font-size: 24px;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: 300;
+
+  &.logout {
+    color: $tirques;
+
+    &:hover {
+      @include hoverBold($tirques);
+    }
+  }
+
+  .header-top & {
+    margin: 0 15px;
+  }
+
+  &:hover,
+  .active {
+    // text-shadow: 0 0 2px $white, 0 0 2px $white;
+    @include hoverBold($white);
+    padding: 0px;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+ul.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    margin-right: 55px;
+
+    &:first-child {
+      max-width: 100px;
+    }
+
+    &:last-child {
+      margin-left: 10px;
+    }
+
+    .pipe {
+      font-weight: 300;
+      color: $tirques;
+      font-size: 28px;
+    }
+  }
+}
