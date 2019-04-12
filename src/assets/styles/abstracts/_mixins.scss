@@ -1,3 +1,9 @@
 @mixin hoverBold($color) {
   text-shadow: 0 0 2px $color, 0 0 2px $color;
 }
+
+@mixin button($bg-color, $color, $border) {
+  background-color: $bg-color;
+  color: $color;
+  border: $border;
+}

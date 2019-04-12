@@ -1,5 +1,77 @@
 .profile-page-layout {
   padding: 50px 0;
   background: url('../images/group-2.png') no-repeat left;
-  height: 630px;
+  min-height: 630px;
+
+  .title-primary {
+    text-align: left;
+    color: $white;
+    margin-bottom: 0;
+  }
+  .profile-content__holder {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .profile-content {
+    min-width: 700px;
+  }
+
+  .profile__title-holder {
+    margin-bottom: 55px;
+  }
+
+  .my-profile__title-holder {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .my-profile__buttons {
+    display: flex;
+    margin-left: 60px;
+  }
+
+  .btn {
+    &.dark {
+      @include button($black, $white, 1.5px solid $tirques);
+      margin-right: 10px;
+    }
+
+    &.tirques {
+      @include button($tirques, $black, 1.5 solid $tirques);
+    }
+  }
+
+  .profile__content-holder {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details-box {
+    margin-bottom: 35px;
+  }
+
+  .details-box__left {
+    padding-right: 20px;
+  }
+
+  .label {
+    color: $tirques;
+    justify-content: flex-start;
+  }
+
+  .details-box__holder {
+    display: flex;
+    padding-left: 25px;
+    margin-top: 8px;
+  }
+
+  .profile-details__label {
+    font-weight: bold;
+    margin: 8px 0;
+  }
+
+  .profile-details__name {
+    margin: 8px 0;
+  }
 }
