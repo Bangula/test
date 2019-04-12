@@ -64,7 +64,7 @@ export default () => {
 
           <p className="title-subtext confirmation">
             Don't have an account yet?&nbsp;
-            <Link to="/auth/sign-up" className="auth-link-text">
+            <Link to="/register" className="auth-link-text">
               Sign Up
             </Link>
           </p>
