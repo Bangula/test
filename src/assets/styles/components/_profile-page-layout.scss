@@ -18,12 +18,13 @@
   }
 
   .profile__title-holder {
-    margin-bottom: 55px;
+    margin-bottom: 60px;
   }
 
   .my-profile__title-holder {
     display: flex;
     align-items: flex-end;
+    flex-wrap: wrap;
   }
 
   .my-profile__buttons {
@@ -73,5 +74,53 @@
 
   .profile-details__name {
     margin: 8px 0;
+  }
+
+  // edit profile
+  .profile__content--left,
+  .profile__content--right {
+    max-width: 275px;
+    width: 100%;
+  }
+
+  .input-field__holder {
+    margin-bottom: 30px;
+  }
+
+  .input-field {
+    border-color: $white;
+    color: $white;
+    max-width: 100%;
+    font-family: 'Arial';
+  }
+
+  .label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label-txt {
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  i.fas {
+    color: $white;
+    right: 10px;
+  }
+}
+
+.edit-profile,
+.change-password {
+  display: flex;
+  flex-direction: column;
+  min-height: 470px;
+
+  .my-profile__buttons {
+    margin-left: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
   }
 }
