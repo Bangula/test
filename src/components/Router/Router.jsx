@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 // import { isAuthenticated } from '@helpers/auth';
 
-import AuthRoutes from '../auth/AuthRoutes';
-import UnauthRoutes from '../unauth/UnauthRoutes';
+import AuthRoutes from '../Auth/AuthRoutes';
+import UnauthRoutes from '../Unauth/UnauthRoutes';
 
 export const ApplicationRouterContext = React.createContext();
 
 export default class ApplicationRouter extends Component {
   state = {
-    authenticated: false,
+    authenticated: true,
   };
   componentWillMount() {
     // We need to check here if the user is authenticated
