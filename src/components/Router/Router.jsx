@@ -9,7 +9,7 @@ export const ApplicationRouterContext = React.createContext();
 
 export default class ApplicationRouter extends Component {
   state = {
-    authenticated: true,
+    authenticated: false,
   };
   componentWillMount() {
     // We need to check here if the user is authenticated
