@@ -1,17 +1,20 @@
-import React, { Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import AuthPages from './auth';
-import SelectionPage from './selection';
+import UnauthPages from './unauth';
+import SelectionPage from './selection/Selection';
 import MainPages from './main';
 
 const Pages = () => {
+  const [isAuthenticated, setAuth] = React.useState(false);
+  const ActiveRoutes = isAuthenticated ? MainPages : UnauthPages;
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Route path="/auth" component={AuthPages} />
-      <Route path="/selection" component={SelectionPage} />
-      <Route path="/main" component={MainPages} />
-    </Suspense>
+    <Switch>
+      {isAuthenticated && (
+        <Route exact path="/selection" component={SelectionPage} />
+      )}
+      <Route path="/" component={ActiveRoutes} />
+    </Switch>
   );
 };
 

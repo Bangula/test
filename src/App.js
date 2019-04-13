@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Link } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import Pages from '@pages';
 
 import history from '@/services/history';
