@@ -57,21 +57,20 @@
   &.logout {
     color: $tirques;
 
-    &:hover {
-      @include hoverBold($tirques);
-    }
+    // &:hover {
+    //   @include hoverBold($tirques);
+    // }
   }
 
   .header-top & {
     margin: 0 15px;
   }
 
-  &:hover,
-  .active {
-    // text-shadow: 0 0 2px $white, 0 0 2px $white;
-    @include hoverBold($white);
-    padding: 0px;
-  }
+  // &:hover,
+  // .active {
+  //   @include hoverBold($white);
+  //   padding: 0px;
+  // }
 
   &:last-child {
     margin-right: 0;
@@ -99,5 +98,31 @@ ul.header-nav {
       color: $tirques;
       font-size: 28px;
     }
+  }
+}
+
+.sub-header {
+  min-height: 4px;
+  background: $tirques;
+
+  a {
+    font-size: 18px;
+    color: $black-text;
+    font-weight: 400;
+  }
+}
+
+.sub-header__admin {
+  min-height: 4px;
+  background: $pink;
+}
+
+.admin-btn__holder {
+  .btn {
+    background: $pink;
+    border-radius: 0;
+    font-size: 20px;
+    outline: none;
+    padding: 0 30px;
   }
 }

@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
+import Button from '@components/Button/Button';
 
 const Header = ({ match: { url } }) => {
   const root = url === '/' ? '' : url;
+
+  const [toggleAdminBtn, setToggleAdminBtn] = React.useState(true);
+  const icon = toggleAdminBtn ? 'fas fa-eye-slash' : 'fas fa-eye';
+  const btnAction = toggleAdminBtn ? 'hide' : 'show';
+
+  const handleToggleAdminBtn = () => {
+    setToggleAdminBtn(toggleAdminBtn => !toggleAdminBtn);
+  };
+
   return (
     <div className="header">
       <div className="wrapper">
@@ -71,6 +81,25 @@ const Header = ({ match: { url } }) => {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div className="sub-header">
+        <div className="wrapper" />
+      </div>
+
+      <div className="sub-header__admin">
+        <div className="wrapper" />
+      </div>
+
+      <div className="admin-btn__holder wrapper relative">
+        <button
+          onClick={handleToggleAdminBtn}
+          className="btn wide flex justify-between align-center absolute pin-r">
+          <span className="admin-hide-icon flex align-center">
+            <i className={`${icon} text-sm`} />
+          </span>
+          <span className="ml-4">{btnAction} admin tools</span>
+        </button>
       </div>
     </div>
   );
