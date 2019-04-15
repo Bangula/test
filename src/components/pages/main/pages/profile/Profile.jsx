@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import ProfilePageLayout from './common/ProfilePageLayout';
+import ProfilePageLayout from './common/ProfilePageLayout/ProfilePageLayout';
 
 import ProfileInfo from './pages/profile-info/ProfileInfo';
 import ChangePassword from './pages/change-password/ChangePassword';

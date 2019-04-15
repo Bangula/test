@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import InputField from '@components/InputField';
+import InputField from '@components/InputField/InputField';
 
 const PasswordResetSchema = Yup.object().shape({
   password: Yup.string()

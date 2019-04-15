@@ -1,5 +1,5 @@
 import React from 'react';
-import InputField from '@components/InputField';
+import InputField from '@components/InputField/InputField';
 import { Link } from 'react-router-dom';
 
 const ChangePassword = () => {

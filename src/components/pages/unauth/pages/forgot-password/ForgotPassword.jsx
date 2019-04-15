@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import InputField from '@components/InputField';
+import InputField from '@components/InputField/InputField';
 
 const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string()

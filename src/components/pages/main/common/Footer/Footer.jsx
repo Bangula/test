@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 
-const Footer = () => {
+const Footer = ({ match: { url } }) => {
   return (
     <div className="footer">
       <div className="container">
@@ -64,4 +64,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default withRouter(Footer);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import AuthenticationPageLayout from './common/AuthenticationPageLayout';
+import UnauthPagesLayout from './common/UnauthPagesLayout/UnauthPagesLayout';
 
 import ConfirmationSent from './pages/confirmation-sent/ConfirmationSent';
 import ConfirmationResent from './pages/confirmation-resent/ConfirmationResent';
@@ -14,7 +14,7 @@ import SignedOut from './pages/signed-out/SignedOut';
 const AuthPages = ({ match: { path } }) => {
   const root = path === '/' ? '' : path;
   return (
-    <AuthenticationPageLayout>
+    <UnauthPagesLayout>
       <Switch>
         <Route
           path={`${root}/confirmation-sent`}
@@ -30,12 +30,12 @@ const AuthPages = ({ match: { path } }) => {
           component={PasswordResetLinkSent}
         />
         <Route path={`${root}/reset-password`} component={ResetPassword} />
-        <Route path={`${root}/`} component={SignIn} />
         <Route path={`${root}/sign-up`} component={SignUp} />
         <Route path={`${root}/signed-out`} component={SignedOut} />
-        <Route component={() => <Redirect to={`${root}/sign-in`} />} />
+        <Route exact path={`${root}/`} component={SignIn} />
+        <Route component={() => <Redirect to={`${root}/`} />} />
       </Switch>
-    </AuthenticationPageLayout>
+    </UnauthPagesLayout>
   );
 };
 

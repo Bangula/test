@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import InputField from '@components/InputField';
+import InputField from '@components/InputField/InputField';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string()
@@ -14,7 +14,8 @@ const SignInSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const SignIn = () => {
+const SignIn = ({ match: { url } }) => {
+  const root = url === '/' ? '' : url;
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -64,7 +65,7 @@ const SignIn = () => {
 
           <p className="title-subtext confirmation">
             Don't have an account yet?&nbsp;
-            <Link to="/auth/sign-up" className="auth-link-text">
+            <Link to={`${root}/sign-up`} className="auth-link-text">
               Sign Up
             </Link>
           </p>
@@ -74,4 +75,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default withRouter(SignIn);
