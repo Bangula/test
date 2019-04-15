@@ -6,7 +6,7 @@ import SelectionPage from './selection/Selection';
 import MainPages from './main';
 
 const Pages = () => {
-  const [isAuthenticated, setAuth] = React.useState(true);
+  const [isAuthenticated, setAuth] = React.useState(false);
   const ActiveRoutes = isAuthenticated ? MainPages : UnauthPages;
   return (
     <Switch>
