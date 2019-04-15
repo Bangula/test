@@ -1,4 +1,8 @@
 .profile-page-layout {
+  padding: 50px 0;
+  background: url('../images/profile-page.png') no-repeat left;
+  min-height: 630px;
+
   .title-primary {
     text-align: left;
     color: $white;
@@ -117,6 +121,6 @@
     margin-left: 0;
     display: flex;
     justify-content: flex-end;
-    // margin-top: auto;
+    margin-top: auto;
   }
 }
