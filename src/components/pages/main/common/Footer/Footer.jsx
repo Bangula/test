@@ -5,7 +5,7 @@ import logo from '@images/logo@3x.png';
 const Footer = ({ match: { url } }) => {
   return (
     <div className="footer">
-      <div className="container">
+      <div className="wrapper">
         <div className="footer-holder">
           <div className="footer-nav">
             <div className="footer-logo">

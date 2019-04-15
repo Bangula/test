@@ -46,6 +46,7 @@
   .profile__content-holder {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .details-box {
@@ -79,8 +80,7 @@
   // edit profile
   .profile__content--left,
   .profile__content--right {
-    max-width: 275px;
-    width: 100%;
+    // min-width: 275px;
   }
 
   .input-field__holder {

@@ -6,7 +6,7 @@ const Header = ({ match: { url } }) => {
   const root = url === '/' ? '' : url;
   return (
     <div className="header">
-      <div className="container">
+      <div className="wrapper">
         <div className="header-top">
           <div className="logo-holder">
             <Link to={`${root}/`}>
