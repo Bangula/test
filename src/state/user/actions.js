@@ -1,8 +1,14 @@
 import { getToken } from '@services/http/endpoints/user';
+import { authenticate } from '@helpers/auth';
+import history from '@services/history';
+
+import { AUTHENTICATE_USER } from './types';
 
 export const logIn = credentials => async dispatch => {
-  console.log(credentials);
   const { data, error } = await getToken(credentials);
-  console.log({ data, error });
-  dispatch({ type: 'LOG_IN', payload: credentials });
+  if (data) {
+    authenticate(data);
+    dispatch({ type: AUTHENTICATE_USER });
+    history.replace('/selection');
+  }
 };
