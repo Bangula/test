@@ -16,36 +16,6 @@
   font-family: $font-family-1;
 }
 
-.btn {
-  width: 190px;
-  height: 45px;
-  border-radius: 4px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  outline: none;
-  transition: all 0.1s ease;
-  text-transform: uppercase;
-  font-family: $font-family-1;
-  font-weight: 400;
-  font-size: 24px;
-  color: $white;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.small {
-    width: 75px;
-  }
-
-  &.wide {
-    width: 215px;
-  }
-}
-
 .back-link {
   text-decoration: underline;
   color: $black;

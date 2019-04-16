@@ -8,13 +8,15 @@
     color: $white;
     margin-bottom: 0;
   }
+
+  .profile-content {
+    max-width: 750px;
+    width: 100%;
+  }
+
   .profile-content__holder {
     display: flex;
     justify-content: flex-end;
-  }
-
-  .profile-content {
-    min-width: 700px;
   }
 
   .profile__title-holder {
@@ -25,11 +27,13 @@
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .my-profile__buttons {
     display: flex;
     margin-left: 60px;
+    flex-wrap: wrap;
   }
 
   .btn {
@@ -80,7 +84,7 @@
   // edit profile
   .profile__content--left,
   .profile__content--right {
-    // min-width: 275px;
+    min-width: 275px;
   }
 
   .input-field__holder {

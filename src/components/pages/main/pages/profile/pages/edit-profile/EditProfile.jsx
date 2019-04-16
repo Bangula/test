@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from '@components/InputField/InputField';
 import { Link } from 'react-router-dom';
+import Button from '@components/Button/Button';
 
 const EditProfile = () => {
   return (
@@ -22,8 +23,14 @@ const EditProfile = () => {
       </div>
 
       <div className="my-profile__buttons">
-        <Link className="btn wide dark">cancel</Link>
-        <Link className="btn wide tirques">confirm changes</Link>
+        <Link to="/profile">
+          <Button className="wide btn-bg-transparent btn-text-white btn-border-tirques">
+            cancel
+          </Button>
+        </Link>
+        <Button className="wide btn-bg-tirques btn-text-black ml-3">
+          confirm changes
+        </Button>
       </div>
     </div>
   );

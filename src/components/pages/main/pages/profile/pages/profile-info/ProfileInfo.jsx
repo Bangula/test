@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@components/Button/Button';
 
 const ProfileInfo = () => {
   return (
@@ -9,8 +10,24 @@ const ProfileInfo = () => {
           <h1 className="title-primary">my profile</h1>
 
           <div className="my-profile__buttons">
-            <Link className="btn wide dark">Change Password</Link>
-            <Link className="btn wide tirques">Edit Profile</Link>
+            <Link to="/profile/change-password">
+              <Button
+                className="wide"
+                bgColor="btn-bg-transparent"
+                border="btn-border-tirques"
+                textColor="btn-text-white">
+                change password
+              </Button>
+            </Link>
+            <Link to="/profile/edit" className="ml-3">
+              <Button
+                className="wide"
+                bgColor="btn-bg-tirques"
+                border="btn-border-tirques"
+                textColor="btn-text-black">
+                edit profile
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

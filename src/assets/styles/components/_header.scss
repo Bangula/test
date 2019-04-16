@@ -11,7 +11,7 @@
 }
 
 .header-bottom {
-  padding: 10px 0 25px;
+  padding: 10px 0 20px;
 }
 
 .logo-holder {
@@ -53,24 +53,40 @@
   color: $white;
   text-transform: uppercase;
   font-weight: 300;
+  position: relative;
+
+  &:hover {
+    // font-weight: 700;
+  }
+
+  &.active {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0px;
+      height: 0px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid $tirques;
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: -25px;
+    }
+  }
+
+  &.active-pink {
+    &::after {
+      border-bottom: 15px solid $pink;
+    }
+  }
 
   &.logout {
     color: $tirques;
-
-    &:hover {
-      @include hoverBold($tirques);
-    }
   }
 
   .header-top & {
     margin: 0 15px;
-  }
-
-  &:hover,
-  .active {
-    // text-shadow: 0 0 2px $white, 0 0 2px $white;
-    @include hoverBold($white);
-    padding: 0px;
   }
 
   &:last-child {
@@ -83,6 +99,7 @@ ul.header-nav {
   flex-wrap: wrap;
 
   li {
+    // min-width: 120px;
     margin-right: 55px;
 
     &:first-child {
@@ -99,5 +116,32 @@ ul.header-nav {
       color: $tirques;
       font-size: 28px;
     }
+  }
+}
+
+.sub-header {
+  min-height: 4px;
+  background: $tirques;
+
+  a {
+    font-size: 18px;
+    color: $black-text;
+    font-weight: 400;
+  }
+}
+
+.sub-header__admin {
+  min-height: 4px;
+  background: $pink;
+}
+
+.admin-btn__holder {
+  .btn {
+    background: $pink;
+    border-radius: 0;
+    font-size: 20px;
+    outline: none;
+    padding: 0 30px;
+    right: 10px;
   }
 }
