@@ -1,18 +1,18 @@
 import React from 'react';
 
 const Button = ({
-  text,
   textColor,
   bgColor,
   border,
   className,
-  handleClick,
+  children,
+  ...props
 }) => {
   return (
     <button
       className={`btn ${border} ${textColor} ${bgColor} ${className}`}
-      onClick={handleClick}>
-      {text}
+      {...props}>
+      {children}
     </button>
   );
 };

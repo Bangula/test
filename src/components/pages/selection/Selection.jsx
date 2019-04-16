@@ -1,6 +1,8 @@
 import React from 'react';
 import backgroundImage from '@images/selection-page.png';
-import logo2x from '@images/logo@2x.png'
+import logo2x from '@images/logo@2x.png';
+import Button from '@components/Button/Button';
+import { Link } from 'react-router-dom';
 
 export default () => {
   return (
@@ -41,16 +43,19 @@ export default () => {
               </p>
               <div className="px-5">
                 <div className="mb-5">
-                  <button className="w-48 font-hairline font-bebas text-2xl uppercase text-white border-2 leading-none pb-1 pt-3 border-lightbrown">
-                    Axe Music
-                  </button>
+                  <Link to="/">
+                    <Button className="w-48 font-hairline font-bebas text-2xl uppercase text-white leading-none pb-1 pt-1 btn-border-lightbrown">
+                      axe music
+                    </Button>
+                  </Link>
                 </div>
                 <div>
-                  <button
+                  <Button
                     disabled
-                    className="opacity-25 w-48 font-hairline font-bebas text-2xl uppercase text-white border-2 leading-none pb-1 pt-3 border-lightbrown">
-                    Axe Gaming
-                  </button>
+                    border="btn-border-lightbrown"
+                    className="opacity-25 w-48 font-hairline font-bebas text-2xl uppercase text-white border-2 leading-none pb-1 pt-1 border-lightbrown">
+                    axe gaming
+                  </Button>
                 </div>
               </div>
             </div>

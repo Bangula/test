@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from '@components/InputField/InputField';
 import { Link } from 'react-router-dom';
+import Button from '@components/Button/Button';
 
 const ChangePassword = () => {
   return (
@@ -20,8 +21,14 @@ const ChangePassword = () => {
       </div>
 
       <div className="my-profile__buttons">
-        <Link className="btn wide dark">cancel</Link>
-        <Link className="btn wide tirques">change password</Link>
+        <Link to="/profile">
+          <Button className="wide btn-bg-transparent btn-text-white btn-border-tirques">
+            cancel
+          </Button>
+        </Link>
+        <Button className="wide btn-bg-tirques btn-text-black ml-3">
+          change password
+        </Button>
       </div>
     </div>
   );

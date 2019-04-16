@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, NavLink } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 import Button from '@components/Button/Button';
 
@@ -37,47 +37,72 @@ const Header = ({ match: { url } }) => {
         <div className="header-bottom">
           <ul className="header-nav">
             <li>
-              <Link to={`${root}/`} className="header__link">
+              <NavLink
+                to={`${root}/`}
+                exact
+                activeClassName="active"
+                className="header__link">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/axe-music`} className="header__link">
+              <NavLink
+                to={`${root}/axe-music`}
+                activeClassName="active"
+                className="header__link">
                 AXE MUsic
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/artists`} className="header__link">
+              <NavLink
+                to={`${root}/artists`}
+                activeClassName="active"
+                className="header__link">
                 Artists
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/partners`} className="header__link">
+              <NavLink
+                to={`${root}/partners`}
+                activeClassName="active"
+                className="header__link">
                 Partners
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/content`} className="header__link">
+              <NavLink
+                to={`${root}/content`}
+                activeClassName="active"
+                className="header__link">
                 Content
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/brand-approval`} className="header__link">
+              <NavLink
+                to={`${root}/brand-approval`}
+                activeClassName="active"
+                className="header__link">
                 Brand approval
-              </Link>
+              </NavLink>
             </li>
-            <li>
+            <li className="flex justify-center">
               <span className="pipe">|</span>
             </li>
             <li>
-              <Link to={`${root}/requests`} className="header__link">
+              <NavLink
+                to={`${root}/requests`}
+                activeClassName="active active-pink"
+                className="header__link">
                 my requests
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={`${root}/admin`} className="header__link">
+              <NavLink
+                to={`${root}/admin`}
+                activeClassName="active active-pink"
+                className="header__link">
                 Admin
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -92,14 +117,16 @@ const Header = ({ match: { url } }) => {
       </div>
 
       <div className="admin-btn__holder wrapper relative">
-        <button
+        <Button
           onClick={handleToggleAdminBtn}
-          className="btn wide flex justify-between align-center absolute pin-r">
+          className="btn wide flex justify-between align-center absolute pin-r rounded-none"
+          bgColor="btn-bg-pink"
+          textColor="btn-text-white">
           <span className="admin-hide-icon flex align-center">
             <i className={`${icon} text-sm`} />
           </span>
           <span className="ml-4">{btnAction} admin tools</span>
-        </button>
+        </Button>
       </div>
     </div>
   );

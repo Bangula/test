@@ -28,6 +28,7 @@
     width: 215px;
   }
 
+  // border
   &.btn-border-black {
     border: 1.5px solid $black;
   }
@@ -52,6 +53,7 @@
     border: 1.5px solid $red;
   }
 
+  // text color
   &.btn-text-black {
     color: $black;
   }
@@ -76,6 +78,7 @@
     color: $red;
   }
 
+  // background btn
   &.btn-bg-black {
     background-color: $black;
   }
@@ -98,5 +101,9 @@
 
   &.btn-bg-red {
     background-color: $red;
+  }
+
+  &.btn-bg-transparent {
+    background-color: transparent;
   }
 }
