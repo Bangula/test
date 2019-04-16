@@ -2,7 +2,7 @@ import { getToken } from '@services/http/endpoints/user';
 import { authenticate } from '@helpers/auth';
 import history from '@services/history';
 
-import { AUTHENTICATE_USER } from './types';
+import { AUTHENTICATE_USER, DEAUTHENTICATE_USER } from './types';
 
 export const logIn = credentials => async dispatch => {
   const { data, error } = await getToken(credentials);
@@ -11,4 +11,9 @@ export const logIn = credentials => async dispatch => {
     dispatch({ type: AUTHENTICATE_USER });
     history.replace('/selection');
   }
+};
+
+export const logOut = () => dispatch => {
+  localStorage.removeItem('access_token_name');
+  dispatch({ type: DEAUTHENTICATE_USER });
 };

@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter, NavLink } from 'react-router-dom';
+
 import logo from '@images/logo@3x.png';
 import Button from '@components/Button/Button';
+import * as actions from '@state/actions';
 
-const Header = ({ match: { url } }) => {
+const Header = ({ match: { url }, logOut }) => {
   const root = url === '/' ? '' : url;
 
   const [toggleAdminBtn, setToggleAdminBtn] = React.useState(true);
@@ -31,7 +34,9 @@ const Header = ({ match: { url } }) => {
             <Link to={`${root}/profile`} className="header__link">
               full name
             </Link>
-            <Link className="header__link logout">log out</Link>
+            <button onClick={logOut} className="header__link logout">
+              log out
+            </button>
           </div>
         </div>
         <div className="header-bottom">
@@ -132,4 +137,7 @@ const Header = ({ match: { url } }) => {
   );
 };
 
-export default withRouter(Header);
+export default connect(
+  null,
+  actions,
+)(withRouter(Header));
