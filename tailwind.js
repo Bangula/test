@@ -128,7 +128,8 @@ let colors = {
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
 
-  'lightbrown': '#a4896c'
+  'lightbrown': '#a4896c',
+  'tirques': '#00ffe7',
 }
 
 module.exports = {
