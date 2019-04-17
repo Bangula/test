@@ -3,13 +3,15 @@ import { Link, withRouter } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 
 const Footer = ({ match: { url } }) => {
+  const root = url === '/' ? '' : url;
+
   return (
     <div className="footer">
       <div className="wrapper">
         <div className="footer-holder">
           <div className="footer-nav">
             <div className="footer-logo">
-              <Link to="/main/home">
+              <Link to={`${root}/`}>
                 <img src={logo} alt="footer-logo" />
               </Link>
             </div>

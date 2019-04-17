@@ -41,7 +41,8 @@ const Header = ({ match: { url } }) => {
                 to={`${root}/`}
                 exact
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Home">
                 Home
               </NavLink>
             </li>
@@ -49,15 +50,17 @@ const Header = ({ match: { url } }) => {
               <NavLink
                 to={`${root}/axe-music`}
                 activeClassName="active"
-                className="header__link">
-                AXE MUsic
+                className="header__link"
+                title="AXE Music">
+                AXE Music
               </NavLink>
             </li>
             <li>
               <NavLink
                 to={`${root}/artists`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Artists">
                 Artists
               </NavLink>
             </li>
@@ -65,7 +68,8 @@ const Header = ({ match: { url } }) => {
               <NavLink
                 to={`${root}/partners`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Partners">
                 Partners
               </NavLink>
             </li>
@@ -73,7 +77,8 @@ const Header = ({ match: { url } }) => {
               <NavLink
                 to={`${root}/content`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Content">
                 Content
               </NavLink>
             </li>
@@ -81,18 +86,20 @@ const Header = ({ match: { url } }) => {
               <NavLink
                 to={`${root}/brand-approval`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Brand approval">
                 Brand approval
               </NavLink>
             </li>
-            <li className="flex justify-center">
-              <span className="pipe">|</span>
+            <li className="flex items-center">
+              <span className="pipe" />
             </li>
             <li>
               <NavLink
                 to={`${root}/requests`}
                 activeClassName="active active-pink"
-                className="header__link">
+                className="header__link"
+                title="my requests">
                 my requests
               </NavLink>
             </li>
@@ -100,7 +107,8 @@ const Header = ({ match: { url } }) => {
               <NavLink
                 to={`${root}/admin`}
                 activeClassName="active active-pink"
-                className="header__link">
+                className="header__link"
+                title="Admin">
                 Admin
               </NavLink>
             </li>

@@ -72,6 +72,7 @@
       right: 0;
       margin: auto;
       bottom: -25px;
+      cursor: auto;
     }
   }
 
@@ -99,22 +100,36 @@ ul.header-nav {
   flex-wrap: wrap;
 
   li {
-    // min-width: 120px;
-    margin-right: 55px;
+    font-size: 0;
+    margin-right: 50px;
 
-    &:first-child {
-      max-width: 100px;
-    }
+    a {
+      display: inline-block;
+      text-align: center;
 
-    &:last-child {
-      margin-left: 10px;
-      margin-right: 0;
+      &:hover {
+        font-weight: bold;
+      }
+
+      &.active {
+        font-weight: bold;
+      }
+
+      &::before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
     }
 
     .pipe {
-      font-weight: 300;
-      color: $tirques;
-      font-size: 28px;
+      display: inline-block;
+      width: 1px;
+      height: 20px;
+      background: $tirques;
     }
   }
 }
