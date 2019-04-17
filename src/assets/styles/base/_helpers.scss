@@ -24,3 +24,10 @@
 .main {
   min-height: $main-height;
 }
+
+.content-bg {
+  padding: 70px 0;
+  min-height: $main-height;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
