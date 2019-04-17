@@ -2,7 +2,13 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+
+import http from '@services/http';
+import * as actions from '@state/actions';
 import InputField from '@components/InputField/InputField';
+import ConfirmationSent from '../../common/confirmation-sent/ConfirmationSent';
+import ConfirmationResent from '../../common/confirmation-resent/ConfirmationResent';
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,12 +25,12 @@ const SignUpSchema = Yup.object().shape({
     .email('Invalid Email')
     .required('Required'),
 
-  phone_number: Yup.string()
+  phone: Yup.string()
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),
 
-  // market: Yup.string().required('Required'),
+  market_id: Yup.string().required('Required'),
 
   password: Yup.string()
     .min(5, 'Too Short!')
@@ -32,20 +38,35 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const SignUp = ({ match: { url } }) => {
+const SignUp = ({ match: { url }, ...props }) => {
   const root = url === '/' ? '' : url;
-  return (
+
+  const [markets, setMarkets] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchMarkets = async () => {
+      const result = await http('/markets');
+
+      setMarkets(result.data.data);
+    };
+
+    fetchMarkets();
+  }, []);
+
+  console.log(props);
+
+  return !props.confirmationEmailSent && !props.confirmationEmailResent ? (
     <Formik
       initialValues={{
         name: '',
         surname: '',
         email: '',
-        phone_number: '',
-        market: '',
+        phone: '',
+        market_id: '',
         password: '',
       }}
       validationSchema={SignUpSchema}
-      onSubmit={values => console.log(values)}>
+      onSubmit={props.register}>
       {({ errors, touched }) => (
         <div className="sign-up">
           <h1 className="title-primary">Sign Up</h1>
@@ -96,7 +117,7 @@ const SignUp = ({ match: { url } }) => {
               />
 
               <Field
-                name="phone_number"
+                name="phone"
                 type="number"
                 render={({ field }) => (
                   <InputField
@@ -104,12 +125,19 @@ const SignUp = ({ match: { url } }) => {
                     type="number"
                     label="phone number"
                     placeholder="+44 (0) 0000 000 000"
-                    hasError={touched.phone_number && errors.phone_number}
+                    hasError={touched.phone && errors.phone}
                   />
                 )}
               />
 
-              <InputField type="text" label="market" placeholder="market" />
+              <Field component="select" name="market_id">
+                {markets.map(market => (
+                  <option key={market.id} value={market.id}>
+                    {market.name}
+                  </option>
+                ))}
+              </Field>
+
               <Field
                 name="password"
                 type="password"
@@ -138,7 +166,19 @@ const SignUp = ({ match: { url } }) => {
         </div>
       )}
     </Formik>
+  ) : props.confirmationEmailResent ? (
+    <ConfirmationResent />
+  ) : (
+    <ConfirmationSent />
   );
 };
 
-export default withRouter(SignUp);
+const mapStateToProps = state => ({
+  confirmationEmailSent: state.user.confirmationEmailSent,
+  confirmationEmailResent: state.user.confirmationEmailResent,
+});
+
+export default connect(
+  mapStateToProps,
+  actions,
+)(withRouter(SignUp));

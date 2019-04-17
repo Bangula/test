@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const ConfirmationResent = () => {
+import { connect } from 'react-redux';
+
+import * as actions from '@state/actions';
+const ConfirmationResent = ({ resendConfirmationMail }) => {
   return (
     <div className="confirmation-resent">
       <h1 className="title-primary">
@@ -19,12 +22,15 @@ const ConfirmationResent = () => {
       </Link>
       <p className="title-subtext confirmation">
         Did not receive an email?&nbsp;
-        <a className="auth-link-text" href="#">
+        <button onClick={resendConfirmationMail} className="auth-link-text">
           Resend confirmation email
-        </a>
+        </button>
       </p>
     </div>
   );
 };
 
-export default ConfirmationResent;
+export default connect(
+  null,
+  actions,
+)(ConfirmationResent);

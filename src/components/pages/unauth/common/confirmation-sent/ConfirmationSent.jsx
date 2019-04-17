@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ConfirmationSent = () => {
+import * as actions from '@state/actions';
+
+const ConfirmationSent = ({ userName, resendConfirmationMail }) => {
   return (
     <div className="confirmation-email">
-      <h1 className="title-primary">Welcome John!</h1>
+      <h1 className="title-primary">Welcome {userName}!</h1>
       <p className="title-subtext bold">A confirmation email has been sent.</p>
       <p className="title-subtext welcome">
         Thank you for signing up to Axe Music Passions Portal. A confirmation
@@ -17,12 +20,19 @@ const ConfirmationSent = () => {
       </Link>
       <p className="title-subtext confirmation">
         Did not receive an email?&nbsp;
-        <a className="auth-link-text" href="#">
+        <button onClick={resendConfirmationMail} className="auth-link-text">
           Resend confirmation email
-        </a>
+        </button>
       </p>
     </div>
   );
 };
 
-export default ConfirmationSent;
+const mapStateToProps = state => ({
+  userName: state.user.info.name,
+});
+
+export default connect(
+  mapStateToProps,
+  actions,
+)(ConfirmationSent);

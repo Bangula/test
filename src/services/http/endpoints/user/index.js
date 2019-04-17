@@ -2,4 +2,23 @@ import http from '@services/http';
 import toResponse from '@helpers/to-response';
 
 export const getToken = credentials =>
-  toResponse(http.post('/login', credentials));
+  toResponse(http.post('/clients/web/admin/login', credentials));
+
+export const registerUser = credentials =>
+  toResponse(http.post('/register', credentials));
+
+export const logoutUser = () => toResponse(http.delete('/logout'));
+
+export const requestPasswordResetLink = data =>
+  toResponse(
+    http.post('/password/forgot', { ...data, reseturl: 'password-reset' }),
+  );
+
+export const confirmEmail = data =>
+  toResponse(http.post('/mail/confirm', data));
+
+export const resendEmailConfirmation = data =>
+  toResponse(http.post('/mail/resend', data));
+
+export const passwordReset = data =>
+  toResponse(http.post('/password/reset', data));

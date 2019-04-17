@@ -60,6 +60,10 @@ const SignIn = ({ match: { url }, ...props }) => {
                   />
                 )}
               />
+              <div className="forgot-pass">
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </div>
+
               <button type="submit" className="btn">
                 sign in
               </button>

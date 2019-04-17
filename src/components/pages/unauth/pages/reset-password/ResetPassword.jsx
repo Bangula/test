@@ -1,6 +1,11 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import qs from 'query-string';
+
+import { passwordReset } from '@services/http/endpoints/user';
+import * as actions from '@state/actions';
 import InputField from '@components/InputField/InputField';
 
 const PasswordResetSchema = Yup.object().shape({
@@ -10,13 +15,24 @@ const PasswordResetSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const ResetPassword = () => {
+const ResetPassword = props => {
   return (
     <Formik
       initialValues={{ password: '' }}
       validationSchema={PasswordResetSchema}
-      onSubmit={values => console.log(values)}>
-      >
+      onSubmit={async values => {
+        const queryParams = qs.parse(props.location.search);
+        const { data, error } = await passwordReset({
+          ...queryParams,
+          ...values,
+        });
+        if (data) {
+          await props.logIn({
+            email: queryParams.email,
+            password: values.password,
+          });
+        }
+      }}>
       {({ errors, touched }) => (
         <div className="reset-password">
           <h1 className="title-primary">reset password</h1>
@@ -51,4 +67,7 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default connect(
+  null,
+  actions,
+)(ResetPassword);

@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import * as actions from '@state/actions';
 import InputField from '@components/InputField/InputField';
+
+import PasswordResetLinkSent from '../../common/password-reset-link-sent/PasswordResetLinkSent';
 
 const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string()
@@ -10,14 +14,16 @@ const ForgotPasswordSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const ForgotPassword = () => {
-  return (
+const ForgotPassword = ({ passwordResetLinkSent, sendPasswordResetLink }) => {
+  return passwordResetLinkSent ? (
+    <PasswordResetLinkSent />
+  ) : (
     <Formik
       initialValues={{
         email: '',
       }}
       validationSchema={ForgotPasswordSchema}
-      onSubmit={values => console.log(values)}>
+      onSubmit={sendPasswordResetLink}>
       {({ errors, touched }) => (
         <div className="forgot-password">
           <h1 className="title-primary">Forgot your password?</h1>
@@ -56,4 +62,11 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+const mapStateToProps = state => ({
+  passwordResetLinkSent: state.user.passwordResetLinkSent,
+});
+
+export default connect(
+  mapStateToProps,
+  actions,
+)(ForgotPassword);
