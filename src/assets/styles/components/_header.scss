@@ -55,10 +55,6 @@
   font-weight: 300;
   position: relative;
 
-  &:hover {
-    // font-weight: 700;
-  }
-
   &.active {
     &::after {
       content: '';
@@ -71,7 +67,7 @@
       left: 0;
       right: 0;
       margin: auto;
-      bottom: -25px;
+      bottom: -20px;
       cursor: auto;
     }
   }
@@ -103,9 +99,14 @@ ul.header-nav {
     font-size: 0;
     margin-right: 50px;
 
+    &:last-child {
+      margin-right: 0;
+    }
+
     a {
       display: inline-block;
       text-align: center;
+      transition: all 0.2s ease;
 
       &:hover {
         font-weight: bold;
