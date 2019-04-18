@@ -16,7 +16,7 @@ const Header = ({ match: { url } }) => {
 
   return (
     <div className="header">
-      <div className="wrapper">
+      <div className="container">
         <div className="header-top">
           <div className="logo-holder">
             <Link to={`${root}/`}>
@@ -124,7 +124,7 @@ const Header = ({ match: { url } }) => {
         <div className="wrapper" />
       </div>
 
-      <div className="admin-btn__holder wrapper relative">
+      <div className="admin-btn__holder container relative">
         <Button
           onClick={handleToggleAdminBtn}
           className="btn wide flex justify-between align-center absolute pin-r rounded-none"

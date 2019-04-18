@@ -11,7 +11,7 @@ $lightgray: #969696;
 
 $header-height: 184px;
 $footer-height: 45px;
-$main-height: calc(100vh - #{$header-height} - #{$footer-height});
+$main-height: calc(100vh - #{$header-height});
 
 $font-family-1: 'BebasNeue';
 $font-family-2: 'Arial';

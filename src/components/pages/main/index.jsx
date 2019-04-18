@@ -13,7 +13,7 @@ const MainPage = ({ match: { path } }) => {
   return (
     <>
       <Header />
-      <div className="main">
+      <div className="main container-wide">
         <Switch>
           <Route path={`${root}/artists`} component={Artists} />
           <Route path={`${root}/axe-music`} component={AxeMusic} />
