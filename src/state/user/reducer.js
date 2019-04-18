@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       return { ...state, isAuthenticated: true };
 
     case DEAUTHENTICATE_USER:
-      return { ...state, isAuthenticated: false };
+      return { ...state, ...initialState, isAuthenticated: false };
 
     case SAVE_USER_INFO:
       return { ...state, info: action.payload };

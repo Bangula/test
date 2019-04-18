@@ -23,7 +23,14 @@ const SignIn = ({ match: { url }, ...props }) => {
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={SignInSchema}
-      onSubmit={props.logIn}>
+      onSubmit={async values => {
+        try {
+          await props.logIn(values);
+          await props.getUserInfo();
+        } catch (err) {
+          console.log('err');
+        }
+      }}>
       {({ errors, touched }) => (
         <div className="sign-in">
           <h1 className="title-primary">sign in</h1>

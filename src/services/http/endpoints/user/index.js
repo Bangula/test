@@ -22,3 +22,5 @@ export const resendEmailConfirmation = data =>
 
 export const passwordReset = data =>
   toResponse(http.post('/password/reset', data));
+
+export const fetchUserInfo = () => toResponse(http('/user/profile'));

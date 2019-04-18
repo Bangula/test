@@ -132,17 +132,6 @@ const SignUp = ({ match: { url }, ...props }) => {
                   )}
                 />
 
-                {/* <Field
-                  component="select"
-                  name="market_id"
-                  render={({ field }) => (
-                    <SelectField
-                      {...field}
-                      label="markets"
-                      placeholder="markets"
-                      hasError={touched.market_id && errors.market_id}
-                    />
-                  )}> */}
                 <SelectField
                   options={markets}
                   setFieldValue={setFieldValue}
@@ -151,12 +140,6 @@ const SignUp = ({ match: { url }, ...props }) => {
                   name="market_id"
                   hasError={touched.market_id && errors.market_id}
                 />
-                {/* {markets.map(market => (
-                    <option key={market.id} value={market.id}>
-                      {market.name}
-                    </option>
-                  ))} */}
-                {/* </Field> */}
 
                 <Field
                   name="password"

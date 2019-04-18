@@ -5,6 +5,7 @@ import {
   requestPasswordResetLink,
   confirmEmail,
   resendEmailConfirmation,
+  fetchUserInfo,
 } from '@services/http/endpoints/user';
 import { authenticate } from '@helpers/auth';
 import history from '@services/history';
@@ -17,6 +18,14 @@ import {
   SEND_PASSWORD_RESET_LINK,
   VERIFY_USER,
 } from './types';
+
+export const getUserInfo = () => async dispatch => {
+  const { data, error } = await fetchUserInfo();
+
+  if (data) {
+    dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
+  }
+};
 
 export const logIn = credentials => async dispatch => {
   const { data, error } = await getToken(credentials);
