@@ -12,16 +12,22 @@ const MainPage = ({ match: { path } }) => {
   const root = path === '/' ? '' : path;
   return (
     <>
-      <Header />
-      <div className="main container-wide">
-        <Switch>
-          <Route path={`${root}/artists`} component={Artists} />
-          <Route path={`${root}/axe-music`} component={AxeMusic} />
-          <Route path={`${root}/profile`} component={Profile} />
-          <Route exact path={`${root}/`} component={Home} />
-        </Switch>
+      <div
+        style={{ maxWidth: '1920px' }}
+        className="mx-auto min-h-screen relative">
+        <Header />
+        <div className="main container-wide">
+          <Switch>
+            <Route path={`${root}/artists`} component={Artists} />
+            <Route path={`${root}/axe-music`} component={AxeMusic} />
+            <Route path={`${root}/profile`} component={Profile} />
+            <Route exact path={`${root}/`} component={Home} />
+          </Switch>
+        </div>
+        <div className="absolute pin-l pin-r pin-b">
+          <Footer />
+        </div>
       </div>
-      <Footer />
     </>
   );
 };

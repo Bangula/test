@@ -16,7 +16,7 @@ const Header = ({ match: { url } }) => {
 
   return (
     <div className="header">
-      <div className="container">
+      <div className="container mx-auto">
         <div className="header-top">
           <div className="logo-holder">
             <Link to={`${root}/`}>
@@ -117,14 +117,14 @@ const Header = ({ match: { url } }) => {
       </div>
 
       <div className="sub-header">
-        <div className="wrapper" />
+        <div className="container mx-auto" />
       </div>
 
       <div className="sub-header__admin">
-        <div className="wrapper" />
+        <div className="container mx-auto" />
       </div>
 
-      <div className="admin-btn__holder container relative">
+      <div className="admin-btn__holder container mx-auto relative">
         <Button
           onClick={handleToggleAdminBtn}
           className="btn wide flex justify-between align-center absolute pin-r rounded-none"
