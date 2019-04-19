@@ -9,7 +9,7 @@ const Footer = ({ match: { url } }) => {
     <footer className="footer flex justify-between align-center py-5">
       <div className="flex">
         <div className="mr-5" style={{ width: '44px' }}>
-          <Link to="/main/home">
+          <Link to={`${root}/`}>
             <img src={logo} alt="footer-logo" />
           </Link>
         </div>
