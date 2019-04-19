@@ -1,53 +1,6 @@
 .header {
   font-family: $font-family-1;
-  min-height: $header-height;
 }
-
-.header-top {
-  padding: 30px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-bottom {
-  padding: 10px 0 20px;
-}
-
-.logo-holder {
-  width: 75px;
-  height: 60px;
-
-  a {
-    display: block;
-  }
-
-  img {
-    width: 100%;
-  }
-}
-
-.account-nav {
-  display: flex;
-  align-items: center;
-}
-
-.account-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 43px;
-  border-radius: 100%;
-  border: 1.5px solid $tirques;
-  margin-right: 10px;
-
-  i {
-    color: $white;
-    font-size: 14px;
-  }
-}
-
 .header__link {
   font-size: 24px;
   color: $white;
@@ -77,18 +30,6 @@
       border-bottom: 15px solid $pink;
     }
   }
-
-  &.logout {
-    color: $tirques;
-  }
-
-  .header-top & {
-    margin: 0 15px;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
 }
 
 ul.header-nav {
@@ -97,7 +38,7 @@ ul.header-nav {
 
   li {
     font-size: 0;
-    margin-right: 50px;
+    margin-right: 60px;
 
     &:last-child {
       margin-right: 0;
@@ -131,33 +72,9 @@ ul.header-nav {
       height: 20px;
       background: $tirques;
     }
-  }
-}
 
-.sub-header {
-  min-height: 4px;
-  background: $tirques;
-
-  a {
-    font-size: 18px;
-    color: $black-text;
-    font-weight: 400;
-  }
-}
-
-.sub-header__admin {
-  min-height: 4px;
-  background: $pink;
-}
-
-.admin-btn__holder {
-  .btn {
-    background: $pink;
-    border-radius: 0;
-    font-size: 20px;
-    outline: none;
-    padding: 0 30px;
-    right: 10px;
-    z-index: 9999;
+    @media (max-width: 1220px) {
+      margin-right: 40px;
+    }
   }
 }
