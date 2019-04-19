@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '@components/Button/Button';
 
-const ProfileInfo = () => {
+const ProfileInfo = ({ name, surname, job_title, email, phone }) => {
   return (
     <div className="my-profile">
       <div className="profile__title-holder">
@@ -44,9 +45,9 @@ const ProfileInfo = () => {
               </div>
 
               <div className="details-box__right">
-                <p className="profile-details__name">Meg</p>
-                <p className="profile-details__name">Rigden</p>
-                <p className="profile-details__name">Lorem Ipsum</p>
+                <p className="profile-details__name">{name}</p>
+                <p className="profile-details__name">{surname}</p>
+                <p className="profile-details__name">{job_title}</p>
               </div>
             </div>
           </div>
@@ -76,8 +77,8 @@ const ProfileInfo = () => {
               </div>
 
               <div className="details-box__right">
-                <p className="profile-details__name">meg.rigden@example.com</p>
-                <p className="profile-details__name">+44 (0) 7123 456 7890</p>
+                <p className="profile-details__name">{email}</p>
+                <p className="profile-details__name">{phone}</p>
               </div>
             </div>
           </div>
@@ -87,4 +88,10 @@ const ProfileInfo = () => {
   );
 };
 
-export default ProfileInfo;
+const mapStateToProps = state => {
+  const { name, surname, job_title, email, phone } = state.user.info;
+
+  return { name, surname, job_title, email, phone };
+};
+
+export default connect(mapStateToProps)(ProfileInfo);
