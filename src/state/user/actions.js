@@ -6,6 +6,7 @@ import {
   confirmEmail,
   resendEmailConfirmation,
   fetchUserInfo,
+  updateUserInfo,
 } from '@services/http/endpoints/user';
 import { authenticate } from '@helpers/auth';
 import history from '@services/history';
@@ -79,5 +80,17 @@ export const resendConfirmationMail = () => async (dispatch, getState) => {
   if (data) {
     console.log('ad');
     dispatch({ type: RESEND_CONFIRMATION_EMAIL });
+  }
+};
+
+export const updateUser = credentials => async (dispatch, getState) => {
+  const id = getState().user.info.id;
+  if (id) {
+    const { data, error } = await updateUserInfo(id, credentials);
+
+    if (data) {
+      console.log(data);
+      dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
+    }
   }
 };

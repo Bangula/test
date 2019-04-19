@@ -24,3 +24,6 @@ export const passwordReset = data =>
   toResponse(http.post('/password/reset', data));
 
 export const fetchUserInfo = () => toResponse(http('/user/profile'));
+
+export const updateUserInfo = (id, data) =>
+  toResponse(http.put(`/users/:${id}`, data));
