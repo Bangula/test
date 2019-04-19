@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '@components/Button/Button';
+import { changePassword } from '@services/http/endpoints/user';
 
 const ChangePasswordSchema = Yup.object({
   old_password: Yup.string()
@@ -28,7 +29,13 @@ const ChangePassword = () => {
         new_password: '',
         confirm_new_password: '',
       }}
-      onSubmit={values => console.log(values)}>
+      onSubmit={async values => {
+        const { data, error } = await changePassword(values);
+
+        if (data) {
+          console.log(data);
+        }
+      }}>
       {({ errors, touched }) => (
         <Form>
           <div className="change-password">
