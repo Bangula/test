@@ -15,7 +15,7 @@ const Header = ({ match: { url } }) => {
   };
 
   return (
-    <div className="header">
+    <div className="header font-bebas">
       <div className="flex flex-wrap items-center justify-between py-6 px-16">
         <div style={{ width: '75px', height: '60px' }}>
           <Link to={`${root}/`}>
@@ -41,7 +41,7 @@ const Header = ({ match: { url } }) => {
         </div>
       </div>
       <div className="px-16 py-5">
-        <ul className="header-nav">
+        <ul className="header-nav flex flex-wrap">
           <li>
             <NavLink
               to={`${root}/`}
@@ -132,7 +132,7 @@ const Header = ({ match: { url } }) => {
       <div className="container mx-auto relative">
         <Button
           onClick={handleToggleAdminBtn}
-          className="btn wide flex justify-between align-center absolute pin-r rounded-none px-4"
+          className="btn wide flex justify-between items-center absolute pin-r rounded-none px-8 text-xl"
           bgColor="btn-bg-pink"
           textColor="btn-text-white">
           <span className="admin-hide-icon flex align-center">
