@@ -27,7 +27,7 @@ const ForgotPassword = ({ passwordResetLinkSent, sendPasswordResetLink }) => {
       {({ errors, touched }) => (
         <div className="forgot-password">
           <h1 className="title-primary">Forgot your password?</h1>
-          <p className="title-subtext">
+          <p className="title-subtext font-arial">
             Enter the email address used for your account <br /> below and we
             will send you a password reset link.
           </p>
@@ -53,7 +53,7 @@ const ForgotPassword = ({ passwordResetLinkSent, sendPasswordResetLink }) => {
             </Form>
           </div>
 
-          <Link to="/auth/sign-in" className="back-link" href="#">
+          <Link to="/auth/sign-in" className="back-link font-arial" href="#">
             Back to sign in
           </Link>
         </div>

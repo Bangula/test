@@ -10,7 +10,6 @@ const Pages = ({ isAuthenticated, info, getUserInfo }) => {
   const ActiveRoutes = isAuthenticated ? MainPages : UnauthPages;
 
   React.useEffect(() => {
-    console.log(isAuthenticated && Object.keys(info).length === 0);
     if (isAuthenticated && Object.keys(info).length === 0) {
       getUserInfo();
     }

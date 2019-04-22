@@ -125,8 +125,8 @@ const Header = ({ match: { url }, logOut, ...props }) => {
         </ul>
       </div>
 
-      {props.location.pathname === '/admin' ||
-      props.location.pathname === '/requests' ? (
+      {props.location.pathname.includes('/admin') ||
+      props.location.pathname.includes('/requests') ? (
         ''
       ) : (
         <div className="bg-tirques" style={{ minHeight: '4px' }}>
@@ -145,25 +145,6 @@ const Header = ({ match: { url }, logOut, ...props }) => {
                 ))}
               </ul>
             )}
-
-            {/* {HEADER_ROUTES[props.location.pathname] === HEADER_ROUTES['/'] ||
-            HEADER_ROUTES[props.location.pathname] ===
-              HEADER_ROUTES['/axe-music'] ? (
-              <ul className="subheader-nav">
-                {HEADER_ROUTES[props.location.pathname].map(route => (
-                  <li ket={route.label}>
-                    <Link
-                      to={`${root}${route.path}`}
-                      title={route.label}
-                      className="subheader-link">
-                      {route.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              ''
-            )} */}
           </div>
         </div>
       )}
@@ -175,7 +156,7 @@ const Header = ({ match: { url }, logOut, ...props }) => {
           HEADER_ROUTES[props.location.pathname] === HEADER_ROUTES['/admin'] ? (
             <ul className="subheader-nav pink">
               {HEADER_ROUTES[props.location.pathname].map(route => (
-                <li ket={route.label}>
+                <li key={route.label}>
                   <Link
                     to={`${root}${route.path}`}
                     title={route.label}

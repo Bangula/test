@@ -5,7 +5,7 @@ const SignedOut = () => {
   return (
     <div className="signed-out">
       <h1 className="title-primary">signed out</h1>
-      <p className="title-subtext">
+      <p className="title-subtext font-arial">
         You have successfully signed out <br /> of your account.
       </p>
 
