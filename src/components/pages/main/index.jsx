@@ -16,7 +16,7 @@ const MainPage = ({ match: { path } }) => {
         style={{ maxWidth: '1920px' }}
         className="mx-auto min-h-screen relative">
         <Header />
-        <div className="main container-wide">
+        <div className="main">
           <Switch>
             <Route path={`${root}/artists`} component={Artists} />
             <Route path={`${root}/axe-music`} component={AxeMusic} />

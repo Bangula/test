@@ -6,7 +6,7 @@ const ProfilePageLayout = ({ children }) => {
     <div
       className="profile-page-layout content-bg"
       style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="wrapper">
+      <div className="container mx-auto">
         <div className="profile-content__holder">
           <div className="profile-content">{children}</div>
         </div>
