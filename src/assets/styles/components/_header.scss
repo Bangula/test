@@ -55,10 +55,6 @@
   font-weight: 300;
   position: relative;
 
-  &:hover {
-    // font-weight: 700;
-  }
-
   &.active {
     &::after {
       content: '';
@@ -71,7 +67,8 @@
       left: 0;
       right: 0;
       margin: auto;
-      bottom: -25px;
+      bottom: -20px;
+      cursor: auto;
     }
   }
 
@@ -99,22 +96,40 @@ ul.header-nav {
   flex-wrap: wrap;
 
   li {
-    // min-width: 120px;
-    margin-right: 55px;
-
-    &:first-child {
-      max-width: 100px;
-    }
+    font-size: 0;
+    margin-right: 50px;
 
     &:last-child {
-      margin-left: 10px;
       margin-right: 0;
     }
 
+    a {
+      display: inline-block;
+      text-align: center;
+
+      &:hover {
+        font-weight: bold;
+      }
+
+      &.active {
+        font-weight: bold;
+      }
+
+      &::before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+    }
+
     .pipe {
-      font-weight: 300;
-      color: $tirques;
-      font-size: 28px;
+      display: inline-block;
+      width: 1px;
+      height: 20px;
+      background: $tirques;
     }
   }
 }
@@ -143,5 +158,6 @@ ul.header-nav {
     outline: none;
     padding: 0 30px;
     right: 10px;
+    z-index: 9999;
   }
 }

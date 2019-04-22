@@ -1,15 +1,16 @@
 import React from 'react';
 import backgroundImage from '@images/home-page.png';
 
-const Home = () => {
-  return (
+const Home = () => (
+  <>
     <div
-      className="w-screen bg-contain bg-no-repeat pt-5"
+      className="content-bg"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        height: `calc(100vh - 186px)`,
       }}>
-      <div className="container flex justify-end pt-5">
+      <div
+        className="flex justify-end mx-auto"
+        style={{ maxWidth: '1200px', paddingTop: '4rem' }}>
         <div className="flex pt-5 max-w-lg">
           <div className="flex-none pr-5">
             <h1
@@ -34,7 +35,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  </>
+);
 
 export default Home;

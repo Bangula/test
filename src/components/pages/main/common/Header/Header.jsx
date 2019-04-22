@@ -19,7 +19,7 @@ const Header = ({ match: { url }, logOut }) => {
 
   return (
     <div className="header">
-      <div className="wrapper">
+      <div className="container mx-auto">
         <div className="header-top">
           <div className="logo-holder">
             <Link to={`${root}/`}>
@@ -46,7 +46,8 @@ const Header = ({ match: { url }, logOut }) => {
                 to={`${root}/`}
                 exact
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Home">
                 Home
               </NavLink>
             </li>
@@ -54,15 +55,17 @@ const Header = ({ match: { url }, logOut }) => {
               <NavLink
                 to={`${root}/axe-music`}
                 activeClassName="active"
-                className="header__link">
-                AXE MUsic
+                className="header__link"
+                title="AXE Music">
+                AXE Music
               </NavLink>
             </li>
             <li>
               <NavLink
                 to={`${root}/artists`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Artists">
                 Artists
               </NavLink>
             </li>
@@ -70,7 +73,8 @@ const Header = ({ match: { url }, logOut }) => {
               <NavLink
                 to={`${root}/partners`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Partners">
                 Partners
               </NavLink>
             </li>
@@ -78,7 +82,8 @@ const Header = ({ match: { url }, logOut }) => {
               <NavLink
                 to={`${root}/content`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Content">
                 Content
               </NavLink>
             </li>
@@ -86,18 +91,20 @@ const Header = ({ match: { url }, logOut }) => {
               <NavLink
                 to={`${root}/brand-approval`}
                 activeClassName="active"
-                className="header__link">
+                className="header__link"
+                title="Brand approval">
                 Brand approval
               </NavLink>
             </li>
-            <li className="flex justify-center">
-              <span className="pipe">|</span>
+            <li className="flex items-center">
+              <span className="pipe" />
             </li>
             <li>
               <NavLink
                 to={`${root}/requests`}
                 activeClassName="active active-pink"
-                className="header__link">
+                className="header__link"
+                title="my requests">
                 my requests
               </NavLink>
             </li>
@@ -105,7 +112,8 @@ const Header = ({ match: { url }, logOut }) => {
               <NavLink
                 to={`${root}/admin`}
                 activeClassName="active active-pink"
-                className="header__link">
+                className="header__link"
+                title="Admin">
                 Admin
               </NavLink>
             </li>
@@ -114,14 +122,14 @@ const Header = ({ match: { url }, logOut }) => {
       </div>
 
       <div className="sub-header">
-        <div className="wrapper" />
+        <div className="container mx-auto" />
       </div>
 
       <div className="sub-header__admin">
-        <div className="wrapper" />
+        <div className="container mx-auto" />
       </div>
 
-      <div className="admin-btn__holder wrapper relative">
+      <div className="admin-btn__holder container mx-auto relative">
         <Button
           onClick={handleToggleAdminBtn}
           className="btn wide flex justify-between align-center absolute pin-r rounded-none"

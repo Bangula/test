@@ -24,3 +24,16 @@
 .main {
   min-height: $main-height;
 }
+
+.content-bg {
+  padding: 70px 0;
+  min-height: $main-height;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.container-wide {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
