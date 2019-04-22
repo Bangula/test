@@ -38,9 +38,9 @@ const Header = ({ match: { url }, logOut }) => {
             className="uppercase text-2xl font-thin text-white mr-5">
             full name
           </Link>
-          <Link className="uppercase text-2xl font-thin text-tirques">
+          <button onClick={logOut} className="header__link logout">
             log out
-          </Link>
+          </button>
         </div>
       </div>
       <div className="px-16 py-5">
