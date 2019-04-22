@@ -25,7 +25,7 @@ const Home = () => (
             </h1>
           </div>
           <div className="pt-5 w-64">
-            <p className="px-5 pt-5 leading-tight">
+            <p className="px-5 pt-5 leading-tight font-arial">
               This is your dedicated portal to find all the information and
               support you need about the partnership, as well as access to
               available assets. Please check this portal regularly as we will be

@@ -9,11 +9,13 @@ import history from '@/services/history';
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router history={history}>
-          <Pages />
-        </Router>
-      </Provider>
+      <div className="font-bebas">
+        <Provider store={store}>
+          <Router history={history}>
+            <Pages />
+          </Router>
+        </Provider>
+      </div>
     );
   }
 }
