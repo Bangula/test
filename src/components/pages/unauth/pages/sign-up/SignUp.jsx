@@ -46,9 +46,13 @@ const SignUp = ({ match: { url }, ...props }) => {
 
   React.useEffect(() => {
     const fetchMarkets = async () => {
-      const result = await http('/markets');
+      try {
+        const result = await http('/markets');
 
-      setMarkets(result.data.data);
+        setMarkets(result.data.data);
+      } catch (err) {
+        console.log('Error fetching markets!');
+      }
     };
 
     fetchMarkets();
