@@ -1,9 +1,9 @@
 export const HEADER_ROUTES = {
   '/': [
-    // {
-    //   path: '/website-guide',
-    //   label: 'website guide'
-    // },
+    {
+      path: '/website-guide',
+      label: 'website guide',
+    },
     {
       path: '/noticeboard',
       label: 'noticeboard',
@@ -33,13 +33,13 @@ export const HEADER_ROUTES = {
     },
   ],
 
-  '/my-requests': [
+  '/requests': [
     {
-      path: '/my-requests/all-requests',
+      path: '/requests/all-requests',
       label: 'all requests',
     },
     {
-      path: '/my-requests/brand-approval',
+      path: '/requests/brand-approval',
       label: 'brand approval',
     },
   ],

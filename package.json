@@ -19,7 +19,7 @@
   },
   "scripts": {
     "tailwind:css": "tailwind build src/assets/styles/tailwind.src.css -c  tailwind.js -o src/assets/styles/tailwind.css",
-    "start": "npm run tailwind:css && craco start",
+    "start": "craco start",
     "build": "npm run tailwind:css && craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

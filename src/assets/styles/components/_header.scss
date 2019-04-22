@@ -72,3 +72,63 @@ ul.header-nav {
     }
   }
 }
+
+.subheader-link {
+  font-size: 18px;
+  color: $black-text;
+  font-weight: 500;
+}
+
+ul.subheader-nav {
+  padding: 15px 0;
+  display: flex;
+
+  li {
+    font-size: 0;
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    a {
+      display: inline-block;
+      text-align: center;
+
+      &:hover {
+        font-weight: bold;
+        color: $purple-text;
+      }
+
+      &.active {
+        font-weight: bold;
+        color: $purple-text;
+      }
+
+      &::before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &.pink {
+    a {
+      color: $white;
+
+      &:hover {
+        font-weight: bold;
+        color: $tirques;
+      }
+
+      &.active {
+        font-weight: bold;
+        color: $tirques;
+      }
+    }
+  }
+}

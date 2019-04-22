@@ -5,8 +5,9 @@ import { Link, withRouter, NavLink } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 import Button from '@components/Button/Button';
 import * as actions from '@state/actions';
+import { HEADER_ROUTES } from '@constants/routes';
 
-const Header = ({ match: { url }, logOut }) => {
+const Header = ({ match: { url }, logOut, ...props }) => {
   const root = url === '/' ? '' : url;
 
   const [toggleAdminBtn, setToggleAdminBtn] = React.useState(true);
@@ -124,12 +125,70 @@ const Header = ({ match: { url }, logOut }) => {
         </ul>
       </div>
 
-      <div className="bg-tirques" style={{ minHeight: '4px' }}>
-        <div className="px-16 flex items-center" />
-      </div>
+      {props.location.pathname === '/admin' ||
+      props.location.pathname === '/requests' ? (
+        ''
+      ) : (
+        <div className="bg-tirques" style={{ minHeight: '4px' }}>
+          <div className="px-16 flex items-center">
+            {HEADER_ROUTES[props.location.pathname] && (
+              <ul className="subheader-nav">
+                {HEADER_ROUTES[props.location.pathname].map(route => (
+                  <li key={route.label}>
+                    <Link
+                      to={`${root}${route.path}`}
+                      className="subheader-link"
+                      title={route.label}>
+                      {route.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* {HEADER_ROUTES[props.location.pathname] === HEADER_ROUTES['/'] ||
+            HEADER_ROUTES[props.location.pathname] ===
+              HEADER_ROUTES['/axe-music'] ? (
+              <ul className="subheader-nav">
+                {HEADER_ROUTES[props.location.pathname].map(route => (
+                  <li ket={route.label}>
+                    <Link
+                      to={`${root}${route.path}`}
+                      title={route.label}
+                      className="subheader-link">
+                      {route.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              ''
+            )} */}
+          </div>
+        </div>
+      )}
 
       <div className="bg-pink" style={{ minHeight: '4px' }}>
-        <div className="px-16 flex items-center" />
+        <div className="px-16 flex items-center">
+          {HEADER_ROUTES[props.location.pathname] ===
+            HEADER_ROUTES['/requests'] ||
+          HEADER_ROUTES[props.location.pathname] === HEADER_ROUTES['/admin'] ? (
+            <ul className="subheader-nav pink">
+              {HEADER_ROUTES[props.location.pathname].map(route => (
+                <li ket={route.label}>
+                  <Link
+                    to={`${root}${route.path}`}
+                    title={route.label}
+                    className="subheader-link">
+                    {route.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
 
       <div className="container mx-auto relative">
