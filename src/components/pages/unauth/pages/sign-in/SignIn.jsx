@@ -34,7 +34,7 @@ const SignIn = ({ match: { url }, ...props }) => {
       {({ errors, touched }) => (
         <div className="sign-in">
           <h1 className="title-primary">sign in</h1>
-          <p className="title-subtext">
+          <p className="title-subtext font-arial">
             Enter your details to access Axe's <br />
             Passions Portal
           </p>
@@ -67,7 +67,7 @@ const SignIn = ({ match: { url }, ...props }) => {
                   />
                 )}
               />
-              <div className="forgot-pass">
+              <div className="forgot-pass font-arial">
                 <Link to="/forgot-password">Forgot Password?</Link>
               </div>
 
@@ -77,7 +77,7 @@ const SignIn = ({ match: { url }, ...props }) => {
             </Form>
           </div>
 
-          <p className="title-subtext confirmation">
+          <p className="title-subtext confirmation font-arial">
             Don't have an account yet?&nbsp;
             <Link to={`${root}/sign-up`} className="auth-link-text">
               Sign Up

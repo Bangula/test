@@ -8,7 +8,6 @@ import * as actions from '@state/actions';
 const ConfirmUser = props => {
   React.useEffect(() => {
     const values = qs.parse(props.location.search);
-    console.log(values);
     props.verifyUser(values);
   }, []);
   return (
@@ -17,7 +16,7 @@ const ConfirmUser = props => {
         <>
           <h1 className="title-primary">Congrats!</h1>
           <p className="title-subtext bold">The user has been verified.</p>
-          <p className="title-subtext welcome">
+          <p className="title-subtext welcome font-arial">
             Thank you for signing up to Axe Music Passions Portal. The account
             has been set up. You can now sign in and use the app.
           </p>

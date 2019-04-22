@@ -76,7 +76,7 @@ const SignUp = ({ match: { url }, ...props }) => {
         return (
           <div className="sign-up">
             <h1 className="title-primary">Sign Up</h1>
-            <p className="title-subtext">
+            <p className="title-subtext font-arial">
               Enter your details to sign up to Axe's <br /> Passions Portal.
             </p>
 
@@ -164,7 +164,7 @@ const SignUp = ({ match: { url }, ...props }) => {
               </Form>
             </div>
 
-            <p className="title-subtext confirmation">
+            <p className="title-subtext confirmation font-arial">
               Already got an account?&nbsp;
               <Link to={`/`} className="auth-link-text">
                 Sign In
