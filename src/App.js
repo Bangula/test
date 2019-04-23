@@ -15,7 +15,7 @@ const App = () => (
         <Pages />
       </Router>
     </Provider>
-    <Alert stack={{ limit: 1 }} timeout={3000} effect={'slide'} />
+    <Alert stack={{ limit: 3 }} timeout={3000} effect={'slide'} />
   </div>
 );
 

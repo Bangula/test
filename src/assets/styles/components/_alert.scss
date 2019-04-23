@@ -139,16 +139,16 @@
   color: #00a2d3;
 }
 .s-alert-success {
-  border: 3px solid #27ae60;
-  color: #27ae60;
+  border: 3px solid $tirques;
+  color: $tirques;
 }
 .s-alert-warning {
   border: 3px solid #f1c40f;
   color: #f1c40f;
 }
 .s-alert-error {
-  border: 3px solid #e74c3c;
-  color: #e74c3c;
+  border: 3px solid $pink;
+  color: $pink;
 }
 
 [class^='s-alert-effect-'].s-alert-hide,

@@ -1,3 +1,5 @@
+import Alert from 'react-s-alert';
+
 import {
   getToken,
   registerUser,
@@ -34,6 +36,8 @@ export const logIn = credentials => async dispatch => {
     authenticate(data);
     dispatch({ type: AUTHENTICATE_USER });
     history.replace('/selection');
+  } else if (error) {
+    Alert.error(error.response.data.message);
   }
 };
 
@@ -54,6 +58,8 @@ export const register = credentials => async dispatch => {
   if (data) {
     dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
     dispatch({ type: SEND_CONFIRMATION_EMAIL });
+  } else if (error) {
+    Alert.error('Failed to register user!');
   }
 };
 
@@ -62,6 +68,8 @@ export const sendPasswordResetLink = credentials => async dispatch => {
 
   if (data) {
     dispatch({ type: SEND_PASSWORD_RESET_LINK });
+  } else if (error) {
+    Alert.error('Failed to reset password!');
   }
 };
 
@@ -70,6 +78,8 @@ export const verifyUser = credentials => async dispatch => {
 
   if (data) {
     dispatch({ type: VERIFY_USER });
+  } else if (error) {
+    Alert.error('Failed to verify user!');
   }
 };
 
@@ -80,6 +90,8 @@ export const resendConfirmationMail = () => async (dispatch, getState) => {
   if (data) {
     console.log('ad');
     dispatch({ type: RESEND_CONFIRMATION_EMAIL });
+  } else if (error) {
+    Alert.error('Failed to send confirmation email!');
   }
 };
 
@@ -91,8 +103,10 @@ export const updateUser = credentials => async (dispatch, getState) => {
     if (data) {
       console.log(data);
       dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
+      Alert.success('User info updated!');
     } else if (error) {
-      console.log('error', { error });
+      console.log({ error });
+      Alert.error(error.response.data.message);
     }
   }
 };
