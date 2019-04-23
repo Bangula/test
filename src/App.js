@@ -2,6 +2,8 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Pages from '@pages';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 import store from './state/store';
 
@@ -13,6 +15,7 @@ const App = () => (
         <Pages />
       </Router>
     </Provider>
+    <Alert stack={{ limit: 1 }} timeout={3000} effect={'slide'} />
   </div>
 );
 

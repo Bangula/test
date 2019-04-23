@@ -91,6 +91,8 @@ export const updateUser = credentials => async (dispatch, getState) => {
     if (data) {
       console.log(data);
       dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
+    } else if (error) {
+      console.log('error', { error });
     }
   }
 };

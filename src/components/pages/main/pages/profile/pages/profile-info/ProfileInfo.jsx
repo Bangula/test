@@ -37,7 +37,7 @@ const ProfileInfo = ({ name, surname, job_title, email, phone }) => {
           <div className="details-box">
             <p className="label">Profile details:</p>
 
-            <div className="details-box__holder">
+            <div className="details-box__holder font-arial">
               <div className="details-box__left">
                 <p className="profile-details__label">Name:</p>
                 <p className="profile-details__label">Surname:</p>
@@ -55,7 +55,7 @@ const ProfileInfo = ({ name, surname, job_title, email, phone }) => {
           <div className="details-box">
             <p className="label">User Role:</p>
 
-            <div className="details-box__holder">
+            <div className="details-box__holder font-arial">
               <div className="details-box__left">
                 <p className="profile-details__label">Role:</p>
               </div>
@@ -70,7 +70,7 @@ const ProfileInfo = ({ name, surname, job_title, email, phone }) => {
           <div className="details-box">
             <p className="label">Contact details:</p>
 
-            <div className="details-box__holder">
+            <div className="details-box__holder font-arial">
               <div className="details-box__left">
                 <p className="profile-details__label">Email:</p>
                 <p className="profile-details__label">Phone Number:</p>

@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '@components/Button/Button';
 import { changePassword } from '@services/http/endpoints/user';
+import Alert from 'react-s-alert';
 
 const ChangePasswordSchema = Yup.object({
   old_password: Yup.string()
@@ -34,6 +35,8 @@ const ChangePassword = () => {
 
         if (data) {
           console.log(data);
+        } else if (error) {
+          Alert.error(error.response.data.message);
         }
       }}>
       {({ errors, touched }) => (

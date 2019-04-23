@@ -13,8 +13,9 @@ function matchPath(path) {
   if (
     path.includes('/artists') ||
     path.includes('/partners') ||
-    path.includes('/content') ||
-    (!path.includes('/admin') && path.includes('/brand-approval'))
+    (path.includes('/content') && !path.includes('management')) ||
+    (!path.includes('/admin') && path.includes('/brand-approval')) ||
+    path.includes('/profile')
   ) {
     return result;
   }
@@ -154,18 +155,20 @@ const Header = ({ match: { url }, logOut, ...props }) => {
           <div className="px-16 flex items-center">
             {HEADER_ROUTES[matchPath(props.location.pathname)] && (
               <ul className="subheader-nav">
-                {HEADER_ROUTES[matchPath(props.location.pathname)].map(
-                  route => (
-                    <li key={route.label}>
-                      <Link
-                        to={`${root}${route.path}`}
-                        className="subheader-link"
-                        title={route.label}>
-                        {route.label}
-                      </Link>
-                    </li>
-                  ),
-                )}
+                {HEADER_ROUTES[matchPath(props.location.pathname)] &&
+                  HEADER_ROUTES[matchPath(props.location.pathname)].map(
+                    route => (
+                      <li key={route.label}>
+                        <NavLink
+                          to={`${root}${route.path}`}
+                          activeClassName="active"
+                          className="subheader-link"
+                          title={route.label}>
+                          {route.label}
+                        </NavLink>
+                      </li>
+                    ),
+                  )}
               </ul>
             )}
           </div>
@@ -177,16 +180,18 @@ const Header = ({ match: { url }, logOut, ...props }) => {
           {props.location.pathname.includes('/requests') ||
           props.location.pathname.includes('/admin') ? (
             <ul className="subheader-nav pink">
-              {HEADER_ROUTES[matchPath(props.location.pathname)].map(route => (
-                <li key={route.label}>
-                  <Link
-                    to={`${root}${route.path}`}
-                    title={route.label}
-                    className="subheader-link">
-                    {route.label}
-                  </Link>
-                </li>
-              ))}
+              {HEADER_ROUTES[matchPath(props.location.pathname)] &&
+                HEADER_ROUTES[matchPath(props.location.pathname)].map(route => (
+                  <li key={route.label}>
+                    <NavLink
+                      to={`${root}${route.path}`}
+                      title={route.label}
+                      activeClassName="active"
+                      className="subheader-link">
+                      {route.label}
+                    </NavLink>
+                  </li>
+                ))}
             </ul>
           ) : (
             ''
