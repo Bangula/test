@@ -59,7 +59,7 @@ const Header = ({ match: { url }, logOut, ...props }) => {
           <Link
             to={`${root}/profile`}
             className="uppercase text-2xl font-thin text-white mr-5">
-            full name
+            {props.fullName}
           </Link>
           <button onClick={logOut} className="header__link logout">
             log out
@@ -123,27 +123,31 @@ const Header = ({ match: { url }, logOut, ...props }) => {
               Brand approval
             </NavLink>
           </li>
-          <li className="flex items-center">
-            <span className="pipe" />
-          </li>
-          <li>
-            <NavLink
-              to={`${root}/requests`}
-              activeClassName="active active-pink"
-              className="header__link"
-              title="my requests">
-              my requests
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`${root}/admin`}
-              activeClassName="active active-pink"
-              className="header__link"
-              title="Admin">
-              Admin
-            </NavLink>
-          </li>
+          {props.isAdmin && (
+            <>
+              <li className="flex items-center">
+                <span className="pipe" />
+              </li>
+              <li>
+                <NavLink
+                  to={`${root}/requests`}
+                  activeClassName="active active-pink"
+                  className="header__link"
+                  title="my requests">
+                  my requests
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`${root}/admin`}
+                  activeClassName="active active-pink"
+                  className="header__link"
+                  title="Admin">
+                  Admin
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
 
@@ -175,47 +179,59 @@ const Header = ({ match: { url }, logOut, ...props }) => {
         </div>
       )}
 
-      <div className="bg-pink" style={{ minHeight: '4px' }}>
-        <div className="px-16 flex items-center">
-          {props.location.pathname.includes('/requests') ||
-          props.location.pathname.includes('/admin') ? (
-            <ul className="subheader-nav pink">
-              {HEADER_ROUTES[matchPath(props.location.pathname)] &&
-                HEADER_ROUTES[matchPath(props.location.pathname)].map(route => (
-                  <li key={route.label}>
-                    <NavLink
-                      to={`${root}${route.path}`}
-                      title={route.label}
-                      activeClassName="active"
-                      className="subheader-link">
-                      {route.label}
-                    </NavLink>
-                  </li>
-                ))}
-            </ul>
-          ) : (
-            ''
-          )}
+      {props.isAdmin && (
+        <div className="bg-pink" style={{ minHeight: '4px' }}>
+          <div className="px-16 flex items-center">
+            {props.location.pathname.includes('/requests') ||
+            props.location.pathname.includes('/admin') ? (
+              <ul className="subheader-nav pink">
+                {HEADER_ROUTES[matchPath(props.location.pathname)] &&
+                  HEADER_ROUTES[matchPath(props.location.pathname)].map(
+                    route => (
+                      <li key={route.label}>
+                        <NavLink
+                          to={`${root}${route.path}`}
+                          title={route.label}
+                          activeClassName="active"
+                          className="subheader-link">
+                          {route.label}
+                        </NavLink>
+                      </li>
+                    ),
+                  )}
+              </ul>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="container mx-auto relative">
-        <Button
-          onClick={handleToggleAdminBtn}
-          className="btn wide flex justify-between items-center absolute pin-r rounded-none px-8 text-xl"
-          bgColor="btn-bg-pink"
-          textColor="btn-text-white">
-          <span className="admin-hide-icon flex align-center">
-            <i className={`${icon} text-sm`} />
-          </span>
-          <span className="ml-4">{btnAction} admin tools</span>
-        </Button>
-      </div>
+      {props.isAdmin && (
+        <div className="container mx-auto relative">
+          <Button
+            onClick={handleToggleAdminBtn}
+            className="btn wide flex justify-between items-center absolute pin-r rounded-none px-8 text-xl"
+            bgColor="btn-bg-pink"
+            textColor="btn-text-white">
+            <span className="admin-hide-icon flex align-center">
+              <i className={`${icon} text-sm`} />
+            </span>
+            <span className="ml-4">{btnAction} admin tools</span>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
 
+const mapStateToProps = state => ({
+  isAdmin:
+    Object.keys(state.user.info).length > 0 && !state.user.info.is_client,
+  fullName: state.user.info.name + ' ' + state.user.info.surname,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions,
 )(withRouter(Header));
