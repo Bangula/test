@@ -7,6 +7,27 @@ import Button from '@components/Button/Button';
 import * as actions from '@state/actions';
 import { HEADER_ROUTES } from '@constants/routes';
 
+function matchPath(path) {
+  let result;
+
+  if (
+    path.includes('/artists') ||
+    path.includes('/partners') ||
+    path.includes('/content') ||
+    (!path.includes('/admin') && path.includes('/brand-approval'))
+  ) {
+    return result;
+  }
+
+  for (const prop in HEADER_ROUTES) {
+    if (path.includes(prop)) {
+      result = prop;
+    }
+  }
+
+  return result;
+}
+
 const Header = ({ match: { url }, logOut, ...props }) => {
   const root = url === '/' ? '' : url;
 
@@ -131,18 +152,20 @@ const Header = ({ match: { url }, logOut, ...props }) => {
       ) : (
         <div className="bg-tirques" style={{ minHeight: '4px' }}>
           <div className="px-16 flex items-center">
-            {HEADER_ROUTES[props.location.pathname] && (
+            {HEADER_ROUTES[matchPath(props.location.pathname)] && (
               <ul className="subheader-nav">
-                {HEADER_ROUTES[props.location.pathname].map(route => (
-                  <li key={route.label}>
-                    <Link
-                      to={`${root}${route.path}`}
-                      className="subheader-link"
-                      title={route.label}>
-                      {route.label}
-                    </Link>
-                  </li>
-                ))}
+                {HEADER_ROUTES[matchPath(props.location.pathname)].map(
+                  route => (
+                    <li key={route.label}>
+                      <Link
+                        to={`${root}${route.path}`}
+                        className="subheader-link"
+                        title={route.label}>
+                        {route.label}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             )}
           </div>
@@ -151,11 +174,10 @@ const Header = ({ match: { url }, logOut, ...props }) => {
 
       <div className="bg-pink" style={{ minHeight: '4px' }}>
         <div className="px-16 flex items-center">
-          {HEADER_ROUTES[props.location.pathname] ===
-            HEADER_ROUTES['/requests'] ||
-          HEADER_ROUTES[props.location.pathname] === HEADER_ROUTES['/admin'] ? (
+          {props.location.pathname.includes('/requests') ||
+          props.location.pathname.includes('/admin') ? (
             <ul className="subheader-nav pink">
-              {HEADER_ROUTES[props.location.pathname].map(route => (
+              {HEADER_ROUTES[matchPath(props.location.pathname)].map(route => (
                 <li key={route.label}>
                   <Link
                     to={`${root}${route.path}`}
