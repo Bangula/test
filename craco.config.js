@@ -12,6 +12,7 @@ module.exports = {
       '@constants': path.resolve(__dirname, 'src/constants'),
       '@state': path.resolve(__dirname, 'src/state'),
       '@helpers': path.resolve(__dirname, 'src/helpers'),
+      '@endpoints': path.resolve(__dirname, 'src/services/http/endpoints'),
     },
   },
 };
