@@ -33,7 +33,7 @@ const AxeMusic = props => {
             <h1 className="uppercase font-bebas text-tirques mb-5">
               {card.title}
             </h1>
-            <p className="leading-tight">{card.text}</p>
+            <p className="leading-tight font-arial">{card.text}</p>
           </div>
         );
       } else {
@@ -62,16 +62,16 @@ const AxeMusic = props => {
         </h1>
         <div className="flex">
           <div className="flex-1">
-            <p className="leading-tight mb-5">
+            <p className="font-arial leading-tight mb-5">
               Quam quisque id diam vel quam elementum. Ante in nibh mauris
               cursus mattis molestie a iaculis. Egestas egestas fringilla
               phasellus faucibus scelerisque eleifend.
             </p>
-            <p className="leading-tight mb-5">
+            <p className="font-arial leading-tight mb-5">
               Ut enim blandit volutpat maecenas volutpat blandit aliquam. Sit
               amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar.
             </p>
-            <p className="leading-tight mb-5">
+            <p className="font-arial leading-tight mb-5">
               Feugiat sed lectus vestibulum mattis ullamcorper velit.
               Pellentesque elit eget gravida cum sociis natoque. Cursus vitae
               congue mauris rhoncus aenean vel elit scelerisque mauris. Aliquam
@@ -80,12 +80,12 @@ const AxeMusic = props => {
               ipsum dolor. Id venenatis a condimentum vitae sapien pellentesque
               habitant morbi.
             </p>
-            <p className="leading-tight mb-5">
+            <p className="font-arial leading-tight mb-5">
               Sagittis vitae et leo duis. Aliquam faucibus purus in massa. Quam
               elementum pulvinar etiam non. Luctus accumsan tortor posuere ac ut
               consequat semper viverra nam.
             </p>
-            <p className="leading-tight mb-5">
+            <p className="font-arial leading-tight mb-5">
               Scelerisque eu ultrices vitae auctor eu. Purus faucibus ornare
               suspendisse sed nisi lacus sed viverra. Amet dictum sit amet justo
               donec. Auctor elit sed vulputate mi sit amet mauris. Id porta nibh

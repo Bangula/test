@@ -1,13 +1,20 @@
 import React from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import AxeMusic from './pages/AxeMusic';
-import Logos from './pages/Logos';
+import TemplateComponent from './pages/TemplateComponent';
 
 const component = props => (
-  <Switch>
-    <Route path={`${props.match.url}/logos`} component={Logos} />
-    <Route path={`${props.match.url}/`} component={AxeMusic} />
-  </Switch>
+  <div className="pt-12">
+    <Switch>
+      <Route
+        path={`${props.match.url}/creative-assets`}
+        component={TemplateComponent}
+      />
+      <Route path={`${props.match.url}/fonts`} component={TemplateComponent} />
+      <Route path={`${props.match.url}/logos`} component={TemplateComponent} />
+      <Route path={`${props.match.url}/`} component={AxeMusic} />
+    </Switch>
+  </div>
 );
 
 export default withRouter(component);

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import placeholderLogo from '@images/logo.png';
 
 const MediaCard = ({ file, object }) => {
   const [opened, toggle] = useState(false);
@@ -12,9 +11,8 @@ const MediaCard = ({ file, object }) => {
   return (
     <div>
       <h3 className="font-thin text-2xl mb-1">{file.filename}</h3>
-      <div className="h-48 flex justify-center items-center mb-1 bg-grey-darker">
-        {/* <img src={media.image} alt="" className="max-w-full" /> */}
-        <img src={placeholderLogo} alt="" className="max-w-full" />
+      <div className="h-48 flex justify-center items-center mb-1 bg-grey-darker px-4">
+        <img src={file.url} alt="" className="max-w-full" />
       </div>
       <div>
         <div className="flex justify-between font-thin mb-2">

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default props => (
-  <div className="">
+export default ({ label }) => (
+  <div>
     <div
       className="relative"
       style={{
@@ -14,7 +14,7 @@ export default props => (
       />
     </div>
     <div className="py-3 bg-white font-bebas text-black uppercase text-2xl text-center">
-      {props.label}
+      {label}
     </div>
   </div>
 );
