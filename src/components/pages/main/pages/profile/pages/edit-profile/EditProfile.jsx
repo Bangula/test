@@ -10,17 +10,22 @@ import Button from '@components/Button/Button';
 
 const EditProfileSchema = Yup.object().shape({
   name: Yup.string()
-    .min(5, 'Too Short!')
+    .strict()
+    .trim()
+    .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required(),
   surname: Yup.string()
-    .min(5, 'Too Short!')
+    .strict()
+    .trim()
+    .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required(),
 
   job_title: Yup.string().required(),
 
   phone: Yup.string()
+    .matches(/^[0-9]+$/)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),

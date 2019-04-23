@@ -35,6 +35,7 @@ const ChangePassword = () => {
 
         if (data) {
           console.log(data);
+          Alert.success('Password changed!');
         } else if (error) {
           Alert.error(error.response.data.message);
         }

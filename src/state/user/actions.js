@@ -59,7 +59,7 @@ export const register = credentials => async dispatch => {
     dispatch({ type: SAVE_USER_INFO, payload: data.data.data });
     dispatch({ type: SEND_CONFIRMATION_EMAIL });
   } else if (error) {
-    Alert.error('Failed to register user!');
+    Alert.error(error.response.data.message);
   }
 };
 
@@ -69,7 +69,7 @@ export const sendPasswordResetLink = credentials => async dispatch => {
   if (data) {
     dispatch({ type: SEND_PASSWORD_RESET_LINK });
   } else if (error) {
-    Alert.error('Failed to reset password!');
+    Alert.error(error.response.data.message);
   }
 };
 
@@ -79,7 +79,7 @@ export const verifyUser = credentials => async dispatch => {
   if (data) {
     dispatch({ type: VERIFY_USER });
   } else if (error) {
-    Alert.error('Failed to verify user!');
+    Alert.error(error.response.data.message);
   }
 };
 
@@ -91,7 +91,7 @@ export const resendConfirmationMail = () => async (dispatch, getState) => {
     console.log('ad');
     dispatch({ type: RESEND_CONFIRMATION_EMAIL });
   } else if (error) {
-    Alert.error('Failed to send confirmation email!');
+    Alert.error(error.response.data.message);
   }
 };
 

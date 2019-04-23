@@ -228,7 +228,10 @@ const Header = ({ match: { url }, logOut, ...props }) => {
 const mapStateToProps = state => ({
   isAdmin:
     Object.keys(state.user.info).length > 0 && !state.user.info.is_client,
-  fullName: state.user.info.name + ' ' + state.user.info.surname,
+  fullName:
+    Object.keys(state.user.info).length > 0
+      ? state.user.info.name + ' ' + state.user.info.surname
+      : '',
 });
 
 export default connect(

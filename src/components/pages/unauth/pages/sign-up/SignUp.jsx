@@ -13,12 +13,16 @@ import ConfirmationResent from '../../common/confirmation-resent/ConfirmationRes
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
-    .min(5, 'Too Short!')
+    .strict()
+    .trim()
+    .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
 
   surname: Yup.string()
-    .min(5, 'Too Short!')
+    .strict()
+    .trim()
+    .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Required'),
 
@@ -27,6 +31,7 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
 
   phone: Yup.string()
+    .matches(/^[0-9]+$/)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),
@@ -128,7 +133,7 @@ const SignUp = ({ match: { url }, ...props }) => {
                   render={({ field }) => (
                     <InputField
                       {...field}
-                      type="number"
+                      type="text"
                       label="phone number"
                       placeholder="+44 (0) 0000 000 000"
                       hasError={touched.phone && errors.phone}
