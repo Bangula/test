@@ -39,6 +39,7 @@ export const logIn = credentials => async dispatch => {
     history.replace('/selection');
   } else if (error) {
     Alert.error(error.response.data.message);
+    return Promise.reject(error);
   }
 };
 
