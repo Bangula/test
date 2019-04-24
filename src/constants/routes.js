@@ -1,14 +1,14 @@
 export const HEADER_ROUTES = {
-  '/': [
-    {
-      path: '/website-guide',
-      label: 'website guide',
-    },
-    {
-      path: '/noticeboard',
-      label: 'noticeboard',
-    },
-  ],
+  // '/': [
+  // {
+  //   path: '/website-guide',
+  //   label: 'website guide',
+  // },
+  // {
+  //   path: '/noticeboard',
+  //   label: 'noticeboard',
+  // },
+  // ],
 
   '/axe-music': [
     {
@@ -49,25 +49,25 @@ export const HEADER_ROUTES = {
       path: '/admin/users',
       label: 'users',
     },
-    {
-      path: '/admin/requests-approval',
-      label: 'requests approval',
-    },
-    {
-      path: '/admin/brand-approval',
-      label: 'brand approval',
-    },
-    {
-      path: '/admin/content-management',
-      label: 'content management',
-    },
-    {
-      path: '/admin/inventory-management',
-      label: 'inventory management',
-    },
-    {
-      path: '/admin/reports',
-      label: 'reports',
-    },
+    // {
+    //   path: '/admin/requests-approval',
+    //   label: 'requests approval',
+    // },
+    // {
+    //   path: '/admin/brand-approval',
+    //   label: 'brand approval',
+    // },
+    // {
+    //   path: '/admin/content-management',
+    //   label: 'content management',
+    // },
+    // {
+    //   path: '/admin/inventory-management',
+    //   label: 'inventory management',
+    // },
+    // {
+    //   path: '/admin/reports',
+    //   label: 'reports',
+    // },
   ],
 };
