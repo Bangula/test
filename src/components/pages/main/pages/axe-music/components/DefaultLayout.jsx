@@ -7,8 +7,10 @@ export default ({ getData, page }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     async function fetchResource() {
-      const { data } = await getData();
-      setData(data.data.data);
+      const { error, data } = await getData();
+      if (!error) {
+        setData(data.data.data);
+      }
     }
     fetchResource();
   }, [getData]);
