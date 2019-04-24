@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Aside from '../components/Aside';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Sections from './Sections';
+import Alert from 'react-s-alert';
 
 export default ({ getData, page }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     async function fetchResource() {
-      const { data } = await getData();
-      setData(data.data.data);
+      const { error, data } = await getData();
+      if (!error) {
+        setData(data.data.data);
+      } else {
+        Alert.error(error.response.data.message);
+      }
     }
     fetchResource();
   }, [getData]);
