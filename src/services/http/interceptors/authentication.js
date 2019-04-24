@@ -16,8 +16,7 @@ export const authResponse = [
     if (401 === error.response.status) {
       store.dispatch({ type: 'DEAUTHENTICATE_USER' });
       localStorage.removeItem('access_token_name');
-    } else {
-      return Promise.reject(error);
     }
+    return Promise.reject(error);
   },
 ];
