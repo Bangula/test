@@ -33,11 +33,12 @@ export const getUserInfo = () => async dispatch => {
 
 export const logIn = credentials => async dispatch => {
   const { data, error } = await getToken(credentials);
+  console.log({ data, error });
   if (data) {
     authenticate(data);
     dispatch({ type: AUTHENTICATE_USER });
     history.replace('/selection');
-  } else if (error) {
+  } else {
     Alert.error(error.response.data.message);
     return Promise.reject(error);
   }
