@@ -5,7 +5,7 @@ import { Link, withRouter, NavLink } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 import Button from '@components/Button/Button';
 import * as actions from '@state/actions';
-import { getIsAdmin, getFullName } from '@state/selectors';
+import { isAdmin, fullName, isAdminFeaturesEnabled } from '@state/selectors';
 import { HEADER_ROUTES } from '@constants/routes';
 
 function matchPath(path) {
@@ -33,12 +33,11 @@ function matchPath(path) {
 const Header = ({ match: { url }, logOut, ...props }) => {
   const root = url === '/' ? '' : url;
 
-  const [toggleAdminBtn, setToggleAdminBtn] = React.useState(true);
-  const icon = toggleAdminBtn ? 'fas fa-eye-slash' : 'fas fa-eye';
-  const btnAction = toggleAdminBtn ? 'hide' : 'show';
+  const icon = props.isAdminFeaturesEnabled ? 'fas fa-eye-slash' : 'fas fa-eye';
+  const btnAction = props.isAdminFeaturesEnabled ? 'hide' : 'show';
 
   const handleToggleAdminBtn = () => {
-    setToggleAdminBtn(toggleAdminBtn => !toggleAdminBtn);
+    props.toggleAdminFeatures();
   };
 
   return (
@@ -227,8 +226,9 @@ const Header = ({ match: { url }, logOut, ...props }) => {
 };
 
 const mapStateToProps = state => ({
-  isAdmin: getIsAdmin(state),
-  fullName: getFullName(state),
+  isAdmin: isAdmin(state),
+  fullName: fullName(state),
+  isAdminFeaturesEnabled: isAdminFeaturesEnabled(state),
 });
 
 export default connect(

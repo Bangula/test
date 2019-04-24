@@ -6,6 +6,7 @@ import {
   RESEND_CONFIRMATION_EMAIL,
   SEND_PASSWORD_RESET_LINK,
   VERIFY_USER,
+  TOGGLE_ADMIN_FEATURES,
 } from './types';
 import { getToken } from '@helpers/auth';
 
@@ -16,6 +17,7 @@ const initialState = {
   confirmationEmailResent: false,
   passwordResetLinkSent: false,
   info: {},
+  isAdminFeaturesEnabled: false,
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,12 @@ export default (state = initialState, action) => {
 
     case VERIFY_USER:
       return { ...state, isVerified: true };
+
+    case TOGGLE_ADMIN_FEATURES:
+      return {
+        ...state,
+        isAdminFeaturesEnabled: !state.isAdminFeaturesEnabled,
+      };
 
     default:
       return state;

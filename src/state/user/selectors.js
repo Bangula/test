@@ -1,7 +1,13 @@
-export const getIsAdmin = state =>
+export const isAdmin = state =>
   Object.keys(state.user.info).length > 0 && !state.user.info.is_client;
 
-export const getFullName = state =>
+export const fullName = state =>
   Object.keys(state.user.info).length > 0
     ? state.user.info.name + ' ' + state.user.info.surname
     : '';
+
+export const isAdminFeaturesEnabled = state =>
+  state.user.isAdminFeaturesEnabled;
+
+export const showAdminFeatures = state =>
+  isAdmin(state) && isAdminFeaturesEnabled(state);

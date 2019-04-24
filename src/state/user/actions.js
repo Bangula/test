@@ -20,6 +20,7 @@ import {
   RESEND_CONFIRMATION_EMAIL,
   SEND_PASSWORD_RESET_LINK,
   VERIFY_USER,
+  TOGGLE_ADMIN_FEATURES,
 } from './types';
 
 export const getUserInfo = () => async dispatch => {
@@ -110,3 +111,7 @@ export const updateUser = credentials => async (dispatch, getState) => {
     }
   }
 };
+
+export const toggleAdminFeatures = () => ({
+  type: TOGGLE_ADMIN_FEATURES,
+});
