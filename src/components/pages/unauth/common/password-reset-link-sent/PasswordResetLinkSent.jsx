@@ -5,9 +5,11 @@ const PasswordResetLinkSent = () => {
   return (
     <div className="password-reset">
       <h1 className="title-primary">Check your inbox!</h1>
-      <p className="title-subtext bold">A password reset link has been sent.</p>
+      <p className="title-subtext bold font-arial">
+        A password reset link has been sent.
+      </p>
 
-      <p className="title-subtext">
+      <p className="title-subtext font-arial">
         Click the reset link in your inbox. This will allow you <br /> to choose
         a new password for your account.
       </p>
@@ -16,7 +18,7 @@ const PasswordResetLinkSent = () => {
         <button className="btn wide">done</button>
       </Link>
 
-      <Link to="/auth/sign-in" className="back-link" href="#">
+      <Link to="/auth/sign-in" className="back-link font-arial" href="#">
         Back to sign in
       </Link>
     </div>
