@@ -2064,6 +2064,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.5:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+
 clean-css@4.2.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
@@ -7455,7 +7459,6 @@ react-router@5.0.0:
 react-s-alert@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-s-alert/-/react-s-alert-1.4.1.tgz#ef3665a9d98c4cf2e448fc2d84e48aeca799bb5a"
-  integrity sha512-+cSpVPe6YeGklhlo7zbVlB0Z6jdiU9HPmEVzp5nIhNm9lvdL7rVO2Jx09pCwT99GmODyoN0iNhbQku6r7six8A==
   dependencies:
     babel-runtime "^6.23.0"
 
@@ -7511,6 +7514,12 @@ react-scripts@2.1.8:
     workbox-webpack-plugin "3.6.3"
   optionalDependencies:
     fsevents "1.2.4"
+
+react-table@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.10.0.tgz#20444b19d8ca3c1a08e7544e5c3a93e4ba56690e"
+  dependencies:
+    classnames "^2.2.5"
 
 react@^16.8.6:
   version "16.8.6"
