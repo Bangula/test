@@ -5,6 +5,7 @@ import { Link, withRouter, NavLink } from 'react-router-dom';
 import logo from '@images/logo@3x.png';
 import Button from '@components/Button/Button';
 import * as actions from '@state/actions';
+import { getIsAdmin, getFullName } from '@state/selectors';
 import { HEADER_ROUTES } from '@constants/routes';
 
 function matchPath(path) {
@@ -226,12 +227,8 @@ const Header = ({ match: { url }, logOut, ...props }) => {
 };
 
 const mapStateToProps = state => ({
-  isAdmin:
-    Object.keys(state.user.info).length > 0 && !state.user.info.is_client,
-  fullName:
-    Object.keys(state.user.info).length > 0
-      ? state.user.info.name + ' ' + state.user.info.surname
-      : '',
+  isAdmin: getIsAdmin(state),
+  fullName: getFullName(state),
 });
 
 export default connect(
