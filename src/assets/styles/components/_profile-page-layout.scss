@@ -1,34 +1,35 @@
 .profile-page-layout {
-  padding: 50px 0;
-  background: url('../images/group-2.png') no-repeat left;
-  min-height: 630px;
-
   .title-primary {
     text-align: left;
     color: $white;
     margin-bottom: 0;
   }
+
+  .profile-content {
+    max-width: 750px;
+    width: 100%;
+  }
+
   .profile-content__holder {
     display: flex;
     justify-content: flex-end;
   }
 
-  .profile-content {
-    min-width: 700px;
-  }
-
   .profile__title-holder {
-    margin-bottom: 55px;
+    margin-bottom: 60px;
   }
 
   .my-profile__title-holder {
     display: flex;
     align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .my-profile__buttons {
     display: flex;
     margin-left: 60px;
+    flex-wrap: wrap;
   }
 
   .btn {
@@ -73,5 +74,56 @@
 
   .profile-details__name {
     margin: 8px 0;
+  }
+
+  // edit profile
+  .profile__content--left,
+  .profile__content--right {
+    min-width: 275px;
+  }
+
+  .input-field__holder {
+    margin-bottom: 30px;
+  }
+
+  .input-field {
+    border-color: $white;
+    color: $white;
+    max-width: 100%;
+    font-family: 'Arial';
+  }
+
+  .label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label-txt {
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  i.fas {
+    color: $white;
+    right: 10px;
+  }
+
+  .input-error__sign {
+    top: 30px;
+  }
+}
+
+.edit-profile,
+.change-password {
+  display: flex;
+  flex-direction: column;
+  min-height: 470px;
+
+  .my-profile__buttons {
+    margin-left: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
   }
 }

@@ -9,8 +9,9 @@ $purple-text: #5b00ff;
 $black-text: #323232;
 $lightgray: #969696;
 
-$header-height: 186px;
+$header-height: 184px;
 $footer-height: 45px;
+$main-height: calc(100vh - #{$header-height});
 
 $font-family-1: 'BebasNeue';
 $font-family-2: 'Arial';

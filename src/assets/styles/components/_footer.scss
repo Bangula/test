@@ -1,10 +1,6 @@
 .footer {
   font-family: $font-family-1;
-  min-height: 45px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  min-height: $footer-height;
 }
 
 .footer-holder {
@@ -51,6 +47,7 @@
 
   ul {
     display: flex;
+    flex-wrap: wrap;
   }
 
   li {
@@ -66,4 +63,9 @@
   &:hover {
     opacity: 0.7;
   }
+}
+
+//
+.footer {
+  padding: 0 4rem;
 }

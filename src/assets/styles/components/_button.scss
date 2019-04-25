@@ -1,0 +1,109 @@
+.btn {
+  width: 190px;
+  height: 45px;
+  border: none;
+  border-radius: 4px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+  font-family: $font-family-1;
+  font-weight: 400;
+  font-size: 24px;
+  color: $white;
+  //   border: 1.5px solid $white;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.small {
+    width: 175px;
+  }
+
+  &.wide {
+    width: 215px;
+  }
+
+  // border
+  &.btn-border-black {
+    border: 1.5px solid $black;
+  }
+
+  &.btn-border-white {
+    border: 1.5px solid $white;
+  }
+
+  &.btn-border-lightbrown {
+    border: 1.5px solid $lightbrown;
+  }
+
+  &.btn-border-pink {
+    border: 1.5px solid $pink;
+  }
+
+  &.btn-border-tirques {
+    border: 1.5px solid $tirques;
+  }
+
+  &.btn-border-red {
+    border: 1.5px solid $red;
+  }
+
+  // text color
+  &.btn-text-black {
+    color: $black;
+  }
+
+  &.btn-text-white {
+    color: $white;
+  }
+
+  &.btn-text-lightbrown {
+    color: $lightbrown;
+  }
+
+  &.btn-text-pink {
+    color: $pink;
+  }
+
+  &.btn-text-tirques {
+    color: $tirques;
+  }
+
+  &.btn-text-red {
+    color: $red;
+  }
+
+  // background btn
+  &.btn-bg-black {
+    background-color: $black;
+  }
+
+  &.btn-bg-white {
+    background-color: $white;
+  }
+
+  &.btn-bg-lightbrown {
+    background-color: $lightbrown;
+  }
+
+  &.btn-bg-pink {
+    background-color: $pink;
+  }
+
+  &.btn-bg-tirques {
+    background-color: $tirques;
+  }
+
+  &.btn-bg-red {
+    background-color: $red;
+  }
+
+  &.btn-bg-transparent {
+    background-color: transparent;
+  }
+}

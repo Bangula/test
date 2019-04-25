@@ -28,7 +28,7 @@
 
 .auth-page-layout__content {
   background: #fff;
-  height: 100%;
+  min-height: 100%;
   max-width: 620px;
   margin: 0 auto;
   transform: skew(-5deg);
@@ -119,6 +119,7 @@
 .input-field {
   max-width: 175px;
   font-weight: 400;
+  background: transparent;
 }
 
 .forgot-password {
