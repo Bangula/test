@@ -7,8 +7,7 @@ import UserInfo from './pages/user-management/pages/user-info';
 
 const Users = ({ match: { path } }) => {
   return (
-    <div className="p-10">
-      <h1>Users</h1>
+    <div>
       <Switch>
         <Route path={`${path}/:id/edit`} component={EditUser} />
         <Route path={`${path}/:id`} component={UserInfo} />

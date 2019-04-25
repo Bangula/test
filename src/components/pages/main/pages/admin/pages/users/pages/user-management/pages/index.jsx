@@ -96,8 +96,10 @@ const UserManagement = ({ match: { path } }) => {
     fetchUsers();
   }, []);
   return (
-    <div>
-      <PrimaryTitle>User Management</PrimaryTitle>
+    <div className="container mx-auto">
+      <div className="mb-10">
+        <PrimaryTitle>User Management</PrimaryTitle>
+      </div>
       <ReactTable
         className="custom-ReactTable"
         pageSize={Math.min(data.length, 10)}

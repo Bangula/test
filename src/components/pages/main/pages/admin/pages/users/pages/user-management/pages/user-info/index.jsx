@@ -16,7 +16,7 @@ const UserInfo = props => {
     loadUser();
   }, []);
   return (
-    <div>
+    <div className="container mx-auto">
       <PrimaryTitle>User Management</PrimaryTitle>
     </div>
   );
