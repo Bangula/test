@@ -6,10 +6,12 @@ import Users from './pages/users';
 
 const Admin = ({ match: { path } }) => {
   return (
-    <Switch>
-      <Route path={`${path}/users`} component={Users} />
-      <Route path={`${path}/`} component={Dashboard} />
-    </Switch>
+    <div className="admin">
+      <Switch>
+        <Route path={`${path}/users`} component={Users} />
+        <Route path={`${path}/`} component={Dashboard} />
+      </Switch>
+    </div>
   );
 };
 
