@@ -26,9 +26,7 @@ const MainPage = ({ match: { path } }) => {
             <Route exact path={`${root}/`} component={Home} />
           </Switch>
         </div>
-        <div className="absolute pin-l pin-r pin-b">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </>
   );
