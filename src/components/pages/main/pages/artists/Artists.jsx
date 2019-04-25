@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Artists = () => {
-  return <div>Artists</div>;
+const ArtistsList = () => {
+  return <div>Artist list</div>;
 };
 
-export default Artists;
+export default ArtistsList;
