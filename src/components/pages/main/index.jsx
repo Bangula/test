@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
 
-import Artists from './pages/artists/Artists';
+import Artists from './pages/artists';
 import AxeMusic from './pages/axe-music';
 import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';

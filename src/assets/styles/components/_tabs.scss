@@ -1,0 +1,46 @@
+.react-tabs {
+  -webkit-tap-highlight-color: transparent;
+
+  &__tab-list {
+    margin: 0 0 10px;
+    padding: 0;
+  }
+
+  &__tab {
+    padding: 7px 0;
+    display: inline-block;
+    bottom: -1px;
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 25px;
+    font-weight: 500;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--selected {
+      border-bottom: 2px solid $tirques;
+      color: $white;
+    }
+
+    &--disabled {
+      color: GrayText;
+      cursor: default;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__tab-panel {
+    display: none;
+
+    &--selected {
+      display: block;
+    }
+  }
+}
