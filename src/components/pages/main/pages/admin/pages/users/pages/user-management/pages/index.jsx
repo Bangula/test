@@ -125,7 +125,7 @@ const UserManagement = ({ match: { path }, id }) => {
 
   function closeModal() {
     setModal(false);
-    setOngoingAction(() => {});
+    setOngoingAction(() => () => {});
   }
   return (
     <div className="container mx-auto">
