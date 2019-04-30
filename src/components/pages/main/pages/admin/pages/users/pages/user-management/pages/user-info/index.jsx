@@ -1,11 +1,15 @@
 import React from 'react';
-import { fetchUser } from '@endpoints/admin';
-import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Link } from 'react-router-dom';
+import { fetchUser, deleteUser } from '@endpoints/user';
+import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
+import Alert from 'react-s-alert';
+import { connect } from 'react-redux';
+import Modal from 'react-responsive-modal';
 
 const UserInfo = props => {
   const userId = props.match.params.id;
   const [user, setUser] = React.useState({});
+  const [isModalOpen, setModal] = React.useState(false);
 
   React.useEffect(() => {
     const loadUser = async () => {
@@ -17,16 +21,63 @@ const UserInfo = props => {
 
     loadUser();
   }, []);
+
+  function openModal() {
+    setModal(true);
+  }
+
+  function closeModal() {
+    setModal(false);
+  }
   return (
     <div className="container mx-auto py-12">
       <div className="flex justify-between items-center mb-12">
         <PrimaryTitle>User Management</PrimaryTitle>
+        <Modal
+          open={isModalOpen}
+          onClose={closeModal}
+          classNames={{
+            overlay: 'modal-overlay',
+            modal: 'modal font-bebas',
+            closeButton: 'modal-close-btn',
+          }}
+          center>
+          <h1 className="text-center">Delete User?</h1>
+          <div className="mt-8">
+            <div className="flex">
+              <button
+                onClick={closeModal}
+                className="text-white border-2 border-red rounded py-2 text-2xl"
+                style={{ width: '172px' }}>
+                no cancel
+              </button>
+              <button
+                onClick={async () => {
+                  const { data: res, error } = await deleteUser(userId);
+
+                  if (res) {
+                    Alert.success('Removed!');
+                    props.history.goBack();
+                  } else {
+                    Alert.error('Removal failed!');
+                  }
+                }}
+                className="text-white bg-red rounded py-2 ml-6 text-2xl border-2 border-red rounded"
+                style={{ width: '172px' }}>
+                delete user
+              </button>
+            </div>
+          </div>
+        </Modal>
         <div className="flex">
-          <button
-            className="text-white border-2 border-pink rounded py-2 text-2xl"
-            style={{ width: '172px' }}>
-            delete user
-          </button>
+          {userId !== props.currentUserId && (
+            <button
+              onClick={openModal}
+              className="text-white border-2 border-pink rounded py-2 text-2xl"
+              style={{ width: '172px' }}>
+              delete user
+            </button>
+          )}
           <Link to={`${props.location.pathname}/edit`}>
             <button
               className="text-white bg-pink rounded py-2 ml-6 text-2xl border-2 border-pink rounded"
@@ -92,4 +143,8 @@ const UserInfo = props => {
   );
 };
 
-export default UserInfo;
+const mapStateToProps = state => ({
+  currentUserId: Object.keys(state.user.info).length && state.user.info.id,
+});
+
+export default connect(mapStateToProps)(UserInfo);

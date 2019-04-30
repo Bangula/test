@@ -1,13 +1,14 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { fetchUser } from '@endpoints/admin';
+import { Link } from 'react-router-dom';
+import Alert from 'react-s-alert';
+import { fetchUser } from '@endpoints/user';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import InputField from '@components/InputField/InputField';
 import backgroundImage from '@images/2061080.png';
 import SelectField from '@components/SelectField/SelectField';
-import { Link } from 'react-router-dom';
-
+import { updateUserInfo } from '@endpoints/user';
 const EditUserSchema = Yup.object().shape({
   name: Yup.string()
     .strict()
@@ -22,7 +23,9 @@ const EditUserSchema = Yup.object().shape({
     .max(20, 'Too Long!')
     .required(),
 
-  job_title: Yup.string().required(),
+  job_title: Yup.string()
+    .min(2, '2 characters min')
+    .required(),
 
   phone: Yup.string()
     .matches(/^[0-9]+$/)
@@ -72,12 +75,20 @@ const EditUser = props => {
     ...(job_title && { job_title }),
   };
 
-  console.log(user && user.roles && user.roles.data);
-
   return (
     <Formik
       validationSchema={EditUserSchema}
-      onSubmit={values => console.log(values)}
+      onSubmit={async values => {
+        const { data, error } = await updateUserInfo(userId, values);
+
+        if (data) {
+          console.log('success');
+          Alert.success('User updated!');
+        } else {
+          console.log('error');
+          Alert.error('User update failed!');
+        }
+      }}
       initialValues={{ ...initialValues, ...fieldsFromUser }}
       enableReinitialize>
       {({ errors, touched, setFieldValue }) => (
