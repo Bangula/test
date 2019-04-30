@@ -19,9 +19,9 @@ const SelectField = ({
           <option disabled selected>
             {placeholder}
           </option>
-          {options.map(market => (
-            <option key={market.id} value={market.id}>
-              {market.name}
+          {options.map(option => (
+            <option key={option.id} value={option.id}>
+              {option.name}
             </option>
           ))}
         </select>
