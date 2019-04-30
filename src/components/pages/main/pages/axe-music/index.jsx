@@ -1,20 +1,25 @@
 import React from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import AxeMusic from './pages/AxeMusic';
+import AxeMusicIntroduction from './pages/AxeMusicIntroduction';
 import TemplateComponent from './pages/TemplateComponent';
+import ManageSection from './pages/ManageSection';
 
-const component = props => (
+const component = ({ match }) => (
   <div className="pt-12">
     <Switch>
       <Route
-        path={`${props.match.url}/creative-assets`}
-        component={TemplateComponent}
+        path={`${match.url}/introduction`}
+        component={AxeMusicIntroduction}
       />
-      <Route path={`${props.match.url}/fonts`} component={TemplateComponent} />
-      <Route path={`${props.match.url}/logos`} component={TemplateComponent} />
-      <Route path={`${props.match.url}/`} component={AxeMusic} />
+      <Route
+        path={`${match.url}/:page/manage-section/:id`}
+        component={ManageSection}
+      />
+      <Route path={`${match.url}/:page`} component={TemplateComponent} />
+      <Route path={`${match.url}/`} component={AxeMusic} />
     </Switch>
   </div>
 );
 
-export default withRouter(component);
+export default component;

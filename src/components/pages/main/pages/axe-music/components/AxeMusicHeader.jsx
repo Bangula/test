@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import girlBcg from '@images/group.png';
 import musicGradientPage from '@images/music-page-gradient-2@3x.png';
 
-const component = props => {
+const AxeMusicHeader = ({ fullContent }) => {
   return (
     <div className="flex">
       <div className="inline-block pt-5" style={{ marginBottom: '9rem' }}>
@@ -54,7 +54,7 @@ const component = props => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        {!props.match.isExact ? (
+        {fullContent ? (
           <>
             <p className="font-arial leading-tight mb-5">
               Convallis convallis tellus id interdum velit laoreet id donec.
@@ -74,9 +74,7 @@ const component = props => {
             </p>
           </>
         ) : (
-          <Link
-            to={`${props.match.url}/introduction`}
-            className="text-tirques text-lg">
+          <Link to="axe-music/introduction" className="text-tirques text-lg">
             Read More &rarr;
           </Link>
         )}
@@ -85,4 +83,4 @@ const component = props => {
   );
 };
 
-export default withRouter(component);
+export default AxeMusicHeader;
