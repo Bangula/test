@@ -3,6 +3,7 @@ import backgroundImage from '@images/concert-lights-music-1370545.png';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Link } from 'react-router-dom';
+import Counter from '@components/Counter/Counter';
 
 const ExperienceRequest = () => {
   return (
@@ -127,7 +128,14 @@ const ExperienceRequest = () => {
               </TabPanel>
 
               <TabPanel>
-                <div className="font-arial py-6">tab 2</div>
+                <div className="font-arial py-6">
+                  <p className="mb-10">
+                    Please fill in the following form to request your tickets.
+                    <br />
+                    Click submit when you are done.
+                  </p>
+                  <Counter label="General ticket" />
+                </div>
               </TabPanel>
             </Tabs>
           </div>
