@@ -15,11 +15,25 @@ const Counter = props => {
           height: '35px',
         }}>
         <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
-          <i className="fas fa-minus" />
+          <i
+            onClick={() => {
+              if (counter > 0) {
+                setCounter(counter - 1);
+              } else {
+                setCounter(0);
+              }
+            }}
+            className="fas fa-minus"
+          />
         </span>
         <span style={{ cursor: 'default', fontSize: '24px' }}>{counter}</span>
         <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
-          <i className="fas fa-plus" />
+          <i
+            onClick={() => {
+              setCounter(counter + 1);
+            }}
+            className="fas fa-plus"
+          />
         </span>
       </div>
     </div>
