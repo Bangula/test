@@ -157,6 +157,19 @@ const EditUser = props => {
                       )}
                     />
                     <Field
+                      name="phone"
+                      type="number"
+                      render={({ field }) => (
+                        <InputField
+                          {...field}
+                          type="text"
+                          label="phone number"
+                          placeholder="+44 (0) 0000 000 000"
+                          hasError={touched.phone && errors.phone}
+                        />
+                      )}
+                    />
+                    <Field
                       name="job_title"
                       type="text"
                       render={({ field }) => (
@@ -173,13 +186,13 @@ const EditUser = props => {
                 </div>
 
                 <div className="flex justify-end">
-                  <Link>
-                    <button
-                      className="border-2 border-pink text-white rounded py-2 text-2xl"
-                      style={{ width: '200px' }}>
-                      cancel
-                    </button>
-                  </Link>
+                  <button
+                    onClick={props.history.goBack}
+                    className="border-2 border-pink text-white rounded py-2 text-2xl"
+                    style={{ width: '200px' }}>
+                    cancel
+                  </button>
+
                   <button
                     type="submit"
                     className="border-2 border-pink bg-pink text-white rounded py-2 text-2xl ml-2"

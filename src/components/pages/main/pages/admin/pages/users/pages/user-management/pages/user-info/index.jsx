@@ -90,7 +90,9 @@ const UserInfo = props => {
 
       <div>
         <div className="mb-6">
-          <h3 className="text-4xl">Meg Rigden</h3>
+          <h3 className="text-4xl">
+            {user.name} {user.surname}
+          </h3>
           <p className="text-sm font-arial font-light">
             Last Activity: 18.01.2019 12:48:16
           </p>

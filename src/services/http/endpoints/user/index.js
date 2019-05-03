@@ -37,3 +37,7 @@ export const fetchUser = id =>
   toResponse(http.get(`/users/${id}?include=roles`));
 
 export const deleteUser = id => toResponse(http.delete(`/users/${id}`));
+
+export const getRoles = () => toResponse(http.get(`/roles`));
+
+export const createUser = data => toResponse(http.post('/users', data));
