@@ -9,11 +9,20 @@ import NewUser from './pages/new/pages';
 const Users = ({ match: { path } }) => {
   return (
     <div>
-      <div className="container mx-auto">
-        <NavLink exact to={`${path}/`}>
+      <div className="container mx-auto mb-6">
+        <NavLink
+          exact
+          activeClassName="link-tab--selected-red"
+          className="link-tab"
+          to={`${path}/`}>
           User Management
         </NavLink>
-        <NavLink to={`${path}/new`}>New User</NavLink>
+        <NavLink
+          activeClassName="link-tab--selected-red"
+          className="link-tab"
+          to={`${path}/new`}>
+          New User
+        </NavLink>
       </div>
       <Switch>
         <Route path={`${path}/new`} component={NewUser} />
