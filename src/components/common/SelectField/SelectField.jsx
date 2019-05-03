@@ -15,13 +15,12 @@ const SelectField = ({
         <span className="label-txt">{label}</span>
         <select
           onChange={e => setFieldValue(name, e.target.value)}
+          defaultValue={placeholder}
           className={`input-field${hasError ? ' input-error' : ''}`}>
-          <option disabled selected>
-            {placeholder}
-          </option>
-          {options.map(market => (
-            <option key={market.id} value={market.id}>
-              {market.name}
+          <option disabled>{placeholder}</option>
+          {options.map(option => (
+            <option key={option.id} value={option.id}>
+              {option.name}
             </option>
           ))}
         </select>

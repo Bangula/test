@@ -1,0 +1,31 @@
+.admin__edit {
+  label {
+    justify-content: flex-start;
+  }
+
+  .label-txt {
+    text-align: left;
+    color: $pink;
+    min-width: 100px;
+  }
+
+  .input-field {
+    max-width: 200px;
+    color: $white;
+    font-family: 'Arial';
+
+    &:focus {
+      border-bottom: 0.5px solid $white;
+    }
+  }
+
+  .input-field__holder {
+    margin: 25px 0;
+  }
+
+  .inputs-right {
+    label {
+      justify-content: flex-end;
+    }
+  }
+}
