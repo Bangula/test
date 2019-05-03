@@ -5,7 +5,7 @@ const Counter = props => {
 
   return (
     <div
-      className="flex justify-between items-center my-4"
+      className="flex justify-between items-center my-6"
       style={{ width: '300px' }}>
       <span className="font-bebas text-tirques text-2xl">{props.label}:</span>
       <div
@@ -14,26 +14,24 @@ const Counter = props => {
           width: '85px',
           height: '35px',
         }}>
-        <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
-          <i
-            onClick={() => {
-              if (counter > 0) {
-                setCounter(counter - 1);
-              } else {
-                setCounter(0);
-              }
-            }}
-            className="fas fa-minus"
-          />
+        <span
+          onClick={() => {
+            if (counter > 0) {
+              setCounter(counter - 1);
+            } else {
+              setCounter(0);
+            }
+          }}
+          style={{ cursor: 'pointer', padding: '2px 4px' }}>
+          <i className="fas fa-minus" />
         </span>
         <span style={{ cursor: 'default', fontSize: '24px' }}>{counter}</span>
-        <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
-          <i
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-            className="fas fa-plus"
-          />
+        <span
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+          style={{ cursor: 'pointer', padding: '2px 4px' }}>
+          <i className="fas fa-plus" />
         </span>
       </div>
     </div>

@@ -115,7 +115,23 @@ const ExperienceRequest = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex">
+                    <Link className="mr-2">
+                      <button
+                        className="font-bebas text-2xl text-white py-2 rounded"
+                        style={{ width: '175px', backgroundColor: '#323232' }}>
+                        View Inventory
+                      </button>
+                    </Link>
+
+                    <Link className="mr-2">
+                      <button
+                        className="font-bebas text-2xl text-white py-2 rounded"
+                        style={{ width: '175px', backgroundColor: '#323232' }}>
+                        View Requests
+                      </button>
+                    </Link>
+
                     <Link>
                       <button
                         className="font-bebas text-2xl text-black bg-tirques py-2 rounded"
@@ -134,7 +150,104 @@ const ExperienceRequest = () => {
                     <br />
                     Click submit when you are done.
                   </p>
-                  <Counter label="General ticket" />
+
+                  <div className="mb-16">
+                    <Counter label="General ticket" />
+                    <Counter label="VIP ticket" />
+                    <Counter label="Meet &amp; Greet Ticket:" />
+                  </div>
+
+                  <div className="mb-10">
+                    <p className="font-bebas text-tirques text-2xl">
+                      Objectives:
+                    </p>
+
+                    <ul className="flex flex-wrap py-4">
+                      <li
+                        className="flex items-center mb-4"
+                        style={{ width: '30%', paddingRight: '5px' }}>
+                        <span className="mr-4">
+                          <i className="far fa-circle text-sm" />
+                        </span>
+                        <span>Lorem Ipsum</span>
+                      </li>
+                      <li
+                        className="flex items-center mb-4"
+                        style={{ width: '30%', paddingRight: '5px' }}>
+                        <span className="mr-4">
+                          <i className="far fa-circle text-sm" />
+                        </span>
+                        <span>Lorem Ipsum</span>
+                      </li>
+                      <li
+                        className="flex items-center mb-4"
+                        style={{ width: '30%', paddingRight: '5px' }}>
+                        <span className="mr-4">
+                          <i className="far fa-circle text-sm" />
+                        </span>
+                        <span>Lorem Ipsum</span>
+                      </li>
+                      <li
+                        className="flex items-center mb-4"
+                        style={{ width: '30%', paddingRight: '5px' }}>
+                        <span className="mr-4">
+                          <i className="far fa-circle text-sm" />
+                        </span>
+                        <span>Lorem Ipsum</span>
+                      </li>
+                      <li
+                        className="flex items-center mb-4"
+                        style={{ width: '30%', paddingRight: '5px' }}>
+                        <span className="mr-4">
+                          <i className="far fa-circle text-sm" />
+                        </span>
+                        <span>Lorem Ipsum</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="mb-10">
+                    <p className="font-bebas text-tirques text-2xl mb-4">
+                      Business case:
+                    </p>
+
+                    <textarea
+                      style={{
+                        width: '100%',
+                        minHeight: '165px',
+                        background: 'transparent',
+                        border: '1px solid white',
+                        padding: '15px',
+                        color: 'white',
+                        outline: '0',
+                        resize: 'none',
+                      }}
+                      placeholder="Please add any additional details"
+                    />
+                  </div>
+
+                  <div className="mb-10">
+                    <p className="font-bebas text-tirques text-2xl mb-4">
+                      Supporting documents:
+                    </p>
+
+                    <p className="mb-6">
+                      If needed, you can upload any supporting documents <br />
+                      you deem appropriate.
+                    </p>
+
+                    <div className="text-red uppercase">drag & drop here</div>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <Link>
+                      <button
+                        className="font-bebas text-2xl text-black bg-tirques py-2 rounded"
+                        style={{ width: '175px' }}>
+                        submit
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </TabPanel>
             </Tabs>
