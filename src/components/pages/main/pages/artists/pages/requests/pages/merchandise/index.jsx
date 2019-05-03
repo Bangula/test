@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AssetHub = () => {
-  return <div>AssetHub</div>;
+const GiftMerch = () => {
+  return <div>Gifts & Merch</div>;
 };
 
-export default AssetHub;
+export default GiftMerch;

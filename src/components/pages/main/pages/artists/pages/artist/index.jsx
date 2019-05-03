@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import imagery from '@images/music-page-gradient-2@3x.png';
 
-const Artist = () => {
+const Artist = ({ match: { path } }) => {
+  console.log(path);
   return (
     <div className="py-12">
       <div className="container mx-auto">
@@ -28,7 +29,7 @@ const Artist = () => {
             </div>
 
             <div>
-              <Link className="block mb-2">
+              <Link to={`${path}/requests`} className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>
@@ -36,7 +37,7 @@ const Artist = () => {
                 </button>
               </Link>
 
-              <Link className="block mb-2">
+              <Link to={`${path}/requests/experiences`} className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>
@@ -44,7 +45,7 @@ const Artist = () => {
                 </button>
               </Link>
 
-              <Link className="block mb-2">
+              <Link to={`${path}/requests/merchandise`} className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>
