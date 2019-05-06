@@ -3,7 +3,7 @@ import Aside from '../components/Aside';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Alert from 'react-s-alert';
 import FolderIcon from '@components/ui-elements/FolderIcon/FolderIcon';
-import { getMediaLibraries } from '@endpoints/media-library';
+import { getMediaLibrary } from '@endpoints/media-library';
 import ReactTable from 'react-table';
 
 const MediaLibrary = () => {
@@ -11,7 +11,7 @@ const MediaLibrary = () => {
   const [mediaLibrary, setData] = useState({});
   useEffect(() => {
     async function fetchResource() {
-      const { error, data } = await getMediaLibraries();
+      const { error, data } = await getMediaLibrary();
       if (!error) {
         setData(data.data.data);
       } else {

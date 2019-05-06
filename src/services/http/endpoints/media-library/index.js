@@ -1,12 +1,8 @@
 import http from '@services/http';
 import toResponse from '@helpers/to-response';
 
-export const getMediaLibraries = () => {
+export const getMediaLibrary = () => {
   return toResponse(http.get('/media-library'));
-};
-
-export const getMediaLibrary = id => {
-  return toResponse(http.get(`/media/library/${id}`));
 };
 
 export const uploadFile = data => {
