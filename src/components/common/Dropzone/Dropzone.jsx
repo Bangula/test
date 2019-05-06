@@ -23,7 +23,13 @@ const Dropzone = ({ onDrop }) => {
       <div className="text-center mb-3">
         <i className="fa fa-cloud-upload-alt text-5xl" />
       </div>
-      <p className="font-arial">Drag 'n' Drop or click to upload</p>
+      <p className="font-arial text-center">
+        Drag 'n' Drop to upload files
+        <br />
+        or
+        <br />
+        <span className="cursor-pointer underline">Browse files</span>
+      </p>
     </div>
   );
 };

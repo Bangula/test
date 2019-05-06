@@ -4,6 +4,7 @@ import AxeMusic from './pages/AxeMusic';
 import AxeMusicIntroduction from './pages/AxeMusicIntroduction';
 import TemplateComponent from './pages/TemplateComponent';
 import ManageSection from './pages/ManageSection';
+import MediaLibrary from './pages/MediaLibrary';
 
 const component = ({ match }) => (
   <div className="pt-12">
@@ -16,6 +17,7 @@ const component = ({ match }) => (
         path={`${match.url}/:page/manage-section/:id`}
         component={ManageSection}
       />
+      <Route path={`${match.url}/media-library`} component={MediaLibrary} />
       <Route path={`${match.url}/:page`} component={TemplateComponent} />
       <Route path={`${match.url}/`} component={AxeMusic} />
     </Switch>
