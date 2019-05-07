@@ -12,20 +12,12 @@ const ProfileInfo = ({ name, surname, job_title, email, phone }) => {
 
           <div className="my-profile__buttons">
             <Link to="/profile/change-password">
-              <Button
-                className="wide"
-                bgColor="btn-bg-transparent"
-                border="btn-border-tirques"
-                textColor="btn-text-white">
+              <Button className="wide btn-bg-transparent btn-text-white btn-border-tirques">
                 change password
               </Button>
             </Link>
             <Link to="/profile/edit" className="ml-3">
-              <Button
-                className="wide"
-                bgColor="btn-bg-tirques"
-                border="btn-border-tirques"
-                textColor="btn-text-black">
+              <Button className="wide bg-tirques text-black btn-border-tirques">
                 edit profile
               </Button>
             </Link>

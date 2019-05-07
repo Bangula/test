@@ -211,9 +211,7 @@ const Header = ({ match: { url }, logOut, ...props }) => {
         <div className="container mx-auto relative">
           <Button
             onClick={handleToggleAdminBtn}
-            className="btn wide flex justify-between items-center absolute pin-r rounded-none px-8 text-xl"
-            bgColor="btn-bg-pink"
-            textColor="btn-text-white">
+            className="wide flex justify-between btn-bg-pink btn-text-white items-center absolute pin-r rounded-none px-8 text-xl">
             <span className="admin-hide-icon flex align-center">
               <i className={`${icon} text-sm`} />
             </span>

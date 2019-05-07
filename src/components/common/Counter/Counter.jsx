@@ -1,15 +1,29 @@
 import React from 'react';
 
-const Counter = props => {
+const Counter = ({ color = 'tirques', ...props }) => {
   const [counter, setCounter] = React.useState(0);
+
+  const updateCounter = val => {
+    if (val >= 0) {
+      setCounter(val);
+    } else {
+      setCounter(0);
+    }
+  };
+
+  React.useEffect(() => {
+    props.onChange(counter);
+  }, [counter]);
 
   return (
     <div
       className="flex justify-between items-center my-4"
       style={{ width: '300px' }}>
-      <span className="font-bebas text-tirques text-2xl">{props.label}:</span>
+      <span className={`font-bebas text-${color} text-2xl`}>
+        {props.label}:
+      </span>
       <div
-        className="border-b-4 border-tirques flex justify-between items-center"
+        className={`border-b-4 border-${color} flex justify-between items-center`}
         style={{
           width: '85px',
           height: '35px',
@@ -17,11 +31,7 @@ const Counter = props => {
         <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
           <i
             onClick={() => {
-              if (counter > 0) {
-                setCounter(counter - 1);
-              } else {
-                setCounter(0);
-              }
+              updateCounter(counter - 1);
             }}
             className="fas fa-minus"
           />
@@ -30,7 +40,7 @@ const Counter = props => {
         <span style={{ cursor: 'pointer', padding: '2px 4px' }}>
           <i
             onClick={() => {
-              setCounter(counter + 1);
+              updateCounter(counter + 1);
             }}
             className="fas fa-plus"
           />
@@ -38,6 +48,10 @@ const Counter = props => {
       </div>
     </div>
   );
+};
+
+Counter.defaultProps = {
+  onChange: () => {},
 };
 
 export default Counter;

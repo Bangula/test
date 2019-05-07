@@ -9,9 +9,7 @@ const Button = ({
   ...props
 }) => {
   return (
-    <button
-      className={`btn ${border} ${textColor} ${bgColor} ${className}`}
-      {...props}>
+    <button className={`btn ${className || ''}`} {...props}>
       {children}
     </button>
   );
