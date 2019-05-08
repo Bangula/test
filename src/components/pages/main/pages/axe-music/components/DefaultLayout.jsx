@@ -3,8 +3,15 @@ import Aside from '../components/Aside';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Sections from './Sections';
 import Alert from 'react-s-alert';
+import { connect } from 'react-redux';
 
-export default ({ getData, page }) => {
+const mapStateToProps = state => {
+  return {
+    isAdmin: state.getIsAdmin,
+  };
+};
+
+const DefaultLayout = ({ getData, page }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     async function fetchResource() {
@@ -19,7 +26,7 @@ export default ({ getData, page }) => {
   }, [getData]);
   return (
     <div
-      className="md:flex max-w-content mx-auto pt-4 px-4"
+      className="max-w-content mx-auto pt-4 px-4 md:flex"
       style={{ paddingBottom: '80px' }}>
       <div className="md:w-64 md:mr-10 sm:mb-4">
         <Aside varibleContent="To read more on the best practices when using the AXE music logos, visit the brand guidelines." />
@@ -45,3 +52,5 @@ export default ({ getData, page }) => {
     </div>
   );
 };
+
+export default connect(mapStateToProps)(DefaultLayout);

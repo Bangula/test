@@ -1,20 +1,25 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import MediaCard from '@components/ui-elements/MediaCard/MediaCard';
 
-const LogosSections = ({ sections, object }) => {
+const Sections = ({ sections, object, match }) => {
   const sectionsToRender = sections.map(section => {
     return (
       <section key={section.id} className="mb-8">
         <div className="flex items-center justify-between mb-5 px-4">
           <h1 className="uppercase">{section.name}:</h1>
           <div>
-            <button className="uppercase text-white border rounded border-pink px-5 pb-1 pt-2 tracking-wide text-xl">
-              Manage section
-            </button>
-            <button className="uppercase text-white border rounded border-tirques px-5 pb-1 pt-2 ml-2 tracking-wide text-xl">
-              <i className="fa fa-download mr-4" />
-              Download all
-            </button>
+            <Link to={`${match.url}/manage-section/${section.id}`}>
+              <button className="uppercase text-white border rounded border-pink px-5 pb-1 pt-2 tracking-wide text-xl">
+                Manage section
+              </button>
+            </Link>
+            {section.files.data.length ? (
+              <button className="uppercase text-white border rounded border-tirques px-5 pb-1 pt-2 ml-2 tracking-wide text-xl">
+                <i className="fa fa-download mr-4" />
+                Download all
+              </button>
+            ) : null}
           </div>
         </div>
         <div className="flex flex-wrap">
@@ -33,4 +38,4 @@ const LogosSections = ({ sections, object }) => {
   return sectionsToRender;
 };
 
-export default LogosSections;
+export default withRouter(Sections);
