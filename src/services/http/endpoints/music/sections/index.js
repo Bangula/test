@@ -8,3 +8,7 @@ export const getSection = id => {
 export const updateSection = (id, data) => {
   return toResponse(http.patch(`/media/folders/${id}`, data));
 };
+
+export const addSection = (section, data) => {
+  return toResponse(http.post(`/${section}/section`, data));
+};

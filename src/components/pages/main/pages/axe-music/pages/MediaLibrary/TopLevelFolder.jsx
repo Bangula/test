@@ -6,6 +6,7 @@ import SubPage from './SubPage';
 
 const TopLevelFolder = ({ match, folders }) => {
   const data = folders[match.params.folder || '/'];
+  console.log(data);
   return data ? (
     <>
       {match.isExact ? (
@@ -17,12 +18,12 @@ const TopLevelFolder = ({ match, folders }) => {
               </button>
             </Link>
           </div>
-          {data.folders.data.length === 0 && data.files.data.length === 0 ? (
-            <p className="font-arial">No data.</p>
-          ) : null}
-          {data.folders.data.length ? (
-            <FoldersSection folders={data.folders.data} match={match} />
-          ) : null}
+          <FoldersSection
+            folders={data.folders.data}
+            match={match}
+            folderId={data.id}
+            libraryId={data.library_id}
+          />
           {data.files.data.length ? (
             <FilesSection files={data.files.data} />
           ) : null}

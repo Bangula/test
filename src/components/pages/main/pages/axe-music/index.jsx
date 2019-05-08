@@ -6,7 +6,7 @@ import TemplateComponent from './pages/TemplateComponent';
 import ManageFolder from './pages/ManageFolder';
 import MediaLibrary from './pages/MediaLibrary/MediaLibrary';
 
-const component = ({ match }) => (
+export default ({ match }) => (
   <div className="pt-12">
     <Switch>
       <Route
@@ -27,5 +27,3 @@ const component = ({ match }) => (
     </Switch>
   </div>
 );
-
-export default component;

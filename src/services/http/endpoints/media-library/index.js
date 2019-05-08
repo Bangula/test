@@ -12,3 +12,7 @@ export const uploadFile = data => {
 export const deleteFile = id => {
   return toResponse(http.delete(`/media/file/${id}`));
 };
+
+export const createFolder = data => {
+  return toResponse(http.post('/media/folders', data));
+};
