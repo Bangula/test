@@ -97,12 +97,12 @@ const ManageSection = ({ match }) => {
 
   const onFileDrop = useCallback(files => {
     files.forEach(async file => {
-      const data = new FormData();
-      data.append('folder_id', match.params.id);
-      data.append('file', file);
-      const { error, responseData } = await uploadFile(data);
+      const payload = new FormData();
+      payload.append('folder_id', match.params.id);
+      payload.append('file', file);
+      const { error, data } = await uploadFile(payload);
       if (!error) {
-        console.log(responseData);
+        console.log(data);
       } else {
         Alert.error(error.response.data.message);
       }
