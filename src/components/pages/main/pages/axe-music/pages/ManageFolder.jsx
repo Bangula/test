@@ -111,18 +111,18 @@ const ManageSection = ({ match }) => {
 
   const saveChanges = async () => {
     if (name !== section.name) {
-      const { error, response } = await updateSection(section.id, { name });
+      const { error, data } = await updateSection(section.id, { name });
       if (!error) {
-        setSection(response.data.data);
+        setSection(data.data.data);
       }
     }
   };
 
   return section.name ? (
-    <div className="max-w-content mx-auto pt-4">
+    <div className="max-w-content mx-auto py-4">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h3 className="text-pink mb-1">Manage Section</h3>
+          <h3 className="text-pink mb-1">Manage Folder</h3>
           <input
             onChange={event => setName(event.target.value)}
             style={{ fontSize: '76px', lineHeight: '.88' }}
@@ -132,7 +132,7 @@ const ManageSection = ({ match }) => {
           />
         </div>
         <div>
-          <Link to={`/axe-music/${match.params.page}`}>
+          <Link to="/axe-music">
             <button className="text-xl w-32 border border-pink rounded text-white pt-2 pb-1">
               Cancel
             </button>
