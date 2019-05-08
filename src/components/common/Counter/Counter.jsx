@@ -1,13 +1,17 @@
 import React from 'react';
 
-const Counter = ({ color = 'tirques', ...props }) => {
-  const [counter, setCounter] = React.useState(0);
+const Counter = ({
+  color = 'tirques',
+  initialValue = 0,
+  min = 1,
+  max = 20,
+  ...props
+}) => {
+  const [counter, setCounter] = React.useState(initialValue);
 
   const updateCounter = val => {
-    if (val >= 0) {
+    if (val >= min && val <= max) {
       setCounter(val);
-    } else {
-      setCounter(0);
     }
   };
 

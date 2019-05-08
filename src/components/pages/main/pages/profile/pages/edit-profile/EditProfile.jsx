@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import * as actions from '@state/actions';
 import Button from '@components/Button/Button';
 
+import { numericRegEx } from '@constants/regex';
+
 const EditProfileSchema = Yup.object().shape({
   name: Yup.string()
     .strict()
@@ -25,7 +27,7 @@ const EditProfileSchema = Yup.object().shape({
   job_title: Yup.string().required(),
 
   phone: Yup.string()
-    .matches(/^[0-9]+$/)
+    .matches(numericRegEx)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),

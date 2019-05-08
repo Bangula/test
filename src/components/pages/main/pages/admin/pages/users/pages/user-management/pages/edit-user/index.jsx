@@ -9,6 +9,9 @@ import InputField from '@components/InputField/InputField';
 import backgroundImage from '@images/2061080.png';
 import SelectField from '@components/SelectField/SelectField';
 import { updateUserInfo } from '@endpoints/user';
+
+import { numericRegEx } from '@constants/regex';
+
 const EditUserSchema = Yup.object().shape({
   name: Yup.string()
     .strict()
@@ -28,7 +31,7 @@ const EditUserSchema = Yup.object().shape({
     .required(),
 
   phone: Yup.string()
-    .matches(/^[0-9]+$/)
+    .matches(numericRegEx)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),
