@@ -6,7 +6,6 @@ import SubPage from './SubPage';
 
 const TopLevelFolder = ({ match, folders }) => {
   const data = folders[match.params.folder || '/'];
-  console.log(data);
   return data ? (
     <>
       {match.isExact ? (
@@ -29,10 +28,12 @@ const TopLevelFolder = ({ match, folders }) => {
           ) : null}
         </>
       ) : null}
-      <Route
-        path={`${match.url}/:folder`}
-        component={props => <SubPage {...props} data={data} />}
-      />
+      {data.folders.data.length ? (
+        <Route
+          path={`${match.url}/:folder`}
+          component={props => <SubPage {...props} foldersData={data} />}
+        />
+      ) : null}
     </>
   ) : (
     <p className="font-arial">Loading...</p>
