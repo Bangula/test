@@ -10,9 +10,15 @@ const ContentManagement = ({ match: { path } }) => {
   return (
     <div className="container mx-auto admin__edit">
       <Switch>
-        <Route path={`${path}/events`} component={NewEvent} />
-        <Route path={`${path}/experiences`} component={NewExperience} />
-        <Route path={`${path}/gifts-merch`} component={NewGiftsOrMerch} />
+        <Route path={`${path}/events/:artist_id`} component={NewEvent} />
+        <Route
+          path={`${path}/experiences/:artist_id`}
+          component={NewExperience}
+        />
+        <Route
+          path={`${path}/gifts-merch/:artist_id`}
+          component={NewGiftsOrMerch}
+        />
         <Route path={`${path}/`} component={ContentManagementStart} />
       </Switch>
     </div>
