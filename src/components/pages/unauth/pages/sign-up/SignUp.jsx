@@ -10,6 +10,7 @@ import InputField from '@components/InputField/InputField';
 import SelectField from '@components/SelectField/SelectField';
 import ConfirmationSent from '../../common/confirmation-sent/ConfirmationSent';
 import ConfirmationResent from '../../common/confirmation-resent/ConfirmationResent';
+import { numericRegEx } from '@constants/regex';
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,7 +32,7 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
 
   phone: Yup.string()
-    .matches(/^[0-9]+$/)
+    .matches(numericRegEx)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),

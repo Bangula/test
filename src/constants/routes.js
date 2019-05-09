@@ -57,10 +57,10 @@ export const HEADER_ROUTES = {
     //   path: '/admin/brand-approval',
     //   label: 'brand approval',
     // },
-    // {
-    //   path: '/admin/content-management',
-    //   label: 'content management',
-    // },
+    {
+      path: '/admin/content-management',
+      label: 'content management',
+    },
     // {
     //   path: '/admin/inventory-management',
     //   label: 'inventory management',
