@@ -47,6 +47,8 @@ const commonColumns = [
   },
   {
     id: 'delete-col',
+    headerClassName: 'hidden',
+    Header: 'Delete',
     width: 28,
     Cell: () => (
       <div>
@@ -149,10 +151,18 @@ const ManageSection = ({ match }) => {
 
   const getTdProps = React.useCallback((state, row, column, instance) => {
     return {
-      onClick: () => {
+      onClick: async () => {
         if (column.Header === 'Rename') {
           setFileToRename(row.original);
           toggleRenameModal(true);
+        }
+        if (column.Header === 'Delete') {
+          const { error } = await deleteFile(row.original.id);
+          if (!error) {
+            getData(match.params.id);
+          } else {
+            Alert.error(error.response.data.message);
+          }
         }
       },
     };
