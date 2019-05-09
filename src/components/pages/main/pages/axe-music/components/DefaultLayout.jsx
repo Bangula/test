@@ -20,7 +20,6 @@ const DefaultLayout = ({ getData, page }) => {
     async function fetchResource() {
       const { error, data } = await getData();
       if (!error) {
-        console.log(data.data.data);
         setData(data.data.data);
       } else {
         Alert.error(error.response.data.message);

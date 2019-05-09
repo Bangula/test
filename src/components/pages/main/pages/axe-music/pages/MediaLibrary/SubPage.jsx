@@ -27,9 +27,12 @@ const SubPage = ({ match, location, data }) => {
               </button>
             </Link>
           </div>
-          {state.folders.data.length ? (
-            <FoldersSection folders={data.folders.data} baseUrl={match.url} />
-          ) : null}
+          <FoldersSection
+            folders={data.folders.data}
+            match={match}
+            folderId={data.id}
+            libraryId={data.library_id}
+          />
           {state.files.data.length ? (
             <FilesSection files={data.files.data} />
           ) : null}

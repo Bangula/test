@@ -24,10 +24,7 @@ const Sections = ({ sections, object, match }) => {
         </div>
         <div className="flex flex-wrap">
           {section.files.data.map(file => (
-            <div
-              className="px-4 mb-5"
-              style={{ flexBasis: '25%' }}
-              key={file.id}>
+            <div className="px-4 mb-5 w-1/4" key={file.id}>
               <MediaCard file={file} object={object} />
             </div>
           ))}

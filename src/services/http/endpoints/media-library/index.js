@@ -16,3 +16,7 @@ export const deleteFile = id => {
 export const createFolder = data => {
   return toResponse(http.post('/media/folders', data));
 };
+
+export const renameFile = (id, data) => {
+  return toResponse(http.patch(`/media/file/${id}/rename`, data));
+};
