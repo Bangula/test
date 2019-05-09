@@ -1,42 +1,73 @@
-export const AUTH_ROUTES = [
-  { path: 'sign-in' },
-  { path: 'sign-up' },
-  { path: 'confirmation-sent' },
-  { path: 'confirmation-resent' },
-  { path: 'password-reset-link-sent' },
-  { path: 'forgot-password' },
-  { path: 'reset-password' },
-  { path: 'signed-out' },
-];
+export const HEADER_ROUTES = {
+  // '/': [
+  // {
+  //   path: '/website-guide',
+  //   label: 'website guide',
+  // },
+  // {
+  //   path: '/noticeboard',
+  //   label: 'noticeboard',
+  // },
+  // ],
 
-export const MAIN_ROUTES = [
-  { path: 'home' },
-  { path: 'axe-music' },
-  // { path: 'artists' },
-  // { path: 'partners' },
-  // { path: 'content' },
-  // { path: 'brand-approval' },
-  // { path: 'my-requests' },
-  // { path: 'admin' },
-  { path: 'my-profile' },
-];
+  '/axe-music': [
+    {
+      path: '/axe-music/introduction',
+      label: 'introduction',
+    },
+    {
+      path: '/axe-music/logos',
+      label: 'logos',
+    },
+    {
+      path: '/axe-music/fonts',
+      label: 'fonts',
+    },
+    {
+      path: '/axe-music/creative-assets',
+      label: 'creative assets',
+    },
+    {
+      path: '/axe-music/media-library',
+      label: 'media library',
+    },
+  ],
 
-export const HOME_ROUTES = [
-  { path: '' },
-  // {path: 'website-guide'}
-  // { path: '/noticeboard' },
-];
+  '/requests': [
+    {
+      path: '/requests/all-requests',
+      label: 'all requests',
+    },
+    {
+      path: '/requests/brand-approval',
+      label: 'brand approval',
+    },
+  ],
 
-export const AXE_MUSIC_ROUTES = [
-  { path: 'introduction' },
-  { path: 'logos' },
-  { path: 'fonts' },
-  { path: 'creative-assets' },
-  { path: 'media-library' },
-];
-
-export const MY_PROFILE_ROUTES = [
-  { path: '' },
-  { path: 'edit' },
-  { path: 'change-password' },
-];
+  '/admin': [
+    {
+      path: '/admin/users',
+      label: 'users',
+    },
+    // {
+    //   path: '/admin/requests-approval',
+    //   label: 'requests approval',
+    // },
+    // {
+    //   path: '/admin/brand-approval',
+    //   label: 'brand approval',
+    // },
+    {
+      path: '/admin/content-management',
+      label: 'content management',
+    },
+    // {
+    //   path: '/admin/inventory-management',
+    //   label: 'inventory management',
+    // },
+    // {
+    //   path: '/admin/reports',
+    //   label: 'reports',
+    // },
+  ],
+};

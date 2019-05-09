@@ -1,6 +1,16 @@
 .auth-page-layout__wrapper {
   height: 100vh;
   position: relative;
+
+  .btn {
+    background: $lightbrown;
+    margin: 0 auto;
+    margin-top: 35px;
+
+    &:hover {
+      background: darken($lightbrown, 10%);
+    }
+  }
 }
 
 .auth-logo {
@@ -18,7 +28,7 @@
 
 .auth-page-layout__content {
   background: #fff;
-  height: 100%;
+  min-height: 100%;
   max-width: 620px;
   margin: 0 auto;
   transform: skew(-5deg);
@@ -62,16 +72,6 @@
 
   &:hover {
     text-decoration: underline;
-  }
-}
-
-.btn {
-  background: $lightbrown;
-  margin: 0 auto;
-  margin-top: 35px;
-
-  &:hover {
-    background: darken($lightbrown, 10%);
   }
 }
 
@@ -119,6 +119,7 @@
 .input-field {
   max-width: 175px;
   font-weight: 400;
+  background: transparent;
 }
 
 .forgot-password {

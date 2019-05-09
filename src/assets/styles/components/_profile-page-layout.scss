@@ -1,0 +1,129 @@
+.profile-page-layout {
+  .title-primary {
+    text-align: left;
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  .profile-content {
+    max-width: 750px;
+    width: 100%;
+  }
+
+  .profile-content__holder {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .profile__title-holder {
+    margin-bottom: 60px;
+  }
+
+  .my-profile__title-holder {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .my-profile__buttons {
+    display: flex;
+    margin-left: 60px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    &.dark {
+      @include button($black, $white, 1.5px solid $tirques);
+      margin-right: 10px;
+    }
+
+    &.tirques {
+      @include button($tirques, $black, 1.5 solid $tirques);
+    }
+  }
+
+  .profile__content-holder {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details-box {
+    margin-bottom: 35px;
+  }
+
+  .details-box__left {
+    padding-right: 20px;
+  }
+
+  .label {
+    color: $tirques;
+    justify-content: flex-start;
+  }
+
+  .details-box__holder {
+    display: flex;
+    padding-left: 25px;
+    margin-top: 8px;
+  }
+
+  .profile-details__label {
+    font-weight: bold;
+    margin: 8px 0;
+  }
+
+  .profile-details__name {
+    margin: 8px 0;
+  }
+
+  // edit profile
+  .profile__content--left,
+  .profile__content--right {
+    min-width: 275px;
+  }
+
+  .input-field__holder {
+    margin-bottom: 30px;
+  }
+
+  .input-field {
+    border-color: $white;
+    color: $white;
+    max-width: 100%;
+    font-family: 'Arial';
+  }
+
+  .label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label-txt {
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  i.fas {
+    color: $white;
+    right: 10px;
+  }
+
+  .input-error__sign {
+    top: 30px;
+  }
+}
+
+.edit-profile,
+.change-password {
+  display: flex;
+  flex-direction: column;
+  min-height: 470px;
+
+  .my-profile__buttons {
+    margin-left: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+}
