@@ -4,6 +4,7 @@ import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Sections from './Sections';
 import Alert from 'react-s-alert';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import NewFolder from '@components/NewFolder/NewFolder';
 import { addSection } from '@endpoints/music/sections';
 
@@ -13,7 +14,7 @@ const mapStateToProps = state => {
   };
 };
 
-const DefaultLayout = ({ getData, page }) => {
+const DefaultLayout = ({ getData, page, ...props }) => {
   const [data, setData] = useState({});
   const [newSectionModal, toggleNewSectionModal] = useState(false);
   useEffect(() => {
@@ -32,10 +33,8 @@ const DefaultLayout = ({ getData, page }) => {
     toggleNewSectionModal(false);
   };
   const onAddFolder = async name => {
-    let section = 'fonts';
-    if (page === 'logos') {
-      section = 'Logos';
-    } else {
+    let { page: section } = props.match.params;
+    if (section.includes('assets')) {
       section = 'assets';
     }
     const response = await addSection(section, { name });
@@ -85,4 +84,4 @@ const DefaultLayout = ({ getData, page }) => {
   );
 };
 
-export default connect(mapStateToProps)(DefaultLayout);
+export default withRouter(connect(mapStateToProps)(DefaultLayout));
