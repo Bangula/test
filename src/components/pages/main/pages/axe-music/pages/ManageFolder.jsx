@@ -151,7 +151,7 @@ const ManageSection = ({ match }) => {
 
   const getTdProps = React.useCallback((state, row, column, instance) => {
     return {
-      onClick: async () => {
+      onClick: async (e, handleOriginal) => {
         if (column.Header === 'Rename') {
           setFileToRename(row.original);
           toggleRenameModal(true);
@@ -163,6 +163,9 @@ const ManageSection = ({ match }) => {
           } else {
             Alert.error(error.response.data.message);
           }
+        }
+        if (handleOriginal) {
+          handleOriginal();
         }
       },
     };
