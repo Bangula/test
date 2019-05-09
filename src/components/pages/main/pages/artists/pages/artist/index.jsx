@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import imagery from '@images/music-page-gradient-2@3x.png';
 
-const Artist = ({ match: { path } }) => {
-  console.log(path);
+const Artist = ({ match }) => {
   return (
-    <div className="py-12">
+    <div>
       <div className="container mx-auto">
         <div className="flex ">
           <div className="mr-10" style={{ maxWidth: '200px', width: '100%' }}>
@@ -29,7 +28,7 @@ const Artist = ({ match: { path } }) => {
             </div>
 
             <div>
-              <Link to={`${path}/requests`} className="block mb-2">
+              <Link to={`${match.url}/requests`} className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>
@@ -37,7 +36,9 @@ const Artist = ({ match: { path } }) => {
                 </button>
               </Link>
 
-              <Link to={`${path}/requests/experiences`} className="block mb-2">
+              <Link
+                to={`${match.url}/requests/experiences`}
+                className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>
@@ -45,7 +46,9 @@ const Artist = ({ match: { path } }) => {
                 </button>
               </Link>
 
-              <Link to={`${path}/requests/merchandise`} className="block mb-2">
+              <Link
+                to={`${match.url}/requests/merchandise`}
+                className="block mb-2">
                 <button
                   className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                   style={{ width: '200px' }}>

@@ -10,21 +10,23 @@ import MerchandiseRequest from './pages/merchandise-request';
 
 const Artists = ({ match: { path } }) => {
   return (
-    <Switch>
-      <Route path={`${path}/artist/event-request`} component={EventRequest} />
-      <Route
-        path={`${path}/artist/experience-request`}
-        component={ExperienceRequest}
-      />
-      <Route
-        path={`${path}/artist/merchandise-request`}
-        component={MerchandiseRequest}
-      />
-      <Route path={`${path}/artist/requests`} component={Requests} />
-      <Route path={`${path}/artist/asset-hub`} component={AssetHub} />
-      <Route path={`${path}/artist`} component={Artist} />
-      <Route exact path={`${path}/`} component={ArtistsList} />
-    </Switch>
+    <div className="pt-12">
+      <Switch>
+        <Route path={`${path}/artist/event-request`} component={EventRequest} />
+        <Route
+          path={`${path}/artist/experience-request`}
+          component={ExperienceRequest}
+        />
+        <Route
+          path={`${path}/artist/merchandise-request`}
+          component={MerchandiseRequest}
+        />
+        <Route path={`${path}/:artist/asset-hub`} component={AssetHub} />
+        <Route path={`${path}/:artist/requests`} component={Requests} />
+        <Route path={`${path}/:artist`} component={Artist} />
+        <Route exact path={`${path}/`} component={ArtistsList} />
+      </Switch>
+    </div>
   );
 };
 
