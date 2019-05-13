@@ -18,7 +18,7 @@ const Artist = ({ match }) => {
                 overflow: 'hidden',
                 borderRadius: '100%',
               }}>
-              <img src={profileImg} alt="profile image" />
+              <img src={profileImg} alt="Artist" />
             </div>
             <div className="mb-8 text-center">
               <p className="text-2xl uppercase leading-normal">martin garrix</p>

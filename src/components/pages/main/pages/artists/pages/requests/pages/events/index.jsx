@@ -1,6 +1,6 @@
 import React from 'react';
-import EventCard from './components/Card';
-import ExtendedCard from './components/ExtendedCard';
+import EventCard from '../../components/Card';
+import ExtendedCard from '../../components/ExtendedCard';
 import GridToListSwitch from '@components/ui-elements/GridToListSwitch/GridToListSwitch';
 
 const events = [
@@ -45,7 +45,7 @@ const events = [
 ];
 
 const Events = () => {
-  const [view, toggleView] = React.useState(false);
+  const [view, toggleView] = React.useState(true);
   let eventsList = null;
   if (view) {
     eventsList = events.map(event => (
@@ -55,7 +55,7 @@ const Events = () => {
     ));
   } else {
     eventsList = events.map(event => (
-      <div key={event.id} className="mb-10">
+      <div key={event.id} className="mb-12">
         <ExtendedCard event={event} />
       </div>
     ));

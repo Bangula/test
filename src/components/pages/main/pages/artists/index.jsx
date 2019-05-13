@@ -12,13 +12,21 @@ const Artists = ({ match: { path } }) => {
   return (
     <div className="pt-12">
       <Switch>
-        <Route path={`${path}/artist/event-request`} component={EventRequest} />
+        <Route path={`${path}/event-request`} component={EventRequest} />
         <Route
-          path={`${path}/artist/experience-request`}
+          path={`${path}/experience-request/:id`}
           component={ExperienceRequest}
         />
         <Route
-          path={`${path}/artist/merchandise-request`}
+          path={`${path}/events-request/:id`}
+          component={ExperienceRequest}
+        />
+        <Route
+          path={`${path}/gifting-and-merch/:id`}
+          component={ExperienceRequest}
+        />
+        <Route
+          path={`${path}/merchandise-request`}
           component={MerchandiseRequest}
         />
         <Route path={`${path}/:artist/asset-hub`} component={AssetHub} />

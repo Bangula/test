@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => {
   return (
@@ -11,7 +12,7 @@ const EventCard = ({ event }) => {
           <div style={{ width: '90px' }} className="mr-6">
             <p className="font-arial mb-2">Date:</p>
             <p className="font-arial mb-2">Location:</p>
-            <p className="font-arial">Availiability:</p>
+            <p className="font-arial">Availability:</p>
           </div>
           <div className="flex-1">
             <p className="font-arial mb-2">{event.date}</p>
@@ -21,9 +22,11 @@ const EventCard = ({ event }) => {
         </div>
       </div>
       <div className="flex justify-end">
-        <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
-          Request
-        </button>
+        <Link to="/artists/">
+          <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
+            Request
+          </button>
+        </Link>
       </div>
     </>
   );

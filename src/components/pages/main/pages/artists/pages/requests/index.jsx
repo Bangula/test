@@ -3,7 +3,7 @@ import { Switch, Route, NavLink, Link } from 'react-router-dom';
 
 import Events from './pages/events';
 import Experiences from './pages/experiences';
-import Merchandise from './pages/merchandise';
+import Merchandise from './pages/gifts-and-merch';
 
 const Requests = ({ match }) => {
   return (
@@ -23,7 +23,7 @@ const Requests = ({ match }) => {
             exact
             activeClassName="link-tab--selected-tirquise"
             className="link-tab"
-            to={`${match.url}/`}>
+            to={`${match.url}`}>
             Events
           </NavLink>
           <NavLink
