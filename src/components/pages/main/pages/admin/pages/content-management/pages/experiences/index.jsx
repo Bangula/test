@@ -2,7 +2,10 @@ import React from 'react';
 import { Formik, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 
+import Alert from 'react-s-alert';
 import http from '@services/http';
+import history from '@services/history';
+
 import Wizard, { Step, Steps, WithWizard } from '../../../../components/Wizard';
 import NextButton from '../../../../components/NextButton';
 import InputField from '@components/InputField/InputField';
@@ -80,7 +83,34 @@ const initialValues = {
   permissions: [],
 };
 
-const NewExperience = () => {
+const submitNewExperience = artist_id => async values => {
+  values.permissions = values.permissions.map(x => x.id);
+
+  const payload = new FormData();
+
+  for (const field in values) {
+    if (field === 'permissions') {
+      for (let i = 0; i < values.permissions.length; i++) {
+        payload.append('permissions[]', values.permissions[i]);
+      }
+    } else {
+      payload.append(field, values[field]);
+    }
+  }
+  payload.append('artist_id', artist_id);
+  payload.append('date_time', values.date + ' ' + values.time);
+
+  try {
+    await http.post('/experiences', payload);
+    Alert.success('Success!');
+    history.goBack();
+  } catch (err) {
+    console.log(err);
+    Alert.error('Error');
+  }
+};
+
+const NewExperience = props => {
   const [permissions, setPermissions] = React.useState([]);
 
   React.useEffect(() => {
@@ -103,7 +133,7 @@ const NewExperience = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={ExperienceSchema}
-        onSubmit={values => console.log(values)}>
+        onSubmit={submitNewExperience(props.match.params.artist_id)}>
         {({
           values,
           errors,
