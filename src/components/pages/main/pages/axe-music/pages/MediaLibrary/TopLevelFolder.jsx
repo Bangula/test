@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom';
 import SubPage from './SubPage';
 
 const TopLevelFolder = ({ match, folders }) => {
-  const data = folders[match.params.folder || '/'];
+  const data = folders[match.params.folder];
   return data ? (
     <>
       {match.isExact ? (
