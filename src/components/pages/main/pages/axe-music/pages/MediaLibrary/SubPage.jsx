@@ -5,7 +5,7 @@ import Breadcrumbs from '../../components/MediaLibrary/Breadcrumbs';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Route, Link } from 'react-router-dom';
 
-const SubPage = ({ match, location, foldersData }) => {
+const SubPage = ({ match, location, foldersData, showAdminFeatures }) => {
   const data = foldersData.folders.data.filter(
     folder => folder.name === match.params.folder,
   )[0];
@@ -17,13 +17,15 @@ const SubPage = ({ match, location, foldersData }) => {
             <Breadcrumbs location={location} />
             <PrimaryTitle>{match.params.folder}</PrimaryTitle>
           </div>
-          <div className="flex justify-end mb-4">
-            <Link to={`/axe-music/media-library/manage/${data.id}`}>
-              <button className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl">
-                Manage Assets
-              </button>
-            </Link>
-          </div>
+          {showAdminFeatures ? (
+            <div className="flex justify-end mb-4">
+              <Link to={`/axe-music/media-library/manage/${data.id}`}>
+                <button className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl">
+                  Manage Assets
+                </button>
+              </Link>
+            </div>
+          ) : null}
           <div className="mb-8">
             <FoldersSection
               folders={data.folders.data}
@@ -40,7 +42,13 @@ const SubPage = ({ match, location, foldersData }) => {
       {data.folders.data.length ? (
         <Route
           path={`${match.url}/:folder`}
-          component={props => <SubPage {...props} foldersData={data} />}
+          component={props => (
+            <SubPage
+              {...props}
+              foldersData={data}
+              showAdminFeatures={showAdminFeatures}
+            />
+          )}
         />
       ) : null}
     </div>
