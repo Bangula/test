@@ -1,10 +1,11 @@
 import React from 'react';
-import FoldersSection from '../../components/MediaLibrary/FoldersSection';
-import FilesSection from '../../components/MediaLibrary/FilesSection';
+import FoldersSection from './utils/FoldersSection';
+import FilesSection from './utils/FilesSection';
 import { Route, Link } from 'react-router-dom';
 import SubPage from './SubPage';
 import { connect } from 'react-redux';
 import { showAdminFeatures } from '@state/user/selectors';
+import { MediaLibraryContext } from './MediaLibrary';
 
 const mapStateToProps = state => {
   return {
@@ -14,13 +15,14 @@ const mapStateToProps = state => {
 
 const TopLevelFolder = ({ match, folders, showAdminFeatures }) => {
   const data = folders[match.params.folder];
+  const context = React.useContext(MediaLibraryContext);
   return data ? (
     <>
       {match.isExact ? (
         <>
           {showAdminFeatures ? (
             <div className="flex justify-end mb-4">
-              <Link to={`/axe-music/media-library/manage/${data.id}`}>
+              <Link to={`${context.baseUrl}/manage/${data.id}`}>
                 <button className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl">
                   Manage Assets
                 </button>

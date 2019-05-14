@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import FolderIcon from '@components/ui-elements/FolderIcon/FolderIcon';
 import NewFolder from '@components/NewFolder/NewFolder';
 import { createFolder } from '@endpoints/media-library';
-import { MediaLibraryContext } from '../../pages/MediaLibrary/MediaLibrary';
+import { MediaLibraryContext } from '../MediaLibrary';
 
 const FoldersSection = ({
   match,

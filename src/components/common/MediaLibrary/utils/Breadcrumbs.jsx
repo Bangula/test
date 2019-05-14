@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { MediaLibraryContext } from '../MediaLibrary';
+
 const Breadcrumbs = ({ location }) => {
-  const base = '/axe-music/media-library';
-  const url = location.pathname.replace(`${base}/`, '');
+  const context = React.useContext(MediaLibraryContext);
+  const url = location.pathname.replace(`${context.baseUrl}/`, '');
   const components = url.split('/');
-  let previousBase = base;
+  let previousBase = context.baseUrl;
   const renderData = [];
   components.forEach(component => {
     renderData.push({

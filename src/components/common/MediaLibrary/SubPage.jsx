@@ -1,7 +1,7 @@
 import React from 'react';
-import FoldersSection from '../../components/MediaLibrary/FoldersSection';
-import FilesSection from '../../components/MediaLibrary/FilesSection';
-import Breadcrumbs from '../../components/MediaLibrary/Breadcrumbs';
+import FoldersSection from './utils/FoldersSection';
+import FilesSection from './utils/FilesSection';
+import Breadcrumbs from './utils/Breadcrumbs';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Route, Link } from 'react-router-dom';
 
