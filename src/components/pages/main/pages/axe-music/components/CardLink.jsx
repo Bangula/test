@@ -13,7 +13,7 @@ export default ({ label }) => (
         style={{ top: '1rem', bottom: '1rem', left: '1rem', right: '1rem' }}
       />
     </div>
-    <div className="py-3 bg-white font-bebas text-black uppercase text-2xl text-center">
+    <div className="py-3 bg-white font-bold text-black uppercase text-2xl text-center">
       {label}
     </div>
   </div>
