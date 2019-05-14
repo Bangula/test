@@ -34,14 +34,14 @@ export const HEADER_ROUTES = {
   ],
 
   '/requests': [
-    {
-      path: '/requests/all-requests',
-      label: 'all requests',
-    },
-    {
-      path: '/requests/brand-approval',
-      label: 'brand approval',
-    },
+    // {
+    //   path: '/requests/all',
+    //   label: 'all requests',
+    // },
+    // {
+    //   path: '/requests/brand-approval',
+    //   label: 'brand approval',
+    // },
   ],
 
   '/admin': [
@@ -49,10 +49,10 @@ export const HEADER_ROUTES = {
       path: '/admin/users',
       label: 'users',
     },
-    // {
-    //   path: '/admin/requests-approval',
-    //   label: 'requests approval',
-    // },
+    {
+      path: '/admin/requests-approval',
+      label: 'requests approval',
+    },
     // {
     //   path: '/admin/brand-approval',
     //   label: 'brand approval',

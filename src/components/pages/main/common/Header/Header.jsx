@@ -15,7 +15,7 @@ function matchPath(path) {
     path.includes('/artists') ||
     path.includes('/partners') ||
     (path.includes('/content') && !path.includes('management')) ||
-    (!path.includes('/admin') && path.includes('/brand-approval')) ||
+    (!path.includes('/admin') && path.startsWith('/brand-approval')) ||
     path.includes('/profile')
   ) {
     return result;
