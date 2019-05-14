@@ -7,7 +7,7 @@ import Merchandise from './pages/gifts-and-merch';
 
 const Requests = ({ match }) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pt-12">
       <div className="mb-6 px-2">
         <Link to={`/artists/${match.params.artist}`}>
           <button className="px-8 pt-2 pb-1 text-white border border-tirques rounded text-xl">

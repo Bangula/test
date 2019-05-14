@@ -7,10 +7,11 @@ import AssetHub from './pages/asset-hub';
 import EventRequest from './pages/event-request';
 import ExperienceRequest from './pages/experience-request';
 import MerchandiseRequest from './pages/merchandise-request';
+import GiftingRequest from './pages/gifting-request';
 
 const Artists = ({ match: { path } }) => {
   return (
-    <div className="pt-12">
+    <div className="relative">
       <Switch>
         <Route path={`${path}/event-request`} component={EventRequest} />
         <Route
@@ -22,8 +23,8 @@ const Artists = ({ match: { path } }) => {
           component={ExperienceRequest}
         />
         <Route
-          path={`${path}/gifting-and-merch/:id`}
-          component={ExperienceRequest}
+          path={`${path}/gifting-request/:id`}
+          component={GiftingRequest}
         />
         <Route
           path={`${path}/merchandise-request`}

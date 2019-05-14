@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const gifts = [
   {
@@ -64,9 +65,11 @@ const Gifts = () => {
               <div>£{gift.price}</div>
             </div>
             <div className="flex justify-end">
-              <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
-                Request
-              </button>
+              <Link to={`/artists/gifting-request/${gift.id}`}>
+                <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
+                  Request
+                </button>
+              </Link>
             </div>
           </div>
         ))}
