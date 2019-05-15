@@ -12,7 +12,7 @@ const Details = () => {
     const pomTickets = { ...tickets };
     pomTickets[type] = value;
     setTickets(pomTickets);
-  });
+  }, []);
   return (
     <div className="container mx-auto flex">
       <div className="flex-1">
