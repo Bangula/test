@@ -1,6 +1,7 @@
 import React from 'react';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Counter from '@components/ui-elements/Counter/Counter';
+import { Link } from 'react-router-dom';
 
 const Details = () => {
   const [tickets, setTickets] = React.useState({
@@ -16,9 +17,11 @@ const Details = () => {
   return (
     <div className="container mx-auto flex">
       <div className="flex-1">
-        <button className="text-xl mb-8 px-4 pt-2 pb-1 border border-pink rounded text-white">
-          &larr; Go back
-        </button>
+        <Link to="/admin/requests-approval">
+          <button className="text-xl mb-8 px-4 pt-2 pb-1 border border-pink rounded text-white">
+            &larr; Go back
+          </button>
+        </Link>
         <div className="mb-8">
           <PrimaryTitle>Dreambeach chile 2019</PrimaryTitle>
         </div>
