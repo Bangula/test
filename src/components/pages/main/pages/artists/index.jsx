@@ -31,7 +31,13 @@ const Artists = ({ match: { path } }) => {
           component={MerchandiseRequest}
         />
         <Route path={`${path}/:artist/requests`} component={Requests} />
-        <Route path={`${path}/:artist/manage/:id`} component={ManageFolder} />
+        <Route
+          path={`${path}/:artist/manage/:id`}
+          render={props => {
+            const propsToPass = { ...props, cancelUrl: '/artists' };
+            return <ManageFolder {...propsToPass} />;
+          }}
+        />
         <Route path={`${path}/:artist`} component={Artist} />
         <Route exact path={`${path}/`} component={ArtistsList} />
       </Switch>

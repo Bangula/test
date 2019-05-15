@@ -98,7 +98,7 @@ const constructTableColumns = (withExpander, showHeaders) => {
   return withExpander ? [expanderColumnObject, ...columns] : columns;
 };
 
-const ManageSection = ({ match }) => {
+const ManageFolder = ({ match, cancelUrl }) => {
   const [section, setSection] = React.useState({});
   const [name, setName] = React.useState('');
   const [renameFileModal, toggleRenameModal] = React.useState(false);
@@ -187,7 +187,7 @@ const ManageSection = ({ match }) => {
           />
         </div>
         <div>
-          <Link to="/axe-music">
+          <Link to={`${cancelUrl}`}>
             <button className="text-xl w-32 border border-pink rounded text-white pt-2 pb-1">
               Cancel
             </button>
@@ -238,4 +238,4 @@ const ManageSection = ({ match }) => {
   ) : null;
 };
 
-export default ManageSection;
+export default ManageFolder;
