@@ -4,7 +4,7 @@ import Counter from '@components/ui-elements/Counter/Counter';
 
 const Details = () => {
   const [tickets, setTickets] = React.useState({
-    general: 10000,
+    general: 10,
     vip: 3,
     meetAndGreet: 2,
   });
