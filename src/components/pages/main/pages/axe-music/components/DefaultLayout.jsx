@@ -4,17 +4,18 @@ import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Sections from './Sections';
 import Alert from 'react-s-alert';
 import { connect } from 'react-redux';
+import { showAdminFeatures } from '@state/user/selectors';
 import { withRouter } from 'react-router';
 import NewFolder from '@components/NewFolder/NewFolder';
 import { addSection } from '@endpoints/music/sections';
 
 const mapStateToProps = state => {
   return {
-    isAdmin: state.getIsAdmin,
+    showAdminFeatures: showAdminFeatures(state),
   };
 };
 
-const DefaultLayout = ({ getData, page, ...props }) => {
+const DefaultLayout = ({ getData, page, showAdminFeatures, ...props }) => {
   const [data, setData] = useState({});
   const [newSectionModal, toggleNewSectionModal] = useState(false);
   useEffect(() => {
@@ -60,26 +61,34 @@ const DefaultLayout = ({ getData, page, ...props }) => {
           <div>
             <PrimaryTitle>{page}</PrimaryTitle>
           </div>
-          <div>
-            <button
-              className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl"
-              onClick={() => toggleNewSectionModal(true)}>
-              <i className="fa fa-plus mr-4" />
-              New section
-            </button>
-          </div>
+          {showAdminFeatures ? (
+            <div>
+              <button
+                className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl"
+                onClick={() => toggleNewSectionModal(true)}>
+                <i className="fa fa-plus mr-4" />
+                New section
+              </button>
+            </div>
+          ) : null}
         </div>
         {data.sections && data.sections.data.length ? (
-          <Sections sections={data.sections.data} object={data.object} />
+          <Sections
+            sections={data.sections.data}
+            object={data.object}
+            adminFeatures={showAdminFeatures}
+          />
         ) : (
           <p className="font-arial px-4 text-xl">You have no {page}.</p>
         )}
       </div>
-      <NewFolder
-        opened={newSectionModal}
-        close={closeModal}
-        onAddFolder={onAddFolder}
-      />
+      {showAdminFeatures ? (
+        <NewFolder
+          opened={newSectionModal}
+          close={closeModal}
+          onAddFolder={onAddFolder}
+        />
+      ) : null}
     </div>
   );
 };

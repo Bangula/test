@@ -1,6 +1,7 @@
 import React from 'react';
 import CardLink from '../components/CardLink';
 import AxeMusicHeader from '../components/AxeMusicHeader';
+import { Link } from 'react-router-dom';
 
 const AxeMusic = () => {
   let sectionContent = null;
@@ -10,17 +11,37 @@ const AxeMusic = () => {
       title: 'Brand assets',
       text: `Lorem ipsum dolor sit amet, consecte adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     },
-    { type: 'with-image', label: 'Logos', image: '' },
-    { type: 'with-image', label: 'Fonts', image: '' },
-    { type: 'with-image', label: 'Creative assets', image: '' },
+    { type: 'with-image', label: 'Logos', image: '', path: '/axe-music/logos' },
+    { type: 'with-image', label: 'Fonts', image: '', path: '/axe-music/fonts' },
+    {
+      type: 'with-image',
+      label: 'Creative assets',
+      image: '',
+      path: '/axe-music/creative-assets',
+    },
     {
       type: 'with-text',
       title: 'Media library',
       text: `Lorem ipsum dolor sit amet, consecte adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     },
-    { type: 'with-image', label: 'Pr & Imagery', image: '' },
-    { type: 'with-image', label: 'Assets', image: '' },
-    { type: 'with-image', label: 'Toolkits', image: '' },
+    {
+      type: 'with-image',
+      label: 'Pr & Imagery',
+      image: '',
+      path: '/axe-music/media-library/pr-and-imagery',
+    },
+    {
+      type: 'with-image',
+      label: 'Assets',
+      image: '',
+      path: '/axe-music/media-library/assets',
+    },
+    {
+      type: 'with-image',
+      label: 'Toolkits',
+      image: '',
+      path: '/axe-music/media-library/in-store-material',
+    },
   ];
   sectionContent = cards.map((card, index) => {
     let content = null;
@@ -36,7 +57,9 @@ const AxeMusic = () => {
     } else {
       content = (
         <div style={{ paddingTop: '4rem' }}>
-          <CardLink image={card.image} label={card.label} />
+          <Link to={card.path}>
+            <CardLink image={card.image} label={card.label} />
+          </Link>
         </div>
       );
     }

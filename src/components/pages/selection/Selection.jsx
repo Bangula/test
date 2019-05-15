@@ -2,6 +2,7 @@ import React from 'react';
 import backgroundImage from '@images/selection-page.png';
 import logo2x from '@images/logo@2x.png';
 import Button from '@components/Button/Button';
+import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Link } from 'react-router-dom';
 
 export default () => {
@@ -19,25 +20,20 @@ export default () => {
         <div className="flex justify-end pt-5">
           <div className="max-w-lg flex pt-5">
             <div>
-              <h1
-                className="uppercase font-bebas font-thin"
-                style={{
-                  fontSize: '82px',
-                  lineHeight: '.9',
-                }}>
+              <PrimaryTitle>
                 Welcome
                 <br />
                 to Axe 'Passions'
                 <br />
                 Portal
-              </h1>
+              </PrimaryTitle>
             </div>
             <div className="pt-5 px-5">
-              <p className="font-arial text-2xl mb-5 py-5 px-5 leading-tight">
+              <p className="font-arial text-xl mb-5 py-5 px-5">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores molestias saepe blanditiis atque voluptates culpa!
               </p>
-              <p className="font-arial text-2xl px-5 mb-5 pb-5 leading-tight">
+              <p className="font-arial text-xl px-5 mb-5 pb-5">
                 Nihil quo soluta pariatur ipsam ab officiis. Nesciunt expedita
                 dolores excepturi at eligendi assumenda nemo.
               </p>
