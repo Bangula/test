@@ -126,18 +126,20 @@ const ManageSection = ({ match }) => {
     [fileToRename],
   );
 
-  const onFileDrop = React.useCallback(files => {
-    files.forEach(async file => {
-      const payload = new FormData();
-      payload.append('folder_id', match.params.id);
-      payload.append('file', file);
-      const { error, data } = await uploadFile(payload);
-      if (!error) {
-        console.log(data);
-      } else {
-        Alert.error(error.response.data.message);
-      }
-    });
+  const onFileDrop = React.useCallback(async files => {
+    try {
+      await Promise.all(
+        files.map(file => {
+          const payload = new FormData();
+          payload.append('folder_id', match.params.id);
+          payload.append('file', file);
+          return uploadFile(payload);
+        }),
+      );
+    } catch (e) {
+      Alert.error(e);
+    }
+    getData(match.params.id);
   }, []);
 
   const saveChanges = async () => {

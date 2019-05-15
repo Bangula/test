@@ -5,7 +5,13 @@ import Breadcrumbs from './utils/Breadcrumbs';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Route, Link } from 'react-router-dom';
 
-const SubPage = ({ match, location, foldersData, showAdminFeatures }) => {
+const SubPage = ({
+  match,
+  location,
+  foldersData,
+  showAdminFeatures,
+  manageSectionUrl,
+}) => {
   const data = foldersData.folders.data.filter(
     folder => folder.name === match.params.folder,
   )[0];
@@ -19,7 +25,7 @@ const SubPage = ({ match, location, foldersData, showAdminFeatures }) => {
           </div>
           {showAdminFeatures ? (
             <div className="flex justify-end mb-4">
-              <Link to={`/axe-music/media-library/manage/${data.id}`}>
+              <Link to={`${manageSectionUrl}/${data.id}`}>
                 <button className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl">
                   Manage Assets
                 </button>

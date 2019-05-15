@@ -13,7 +13,12 @@ const mapStateToProps = state => {
   };
 };
 
-const TopLevelFolder = ({ match, folders, showAdminFeatures }) => {
+const TopLevelFolder = ({
+  match,
+  folders,
+  showAdminFeatures,
+  manageSectionUrl,
+}) => {
   const data = folders[match.params.folder];
   const context = React.useContext(MediaLibraryContext);
   return data ? (
@@ -22,7 +27,7 @@ const TopLevelFolder = ({ match, folders, showAdminFeatures }) => {
         <>
           {showAdminFeatures ? (
             <div className="flex justify-end mb-4">
-              <Link to={`${context.baseUrl}/manage/${data.id}`}>
+              <Link to={`${manageSectionUrl}/${data.id}`}>
                 <button className="uppercase text-white border rounded border-pink px-8 pb-1 pt-2 tracking-wide text-xl">
                   Manage Assets
                 </button>
@@ -49,6 +54,7 @@ const TopLevelFolder = ({ match, folders, showAdminFeatures }) => {
               {...props}
               foldersData={data}
               showAdminFeatures={showAdminFeatures}
+              manageSectionUrl={manageSectionUrl}
             />
           )}
         />

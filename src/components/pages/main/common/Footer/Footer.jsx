@@ -20,12 +20,16 @@ const Footer = ({ match: { url } }) => {
             </Link>
           </li>
           <li className="mr-5">
-            <Link className="font-bebas text-md font-thin uppercase text-white">
+            <Link
+              className="font-bebas text-md font-thin uppercase text-white"
+              to={`${url}`}>
               Noticeboard
             </Link>
           </li>
           <li className="mr-5">
-            <Link className="font-bebas text-md font-thin uppercase text-white">
+            <Link
+              className="font-bebas text-md font-thin uppercase text-white"
+              to={`${url}`}>
               Sitemap
             </Link>
           </li> */}
@@ -47,22 +51,22 @@ const Footer = ({ match: { url } }) => {
       </div>
       {/* <ul className="flex items-center">
         <li className="pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-facebook-f text-white" />
           </Link>
         </li>
         <li className="ml-5 pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-twitter text-white" />
           </Link>
         </li>
         <li className="ml-5 pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-instagram text-white" />
           </Link>
         </li>
         <li className="ml-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-youtube text-white" />
           </Link>
         </li>

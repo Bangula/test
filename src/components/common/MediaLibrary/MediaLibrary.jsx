@@ -4,7 +4,7 @@ import TopLevelFolder from './TopLevelFolder';
 
 export const MediaLibraryContext = React.createContext();
 
-const MediaLibrary = ({ baseUrl, data, fetchData }) => {
+const MediaLibrary = ({ baseUrl, data, fetchData, manageSectionUrl }) => {
   const context = {
     fetchData,
     baseUrl,
@@ -34,7 +34,13 @@ const MediaLibrary = ({ baseUrl, data, fetchData }) => {
       </div>
       <Route
         path={`${baseUrl}/:folder?`}
-        component={props => <TopLevelFolder {...props} folders={data} />}
+        component={props => (
+          <TopLevelFolder
+            {...props}
+            folders={data}
+            manageSectionUrl={manageSectionUrl}
+          />
+        )}
       />
     </MediaLibraryContext.Provider>
   );
