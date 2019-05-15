@@ -98,7 +98,7 @@ const constructTableColumns = (withExpander, showHeaders) => {
   return withExpander ? [expanderColumnObject, ...columns] : columns;
 };
 
-const ManageSection = ({ match }) => {
+const ManageFolder = ({ match, cancelUrl }) => {
   const [section, setSection] = React.useState({});
   const [name, setName] = React.useState('');
   const [renameFileModal, toggleRenameModal] = React.useState(false);
@@ -126,18 +126,20 @@ const ManageSection = ({ match }) => {
     [fileToRename],
   );
 
-  const onFileDrop = React.useCallback(files => {
-    files.forEach(async file => {
-      const payload = new FormData();
-      payload.append('folder_id', match.params.id);
-      payload.append('file', file);
-      const { error, data } = await uploadFile(payload);
-      if (!error) {
-        console.log(data);
-      } else {
-        Alert.error(error.response.data.message);
-      }
-    });
+  const onFileDrop = React.useCallback(async files => {
+    try {
+      await Promise.all(
+        files.map(file => {
+          const payload = new FormData();
+          payload.append('folder_id', match.params.id);
+          payload.append('file', file);
+          return uploadFile(payload);
+        }),
+      );
+    } catch (e) {
+      Alert.error(e);
+    }
+    getData(match.params.id);
   }, []);
 
   const saveChanges = async () => {
@@ -185,7 +187,7 @@ const ManageSection = ({ match }) => {
           />
         </div>
         <div>
-          <Link to="/axe-music">
+          <Link to={`${cancelUrl}`}>
             <button className="text-xl w-32 border border-pink rounded text-white pt-2 pb-1">
               Cancel
             </button>
@@ -236,4 +238,4 @@ const ManageSection = ({ match }) => {
   ) : null;
 };
 
-export default ManageSection;
+export default ManageFolder;
