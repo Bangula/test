@@ -21,7 +21,7 @@ const FoldersSection = ({
     const payload = { parent_id: folderId, library_id: libraryId, name };
     const { error } = await createFolder(payload);
     if (!error) {
-      context.fetchResource();
+      context.fetchData();
     }
   };
   return (

@@ -7,6 +7,7 @@ import EventRequest from './pages/event-request';
 import ExperienceRequest from './pages/experience-request';
 import MerchandiseRequest from './pages/merchandise-request';
 import GiftingRequest from './pages/gifting-request';
+import ManageFolder from '@components/ManageFolder/ManageFolder';
 
 const Artists = ({ match: { path } }) => {
   return (
@@ -30,6 +31,7 @@ const Artists = ({ match: { path } }) => {
           component={MerchandiseRequest}
         />
         <Route path={`${path}/:artist/requests`} component={Requests} />
+        <Route path={`${path}/:artist/manage/:id`} component={ManageFolder} />
         <Route path={`${path}/:artist`} component={Artist} />
         <Route exact path={`${path}/`} component={ArtistsList} />
       </Switch>

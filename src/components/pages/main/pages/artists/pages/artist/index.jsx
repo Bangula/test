@@ -18,7 +18,7 @@ const Artist = ({ match }) => {
     doGetArtist();
   }, [match.params.artist]);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pt-12">
       {artist ? (
         <div className="flex">
           <div className="mr-10" style={{ maxWidth: '200px', width: '100%' }}>
@@ -72,7 +72,7 @@ const Artist = ({ match }) => {
             ) : null}
           </div>
 
-          <div className="px-12" style={{ maxWidth: '600px' }}>
+          <div className="px-12 flex-1">
             {match.isExact ? (
               <Tabs>
                 <TabList className="mb-8">
@@ -85,12 +85,12 @@ const Artist = ({ match }) => {
                 <TabPanel>
                   <div className="font-arial leading-tight">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Urna condimentum mattis. <br /> <br /> Pellentesque
-                      id nibh tortor. Lorem ipsum dolor sit amet consectetur
-                      adipiscing elit ut aliquam. Mollis aliquam ut porttitor leo
-                      a diam.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Urna condimentum mattis. <br /> <br />
+                      Pellentesque id nibh tortor. Lorem ipsum dolor sit amet
+                      consectetur adipiscing elit ut aliquam. Mollis aliquam ut
+                      porttitor leo a diam.
                       <br /> <br />
                       Lacinia at quis risus sed vulputate odio. Semper auctor
                       neque vitae tempus quam pellentesque nec nam. Congue nisi
@@ -114,7 +114,11 @@ const Artist = ({ match }) => {
             <Route
               path={`${match.url}/asset-hub`}
               component={props => (
-                <AssetHub {...props} data={artist.mediaLibrary.data} />
+                <AssetHub
+                  {...props}
+                  data={artist.mediaLibrary.data}
+                  fetchData={doGetArtist}
+                />
               )}
             />
           </div>
