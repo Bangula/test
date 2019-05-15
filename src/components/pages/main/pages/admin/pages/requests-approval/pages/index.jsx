@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
-import http from '@services/http';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
+import { getRequests } from '@endpoints/requests';
 
 const event = {
   id: 'lasdlasjkdlasjd',
@@ -19,7 +19,8 @@ const data = Array(10)
   .map(x => event);
 
 const LatestRequests = ({ match: { path } }) => {
-  const [artists, setArtists] = React.useState([]);
+  // const [artists, setArtists] = React.useState([]);
+  const [requests, setRequests] = React.useState([]);
   const columns = [
     {
       Header: props => (
@@ -69,23 +70,32 @@ const LatestRequests = ({ match: { path } }) => {
     },
   ];
 
+  // React.useEffect(() => {
+  //   const fetchArtists = async () => {
+  //     try {
+  //       const result = await http('/artists');
+
+  //       setArtists(result.data.data);
+  //       console.log(result.data.data);
+  //     } catch (err) {
+  //       console.log('Error fetching artists!');
+  //     }
+  //   };
+
+  //   fetchArtists();
+  // }, []);
+  const doGetRequests = async () => {
+    const { error, data } = await getRequests();
+    if (!error) {
+      setRequests(data.data.data);
+    }
+  };
   React.useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const result = await http('/artists');
-
-        setArtists(result.data.data);
-        console.log(result.data.data);
-      } catch (err) {
-        console.log('Error fetching artists!');
-      }
-    };
-
-    fetchArtists();
+    doGetRequests();
   }, []);
   return (
     <div>
-      {artists.length > 0 && (
+      {/* {artists.length > 0 && (
         <div className="flex items-center">
           <div className="text-red">Partnerships:</div>
           {artists.map(x => (
@@ -96,7 +106,7 @@ const LatestRequests = ({ match: { path } }) => {
             </Link>
           ))}
         </div>
-      )}
+      )} */}
       <PrimaryTitle>Latest Requests</PrimaryTitle>
       <ReactTable
         className="custom-ReactTable"
