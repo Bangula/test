@@ -4,7 +4,7 @@ import AxeMusic from './pages/AxeMusic';
 import AxeMusicIntroduction from './pages/AxeMusicIntroduction';
 import TemplateComponent from './pages/TemplateComponent';
 import ManageFolder from './pages/ManageFolder';
-import MediaLibrary from './pages/MediaLibrary/MediaLibrary';
+import MediaLibrary from './pages/MediaLibrary';
 
 export default ({ match }) => (
   <div className="pt-12">
