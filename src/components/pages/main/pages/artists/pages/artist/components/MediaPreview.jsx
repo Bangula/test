@@ -13,7 +13,6 @@ const MediaPreview = ({ match, data }) => {
     folder => folder.name === 'In-store material',
   )[0];
   const mediaDataKeys = Object.keys(mediaLibData);
-  console.log(mediaLibData);
   return (
     <div>
       <h2 className="text-4xl mb-4">Asset Hub</h2>

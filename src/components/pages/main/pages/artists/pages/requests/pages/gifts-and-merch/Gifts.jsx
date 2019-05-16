@@ -1,39 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const gifts = [
-  {
-    image: '',
-    id: '0',
-    title: 'Axe regimen gift set',
-    contents: 'Axe Apollo Set, 3 pc: Antip',
-    price: '20',
-  },
-  {
-    image: '',
-    id: '1',
-    title: 'Axe regimen gift set',
-    contents: 'Axe Apollo Set, 3 pc: Antip',
-    price: '20',
-  },
-  {
-    image: '',
-    id: '2',
-    title: 'Axe regimen gift set',
-    contents: 'Axe Apollo Set, 3 pc: Antip',
-    price: '20',
-  },
-  {
-    image: '',
-    id: '3',
-    title: 'Axe regimen gift set',
-    contents: 'Axe Apollo Set, 3 pc: Antip',
-    price: '20',
-  },
-];
-
-const Gifts = () => {
-  return (
+const Gifts = ({ data }) => {
+  return data ? (
     <div>
       <div className="max-w-md px-3 mb-8">
         <h1 className="mb-2">Gifting</h1>
@@ -45,18 +14,18 @@ const Gifts = () => {
         </p>
       </div>
       <div className="flex flex-wrap">
-        {gifts.map(gift => (
+        {data.map(gift => (
           <div key={gift.id} className="w-1/3 px-3 mb-10">
             <div
               className="bg-grey-light mb-2"
               style={{ paddingBottom: '100%' }}
             />
-            <h1 className="mb-4 font-2xl text-tirques">{gift.title}</h1>
+            <h1 className="mb-4 font-2xl text-tirques">{gift.name}</h1>
             <div className="flex font-arial mb-2">
               <div className="mr-6" style={{ width: '73px' }}>
                 Contents:
               </div>
-              <div>{gift.contents}</div>
+              <div>{gift.content}</div>
             </div>
             <div className="flex font-arial mb-6">
               <div className="mr-6" style={{ width: '73px' }}>
@@ -75,7 +44,7 @@ const Gifts = () => {
         ))}
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Gifts;

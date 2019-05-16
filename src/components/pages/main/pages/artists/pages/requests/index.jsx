@@ -41,9 +41,23 @@ const Requests = ({ match }) => {
         </div>
       </div>
       <Switch>
-        <Route path={`${match.url}/experiences`} component={Experiences} />
-        <Route path={`${match.url}/merchandise`} component={Merchandise} />
-        <Route exact path={`${match.url}/`} component={Events} />
+        <Route
+          path={`${match.url}/experiences`}
+          render={props => (
+            <Experiences {...props} artist={match.params.artist} />
+          )}
+        />
+        <Route
+          path={`${match.url}/merchandise`}
+          render={props => (
+            <Merchandise {...props} artist={match.params.artist} />
+          )}
+        />
+        <Route
+          exact
+          path={`${match.url}/`}
+          render={props => <Events {...props} artist={match.params.artist} />}
+        />
       </Switch>
     </div>
   );
