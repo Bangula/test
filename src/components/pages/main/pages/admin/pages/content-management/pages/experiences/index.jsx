@@ -26,7 +26,7 @@ const requiredFieldsByStep = {
     'order_date_to',
     'description',
   ],
-  2: ['general_admission'],
+  2: ['pass'],
   3: ['image'],
   4: ['permissions'],
 };
@@ -78,12 +78,12 @@ const initialValues = {
   order_date_from: '',
   order_date_to: '',
   description: '',
-  general_admission: 1,
+  pass: 1,
   image: null,
   permissions: [],
 };
 
-const submitNewExperience = artist_id => async values => {
+const submitNewExperience = (artist_id, inventory) => async values => {
   values.permissions = values.permissions.map(x => x.id);
 
   const payload = new FormData();
@@ -100,6 +100,11 @@ const submitNewExperience = artist_id => async values => {
   payload.append('artist_id', artist_id);
   payload.append('date_time', values.date + ' ' + values.time);
 
+  for (let i = 0; i < inventory.length; i++) {
+    payload.append(`tickets[${i}][ticket_type_id]`, inventory[i].id);
+    payload.append(`tickets[${i}][amount]`, values[inventory[i].name]);
+  }
+
   try {
     await http.post('/experiences', payload);
     Alert.success('Success!');
@@ -112,6 +117,7 @@ const submitNewExperience = artist_id => async values => {
 
 const NewExperience = props => {
   const [permissions, setPermissions] = React.useState([]);
+  const [inventory, setInventory] = React.useState([]);
 
   React.useEffect(() => {
     const fetchMarkets = async () => {
@@ -127,13 +133,28 @@ const NewExperience = props => {
 
     fetchMarkets();
   }, []);
+
+  React.useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const result = await http('/ticket-types/models/experience');
+
+        setInventory(result.data.data);
+        console.log(result.data.data);
+      } catch (err) {
+        console.log('Error fetching inventory!');
+      }
+    };
+
+    fetchInventory();
+  }, []);
   return (
     <div>
       <h3 className="text-red">New Experience Form</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={ExperienceSchema}
-        onSubmit={submitNewExperience(props.match.params.artist_id)}>
+        onSubmit={submitNewExperience(props.match.params.artist_id, inventory)}>
         {({
           values,
           errors,
@@ -266,9 +287,9 @@ const NewExperience = props => {
                       <PrimaryTitle>Inventory</PrimaryTitle>
                       <div className="mt-16">
                         <Counter
-                          onChange={v => setFieldValue('general_admission', v)}
+                          onChange={v => setFieldValue('pass', v)}
                           color="red"
-                          label="General Admission"
+                          label="Pass"
                           initialValue={1}
                         />
                       </div>

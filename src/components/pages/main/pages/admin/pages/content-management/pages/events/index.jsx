@@ -89,7 +89,7 @@ const initialValues = {
   permissions: [],
 };
 
-const submitNewEvent = artist_id => async values => {
+const submitNewEvent = (artist_id, inventory) => async values => {
   const permissions = values.permissions.map(x => x.id);
 
   const payload = new FormData();
@@ -106,6 +106,11 @@ const submitNewEvent = artist_id => async values => {
   payload.append('artist_id', artist_id);
   payload.append('date_time', values.date + ' ' + values.time);
 
+  for (let i = 0; i < inventory.length; i++) {
+    payload.append(`tickets[${i}][ticket_type_id]`, inventory[i].id);
+    payload.append(`tickets[${i}][amount]`, values[inventory[i].name]);
+  }
+
   try {
     await http.post('/events', payload);
     Alert.success('Success!');
@@ -118,6 +123,7 @@ const submitNewEvent = artist_id => async values => {
 
 const NewEvent = props => {
   const [permissions, setPermissions] = React.useState([]);
+  const [inventory, setInventory] = React.useState([]);
 
   React.useEffect(() => {
     const fetchMarkets = async () => {
@@ -133,13 +139,28 @@ const NewEvent = props => {
 
     fetchMarkets();
   }, []);
+
+  React.useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const result = await http('/ticket-types/models/event');
+
+        setInventory(result.data.data);
+        console.log(result.data.data);
+      } catch (err) {
+        console.log('Error fetching inventory!');
+      }
+    };
+
+    fetchInventory();
+  }, []);
   return (
     <div>
       <h3 className="text-red">New Event Form</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={EventSchema}
-        onSubmit={submitNewEvent(props.match.params.artist_id)}>
+        onSubmit={submitNewEvent(props.match.params.artist_id, inventory)}>
         {({
           values,
           errors,
