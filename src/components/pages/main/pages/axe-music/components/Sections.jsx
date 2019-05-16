@@ -10,7 +10,7 @@ const Sections = ({ sections, object, match, adminFeatures }) => {
           <h1 className="uppercase">{section.name}:</h1>
           <div>
             {adminFeatures ? (
-              <Link to={`${match.url}/manage-section/${section.id}`}>
+              <Link to={`/axe-music/manage/${section.id}`}>
                 <button className="uppercase text-white border rounded border-pink px-5 pb-1 pt-2 tracking-wide text-xl">
                   Manage section
                 </button>

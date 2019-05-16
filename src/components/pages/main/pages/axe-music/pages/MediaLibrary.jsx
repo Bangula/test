@@ -45,7 +45,7 @@ const MediaLibrary = ({ match, location }) => {
               </div>
             ) : null}
             <MediaLibraryComponent
-              manageSectionUrl={`${match.url}/manage`}
+              manageSectionUrl={`/axe-music/manage`}
               baseUrl={match.url}
               data={data}
               showTabs={pathComponents.length <= 3}
