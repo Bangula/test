@@ -24,8 +24,8 @@ const merches = [
   },
 ];
 
-const Merchandise = () => {
-  return (
+const Merchandise = ({ data }) => {
+  return data ? (
     <div>
       <div className="max-w-md px-3 mb-8">
         <h1>Merchandise</h1>
@@ -37,14 +37,14 @@ const Merchandise = () => {
         </p>
       </div>
       <div className="flex flex-wrap">
-        {merches.map(m => (
+        {data.map(m => (
           <div key={m.id} className="w-1/3 px-3 mb-10">
             <div
               className="bg-grey-light mb-2"
               style={{ paddingBottom: '100%' }}
             />
-            <h1 className="mb-4 font-2xl text-tirques">{m.title}</h1>
-            <p className="font-arial">{m.desc}</p>
+            <h1 className="mb-4 font-2xl text-tirques">{m.name}</h1>
+            <p className="font-arial">{m.description}</p>
             <div className="flex justify-end">
               <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
                 Request
@@ -54,7 +54,7 @@ const Merchandise = () => {
         ))}
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Merchandise;

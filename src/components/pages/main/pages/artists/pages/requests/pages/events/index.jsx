@@ -4,11 +4,11 @@ import ExtendedCard from '../../components/ExtendedCard';
 import GridToListSwitch from '@components/ui-elements/GridToListSwitch/GridToListSwitch';
 import { getEventsRequests } from '@endpoints/artists';
 
-const Events = () => {
+const Events = ({ artist }) => {
   const [view, toggleView] = React.useState(true);
   const [events, setEvents] = React.useState([]);
   const doGetData = async () => {
-    const { error, data } = await getEventsRequests();
+    const { error, data } = await getEventsRequests(artist);
     if (!error) {
       setEvents(data.data.data);
     }

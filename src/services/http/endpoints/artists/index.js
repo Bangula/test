@@ -15,6 +15,26 @@ export const getArtist = id => {
 
 export const getEventsRequests = id => {
   return toResponse(
-    http.get('/events', { params: { include: 'tickets,artist' } }),
+    http.get(`/events/artists/${id}`, {
+      params: { include: 'tickets,artist' },
+    }),
+  );
+};
+
+export const getExperiencesRequests = id => {
+  return toResponse(
+    http.get(`/experiences/artists/${id}`, { params: { include: 'artist' } }),
+  );
+};
+
+export const getGiftsRequests = id => {
+  return toResponse(
+    http.get(`/gifts/artists/${id}`),
+  );
+};
+
+export const getMerchRequests = id => {
+  return toResponse(
+    http.get(`/merchandises/artists/${id}`),
   );
 };
