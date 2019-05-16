@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, NavLink, Link } from 'react-router-dom';
+import { Switch, Route, NavLink, Link, Redirect } from 'react-router-dom';
 
 import Events from './pages/events';
 import Experiences from './pages/experiences';
@@ -23,7 +23,7 @@ const Requests = ({ match }) => {
             exact
             activeClassName="link-tab--selected-tirquise"
             className="link-tab"
-            to={`${match.url}`}>
+            to={`${match.url}/events`}>
             Events
           </NavLink>
           <NavLink
@@ -55,8 +55,14 @@ const Requests = ({ match }) => {
         />
         <Route
           exact
-          path={`${match.url}/`}
+          path={`${match.url}/events`}
           render={props => <Events {...props} artist={match.params.artist} />}
+        />
+
+        <Route
+          exact
+          path={`${match.url}/`}
+          render={() => <Redirect to={`${match.url}/events`} />}
         />
       </Switch>
     </div>

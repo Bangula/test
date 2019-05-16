@@ -59,7 +59,7 @@ const submit = artist_id => async values => {
   for (const field in values) {
     payload.append(field, values[field]);
   }
-  // payload.append('artist_id', artist_id);
+  payload.append('artist_id', artist_id);
 
   try {
     await http.post('/gifts', payload);
