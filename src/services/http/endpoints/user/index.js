@@ -31,7 +31,8 @@ export const updateUserInfo = (id, data) =>
 export const changePassword = data =>
   toResponse(http.post('/password/change', data));
 
-export const fetchAllUsers = () => toResponse(http.get('/users?include=roles'));
+export const fetchAllUsers = (page = 1) =>
+  toResponse(http.get(`/users?include=roles&page=${page}`));
 
 export const fetchUser = id =>
   toResponse(http.get(`/users/${id}?include=roles`));
