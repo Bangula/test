@@ -12,3 +12,9 @@ export const getArtist = id => {
     }),
   );
 };
+
+export const getEventsRequests = id => {
+  return toResponse(
+    http.get('/events', { params: { include: 'tickets,artist' } }),
+  );
+};

@@ -13,15 +13,15 @@ const SubPage = ({
   manageSectionUrl,
 }) => {
   const data = foldersData.folders.data.filter(
-    folder => folder.name === match.params.folder,
+    folder => folder.id === match.params.folder,
   )[0];
   return data ? (
     <div>
       {match.isExact && (
         <>
           <div className="mb-8">
-            <Breadcrumbs location={location} />
-            <PrimaryTitle>{match.params.folder}</PrimaryTitle>
+            <Breadcrumbs location={location} currentFolder={data} />
+            <PrimaryTitle>{data.name}</PrimaryTitle>
           </div>
           {showAdminFeatures ? (
             <div className="flex justify-end mb-4">
@@ -38,6 +38,7 @@ const SubPage = ({
               match={match}
               folderId={data.id}
               libraryId={data.library_id}
+              showAdminFeatures={showAdminFeatures}
             />
           </div>
           {data.files.data.length ? (

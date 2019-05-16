@@ -20,7 +20,6 @@ const TopLevelFolder = ({
   manageSectionUrl,
 }) => {
   const data = folders[match.params.folder];
-  const context = React.useContext(MediaLibraryContext);
   return data ? (
     <>
       {match.isExact ? (

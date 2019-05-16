@@ -2,10 +2,10 @@ import React from 'react';
 import profileImg from '@images/oval@2x.png';
 import { Link, Route } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import imagery from '@images/music-page-gradient-2@3x.png';
 import AssetHub from '../asset-hub';
 import { getArtist } from '@endpoints/artists';
 import Alert from 'react-s-alert';
+import MediaPreview from './components/MediaPreview';
 
 const Artist = ({ match }) => {
   const [artist, setArtist] = React.useState(null);
@@ -24,7 +24,7 @@ const Artist = ({ match }) => {
     <div className="container mx-auto pt-12">
       {artist ? (
         <div className="flex">
-          <div className="mr-10" style={{ maxWidth: '200px', width: '100%' }}>
+          <div className="mr-10" style={{ maxWidth: '200px' }}>
             <div className="mb-6 w-48 h-48 rounded-full overflow-hidden">
               <img src={profileImg} alt="Artist" />
             </div>
@@ -128,107 +128,8 @@ const Artist = ({ match }) => {
           {match.isExact ? (
             <div
               className="border-l-2 border-solid border-tirques pl-12"
-              style={{ maxWidth: '330px' }}>
-              <h2 className="text-4xl mb-4">Asset Hub</h2>
-
-              <div>
-                <div className="mb-4">
-                  <div className="flex justify-between mb-2">
-                    <span className="" style={{ fontWeight: '500' }}>
-                      PR &amp; Imagery
-                    </span>
-                    <Link to={`${match.url}`}>
-                      <span>
-                        <i className="fas fa-arrow-right text-tirques" />
-                      </span>
-                    </Link>
-                  </div>
-
-                  <div className="flex flex-wrap">
-                    {Array(10).fill(
-                      <div
-                        style={{
-                          width: '50px',
-                          height: '50px',
-                          margin: '0 5px 5px 0',
-                        }}>
-                        <img
-                          src={imagery}
-                          alt=""
-                          style={{ objectFit: 'fill', height: '100%' }}
-                        />
-                      </div>,
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <div className="flex justify-between mb-2">
-                    <span className="" style={{ fontWeight: '500' }}>
-                      PR &amp; Imagery
-                    </span>
-                    <Link to={`${match.url}`}>
-                      <span>
-                        <i className="fas fa-arrow-right text-tirques" />
-                      </span>
-                    </Link>
-                  </div>
-
-                  <div className="flex flex-wrap">
-                    {Array(3).fill(
-                      <div
-                        style={{
-                          width: '50px',
-                          height: '50px',
-                          margin: '0 5px 5px 0',
-                        }}>
-                        <img
-                          src={imagery}
-                          alt=""
-                          style={{ objectFit: 'fill', height: '100%' }}
-                        />
-                      </div>,
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-16">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="" style={{ fontWeight: '500' }}>
-                      PR &amp; Imagery
-                    </span>
-                    <Link to={`${match.url}`}>
-                      <span>
-                        <i className="fas fa-arrow-right text-tirques" />
-                      </span>
-                    </Link>
-                  </div>
-
-                  <div className="flex flex-wrap">
-                    {Array(3).fill(
-                      <div
-                        style={{
-                          width: '50px',
-                          height: '50px',
-                          margin: '0 5px 5px 0',
-                        }}>
-                        <img
-                          src={imagery}
-                          alt=""
-                          style={{ objectFit: 'fill', height: '100%' }}
-                        />
-                      </div>,
-                    )}
-                  </div>
-                </div>
-
-                <Link
-                  to={`${match.url}/asset-hub`}
-                  className="uppercase underline text-tirques text-2xl"
-                  style={{ fontWeight: '500' }}>
-                  view all assets
-                </Link>
-              </div>
+              style={{ width: '330px' }}>
+              <MediaPreview data={artist.mediaLibrary.data} match={match} />
             </div>
           ) : null}
         </div>
