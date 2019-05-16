@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 const AssetHub = ({ match, location, data, fetchData }) => {
   const mediaLibData = {};
   const pathComponents = location.pathname.replace('/', '').split('/');
-  console.log(pathComponents);
   mediaLibData['pr-and-imagery'] = data.folders.data.filter(
     folder => folder.name === 'Pr & Imagery',
   )[0];
