@@ -46,7 +46,7 @@ const FoldersSection = ({
                 className="mb-4 pr-4"
                 style={{ flexBasis: '33.33333%' }}
                 key={folder.id}>
-                <Link to={`${match.url}/${folder.name}`}>
+                <Link to={`${match.url}/${folder.id}`}>
                   <FolderIcon name={folder.name} />
                 </Link>
               </div>
