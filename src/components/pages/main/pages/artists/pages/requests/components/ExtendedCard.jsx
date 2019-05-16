@@ -1,13 +1,14 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Link, withRouter } from 'react-router-dom';
 
-const ExtendedCard = ({ event }) => {
+const ExtendedCard = ({ event, match }) => {
   return (
     <div className="flex">
       <div className="flex-1 pr-4">
-        <h1 className="text-tirques">{event.artist}</h1>
-        <h1 className="text-5xl mb-4">{event.event}</h1>
-        <p className="font-arial mb-6">{event.desc}</p>
+        <h1 className="text-tirques">{event.artist.data.name}</h1>
+        <h1 className="text-5xl mb-4">{event.name}</h1>
+        <p className="font-arial mb-6">{event.description}</p>
         <div className="mb-4">
           <Tabs>
             <TabList>
@@ -23,7 +24,7 @@ const ExtendedCard = ({ event }) => {
                     className="text-xl mr-6 text-tirques">
                     Event date:
                   </div>
-                  <div className="font-arial">12.06.2018.</div>
+                  <div className="font-arial">{event.date}</div>
                 </div>
                 <div className="flex mb-2">
                   <div
@@ -31,7 +32,7 @@ const ExtendedCard = ({ event }) => {
                     className="text-xl mr-6 text-tirques">
                     Time:
                   </div>
-                  <div className="font-arial">20:00 - 00:00 GMT</div>
+                  <div className="font-arial">{event.time}</div>
                 </div>
                 <div className="flex mb-2">
                   <div
@@ -39,7 +40,7 @@ const ExtendedCard = ({ event }) => {
                     className="text-xl mr-6 text-tirques">
                     Location:
                   </div>
-                  <div className="font-arial">London, United Kingdom</div>
+                  <div className="font-arial">{event.location}</div>
                 </div>
                 <div className="flex mb-2">
                   <div
@@ -47,7 +48,7 @@ const ExtendedCard = ({ event }) => {
                     className="text-xl mr-6 text-tirques">
                     Venue:
                   </div>
-                  <div className="font-arial">Boiler Room TV</div>
+                  <div className="font-arial">{event.venue}</div>
                 </div>
               </div>
             </TabPanel>
@@ -107,9 +108,11 @@ const ExtendedCard = ({ event }) => {
           </Tabs>
         </div>
         <div className="flex justify-end">
-          <button className="uppercase bg-tirques rounded px-6 pb-1 pt-2 tracking-wide text-xl">
-            Request
-          </button>
+          <Link to={`${match.url}/${event.id}`}>
+            <button className="uppercase bg-tirques rounded px-6 pb-1 pt-2 tracking-wide text-xl">
+              Request
+            </button>
+          </Link>
         </div>
       </div>
       <div className="w-2/3 bg-grey" style={{ maxHeight: '440px' }} />
@@ -117,4 +120,4 @@ const ExtendedCard = ({ event }) => {
   );
 };
 
-export default ExtendedCard;
+export default withRouter(ExtendedCard);

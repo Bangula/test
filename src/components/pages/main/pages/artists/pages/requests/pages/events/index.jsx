@@ -2,50 +2,20 @@ import React from 'react';
 import EventCard from '../../components/Card';
 import ExtendedCard from '../../components/ExtendedCard';
 import GridToListSwitch from '@components/ui-elements/GridToListSwitch/GridToListSwitch';
-
-const events = [
-  {
-    image: '',
-    artist: 'Martin Garrix',
-    event: 'Dreambeach chile 2019',
-    desc:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    id: '0',
-    date: '06.12.2018',
-    location: 'London, United Kingdom',
-    availiability: 42,
-  },
-  {
-    image: '',
-    artist: 'Martin Garrix',
-    event: 'Dreambeach chile 2019',
-    id: '1',
-    date: '06.12.2018',
-    location: 'London, United Kingdom',
-    availiability: 42,
-  },
-  {
-    image: '',
-    artist: 'Martin Garrix',
-    event: 'Dreambeach chile 2019',
-    id: '2',
-    date: '06.12.2018',
-    location: 'London, United Kingdom',
-    availiability: 42,
-  },
-  {
-    image: '',
-    artist: 'Martin Garrix',
-    event: 'Dreambeach chile 2019',
-    id: '2',
-    date: '06.12.2018',
-    location: 'London, United Kingdom',
-    availiability: 42,
-  },
-];
+import { getEventsRequests } from '@endpoints/artists';
 
 const Events = () => {
   const [view, toggleView] = React.useState(true);
+  const [events, setEvents] = React.useState([]);
+  const doGetData = async () => {
+    const { error, data } = await getEventsRequests();
+    if (!error) {
+      setEvents(data.data.data);
+    }
+  };
+  React.useEffect(() => {
+    doGetData();
+  }, []);
   let eventsList = null;
   if (view) {
     eventsList = events.map(event => (
