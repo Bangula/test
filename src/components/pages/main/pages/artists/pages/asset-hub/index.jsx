@@ -3,8 +3,10 @@ import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import MediaLibrary from '@components/MediaLibrary/MediaLibrary';
 import { Redirect } from 'react-router-dom';
 
-const AssetHub = ({ match, data, fetchData }) => {
+const AssetHub = ({ match, location, data, fetchData }) => {
   const mediaLibData = {};
+  const pathComponents = location.pathname.replace('/', '').split('/');
+  console.log(pathComponents);
   mediaLibData['pr-and-imagery'] = data.folders.data.filter(
     folder => folder.name === 'Pr & Imagery',
   )[0];
@@ -22,6 +24,7 @@ const AssetHub = ({ match, data, fetchData }) => {
         <PrimaryTitle>Asset hub</PrimaryTitle>
       </div>
       <MediaLibrary
+        showTabs={pathComponents.length <= 4}
         fetchData={fetchData}
         baseUrl={match.url}
         data={mediaLibData}
