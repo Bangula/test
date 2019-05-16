@@ -5,13 +5,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import imagery from '@images/music-page-gradient-2@3x.png';
 import AssetHub from '../asset-hub';
 import { getArtist } from '@endpoints/artists';
+import Alert from 'react-s-alert';
 
 const Artist = ({ match }) => {
   const [artist, setArtist] = React.useState(null);
   const doGetArtist = async () => {
-    const { error, data } = await getArtist();
+    const { error, data } = await getArtist(match.params.artist);
     if (!error) {
       setArtist(data.data.data);
+    } else {
+      Alert.error(error.response.data.message);
     }
   };
   React.useEffect(() => {
@@ -26,7 +29,7 @@ const Artist = ({ match }) => {
               <img src={profileImg} alt="Artist" />
             </div>
             <div className="mb-8 text-center">
-              <h2 className="mb-1">martin garrix</h2>
+              <h2 className="mb-1">{artist.name}</h2>
               <p className="text-tirques font-arial tracking-wide">
                 DJ / Record Producer
               </p>

@@ -14,10 +14,8 @@ const Footer = ({ match: { url } }) => {
           </Link>
         </div>
         <ul className="flex items-center">
-          <li className="mr-5">
-            <Link
-              className="font-bebas text-md font-thin uppercase text-white"
-              to={`${url}`}>
+          {/* <li className="mr-5">
+            <Link className="font-bebas text-md font-thin uppercase text-white">
               Website Guide
             </Link>
           </li>
@@ -34,24 +32,24 @@ const Footer = ({ match: { url } }) => {
               to={`${url}`}>
               Sitemap
             </Link>
-          </li>
+          </li> */}
           <li className="mr-5">
-            <Link
-              className="font-bebas text-md font-thin uppercase text-white"
-              to={`${url}`}>
+            <a
+              href="https://www.unilevernotices.com/united-kingdom/english/cookie-notice/notice.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bebas text-md font-thin uppercase text-white">
               Cookie policy
-            </Link>
+            </a>
           </li>
-          <li>
-            <Link
-              className="font-bebas text-md font-thin uppercase text-white"
-              to={`${url}`}>
+          {/* <li>
+            <Link className="font-bebas text-md font-thin uppercase text-white">
               Contact us
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
-      <ul className="flex items-center">
+      {/* <ul className="flex items-center">
         <li className="pr-5">
           <Link to={`${url}`}>
             <i className="fab fa-facebook-f text-white" />
@@ -72,7 +70,7 @@ const Footer = ({ match: { url } }) => {
             <i className="fab fa-youtube text-white" />
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </footer>
   );
 };

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Formik, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
+import Alert from 'react-s-alert';
 import http from '@services/http';
+import history from '@services/history';
 
 import Wizard, { Step, Steps, WithWizard } from '../../../../components/Wizard';
 import NextButton from '../../../../components/NextButton';
@@ -87,7 +89,34 @@ const initialValues = {
   permissions: [],
 };
 
-const NewEvent = () => {
+const submitNewEvent = artist_id => async values => {
+  const permissions = values.permissions.map(x => x.id);
+
+  const payload = new FormData();
+
+  for (const field in values) {
+    if (field === 'permissions') {
+      for (let i = 0; i < permissions.length; i++) {
+        payload.append('permissions[]', permissions[i]);
+      }
+    } else {
+      payload.append(field, values[field]);
+    }
+  }
+  payload.append('artist_id', artist_id);
+  payload.append('date_time', values.date + ' ' + values.time);
+
+  try {
+    await http.post('/events', payload);
+    Alert.success('Success!');
+    history.goBack();
+  } catch (err) {
+    console.log(err);
+    Alert.error('Error');
+  }
+};
+
+const NewEvent = props => {
   const [permissions, setPermissions] = React.useState([]);
 
   React.useEffect(() => {
@@ -110,7 +139,7 @@ const NewEvent = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={EventSchema}
-        onSubmit={values => console.log(values)}>
+        onSubmit={submitNewEvent(props.match.params.artist_id)}>
         {({
           values,
           errors,
