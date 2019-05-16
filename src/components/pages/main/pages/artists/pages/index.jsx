@@ -24,7 +24,8 @@ const ArtistsList = () => {
         <div className="flex flex-wrap justify-between">
           {artists.map(artist => (
             <div
-              className="relative mr-4 mb-4"
+              key={artist.id}
+              className="relative mr-4 mb-8"
               style={{
                 maxWidth: '560px',
                 width: '100%',
