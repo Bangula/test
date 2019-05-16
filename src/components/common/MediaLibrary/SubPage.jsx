@@ -38,6 +38,7 @@ const SubPage = ({
               match={match}
               folderId={data.id}
               libraryId={data.library_id}
+              showAdminFeatures={showAdminFeatures}
             />
           </div>
           {data.files.data.length ? (
