@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import MediaCard from '@components/ui-elements/MediaCard/MediaCard';
+import FilePreview from '@components/ui-elements/FilePreview/FilePreview';
 
 const Sections = ({ sections, object, match, adminFeatures }) => {
+  const [fileToPreview, setFileToPreview] = React.useState(null);
+  const deployFilePreview = React.useCallback(file => {
+    setFileToPreview(file);
+  });
   const sectionsToRender = sections.map(section => {
     return (
       <section key={section.id} className="mb-8">
@@ -27,10 +32,18 @@ const Sections = ({ sections, object, match, adminFeatures }) => {
         <div className="flex flex-wrap">
           {section.files.data.map(file => (
             <div className="px-4 mb-5 w-1/4" key={file.id}>
-              <MediaCard file={file} object={object} />
+              <MediaCard
+                onPreviewClick={file => deployFilePreview(file)}
+                file={file}
+                object={object}
+              />
             </div>
           ))}
         </div>
+        <FilePreview
+          close={() => setFileToPreview(null)}
+          file={fileToPreview}
+        />
       </section>
     );
   });
