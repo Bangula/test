@@ -3,16 +3,44 @@ import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Counter from '@components/ui-elements/Counter/Counter';
 import { Link } from 'react-router-dom';
 
-const Details = () => {
-  const [tickets, setTickets] = React.useState({
-    general: 10,
-    vip: 3,
-    meetAndGreet: 2,
-  });
-  const updateTickets = React.useCallback((type, value) => {
-    const pomTickets = { ...tickets };
-    pomTickets[type] = value;
-    setTickets(pomTickets);
+import http from '@services/http';
+
+const Details = props => {
+  const [tickets, setTickets] = React.useState([]);
+  const updateTickets = (type, value) => {
+    setTickets(
+      tickets.map(t => (t.label === type ? { label: type, value } : t)),
+    );
+  };
+
+  console.log(tickets);
+
+  React.useEffect(() => {
+    const fetchRequest = async () => {
+      try {
+        const result = await http(
+          `/requests/${
+            props.match.params.id
+          }?include=relatesTo,objectives,user,requested_tickets,artist,tickets`,
+        );
+
+        console.log(result.data.data);
+        const initialTickets = result.data.data.requested_tickets.data.map(
+          t => ({
+            label: t.ticket.data.name,
+            value: t.requested_amount,
+          }),
+        );
+
+        setTickets(initialTickets);
+
+        console.log(initialTickets);
+      } catch (err) {
+        console.log('Error fetching request!');
+      }
+    };
+
+    fetchRequest();
   }, []);
   return (
     <div className="container mx-auto flex">
@@ -42,51 +70,26 @@ const Details = () => {
         </div>
         <div className="mb-8">
           <h3 className="mb-4 text-pink">Reqeusted quantity:</h3>
-          <div className="pl-4 flex items-center font-arial mb-8">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              General Ticket:
+
+          {tickets.map(t => (
+            <div className="pl-4 flex items-center font-arial mb-8">
+              <div
+                className="font-bold mr-6"
+                style={{ width: '125px', textTransform: 'capitalize' }}>
+                {t.label.split('_').join(' ')}:
+              </div>
+              <div className="font-arial mr-8" style={{ width: '105px' }}>
+                {t.value} Tickets
+              </div>
+              <div>
+                <Counter
+                  color="pink"
+                  value={t.value}
+                  setValue={value => updateTickets(t.label, value)}
+                />
+              </div>
             </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.general}
-                setValue={value => updateTickets('general', value)}
-              />
-            </div>
-          </div>
-          <div className="pl-4 flex items-center font-arial mb-8">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              VIP Ticket:
-            </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.vip}
-                setValue={value => updateTickets('vip', value)}
-              />
-            </div>
-          </div>
-          <div className="pl-4 flex items-center font-arial">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              Meet & Greet:
-            </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.meetAndGreet}
-                setValue={value => updateTickets('meetAndGreet', value)}
-              />
-            </div>
-          </div>
+          ))}
         </div>
         <div className="mb-8">
           <h3 className="mb-4 text-pink">Request purpose:</h3>
