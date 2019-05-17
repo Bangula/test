@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import GridToListSwitch from '@components/ui-elements/GridToListSwitch/GridToListSwitch';
 import FilesGridView from './FilesGridView';
 import FilesTableView from './FilesTableView';
+import FilePreview from '@components/ui-elements/FilePreview/FilePreview';
 
 const FilesSection = ({ files }) => {
-  const [view, toggleView] = useState(true); // true: list, false: grid
+  const [view, toggleView] = useState(true);
+  const [fileToPreview, setFileToPreview] = useState(null);
+  const deployFilePreview = React.useCallback(file => {
+    setFileToPreview(file);
+  });
   return (
     <section>
       <div className="flex justify-between">
@@ -12,10 +17,11 @@ const FilesSection = ({ files }) => {
         <GridToListSwitch view={view} toggleView={toggleView} />
       </div>
       {view ? (
-        <FilesTableView files={files} />
+        <FilesTableView files={files} deployFilePreview={deployFilePreview} />
       ) : (
-        <FilesGridView files={files} />
+        <FilesGridView files={files} deployFilePreview={deployFilePreview} />
       )}
+      <FilePreview close={() => setFileToPreview(null)} file={fileToPreview} />
     </section>
   );
 };

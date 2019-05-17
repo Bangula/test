@@ -1,16 +1,15 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 
-const modalClassNames = {
-  modal: 'bg-black',
-};
-const modalStyles = {
-  modal: {
-    width: '400px',
-  },
-};
-
-const ApplicationModal = ({ open, close, children }) => {
+const ApplicationModal = ({ open, close, children, width = '400px' }) => {
+  const modalClassNames = {
+    modal: 'bg-black',
+  };
+  const modalStyles = {
+    modal: {
+      width,
+    },
+  };
   return (
     <Modal
       classNames={modalClassNames}

@@ -3,10 +3,10 @@ import ReactTable from 'react-table';
 
 const columns = [
   {
-    headerClassName: 'text-left',
+    headerClassName: 'opacity-0',
     width: 78,
     id: 'image-col',
-    Header: '',
+    Header: 'Image',
     accessor: 'url',
     Cell: props => {
       return (
@@ -60,9 +60,22 @@ const columns = [
   },
 ];
 
-const FilesTableView = ({ files }) => {
+const FilesTableView = ({ files, deployFilePreview }) => {
+  const getTdProps = React.useCallback((state, row, column, instance) => {
+    return {
+      onClick: (e, handleOriginal) => {
+        if (column.Header === 'Image') {
+          deployFilePreview(row.original);
+        }
+        if (handleOriginal) {
+          handleOriginal();
+        }
+      },
+    };
+  });
   return files ? (
     <ReactTable
+      getTdProps={getTdProps}
       className="custom-ReactTable"
       data={files}
       columns={columns}
