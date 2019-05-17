@@ -13,6 +13,10 @@ export const getArtist = id => {
   );
 };
 
+export const getToursSchedule = id => {
+  return toResponse(http.get(`/tours/artists/${id}`));
+};
+
 export const getEventsRequests = id => {
   return toResponse(
     http.get(`/events/artists/${id}`, {

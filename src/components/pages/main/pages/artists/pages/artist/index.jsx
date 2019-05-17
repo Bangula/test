@@ -6,6 +6,7 @@ import AssetHub from '../asset-hub';
 import { getArtist } from '@endpoints/artists';
 import Alert from 'react-s-alert';
 import MediaPreview from './components/MediaPreview';
+import ToursSchedule from './components/ToursSchedule';
 
 const Artist = ({ match }) => {
   const [artist, setArtist] = React.useState(null);
@@ -110,7 +111,7 @@ const Artist = ({ match }) => {
                   <div>content 3</div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 4</div>
+                  <ToursSchedule artist={match.params.artist} />
                 </TabPanel>
               </Tabs>
             ) : null}
