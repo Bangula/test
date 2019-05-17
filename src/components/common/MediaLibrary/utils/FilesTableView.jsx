@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import { getFileDownloadUrl } from '@endpoints/media-library';
 
 const columns = [
   {
@@ -51,19 +52,28 @@ const columns = [
     },
   },
   {
-    headerClassName: 'text-left',
+    headerClassName: 'opacity-0',
     width: 48,
     id: 'action-col',
-    Header: '',
+    Header: 'Download',
     accessor: 'url',
     Cell: () => <i className="fa fa-download text-tirques" />,
   },
 ];
 
 const FilesTableView = ({ files, deployFilePreview }) => {
+  const doGetDownloadUrl = React.useCallback(async id => {
+    const { error, data } = await getFileDownloadUrl(id);
+    if (!error) {
+      window.open(data.data.url, '_blank');
+    }
+  });
   const getTdProps = React.useCallback((state, row, column, instance) => {
     return {
-      onClick: (e, handleOriginal) => {
+      onClick: async (e, handleOriginal) => {
+        if (column.Header === 'Download') {
+          doGetDownloadUrl(row.original.id);
+        }
         if (column.Header === 'Image') {
           deployFilePreview(row.original);
         }
