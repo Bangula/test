@@ -9,8 +9,8 @@ const MediaCard = ({ file, object }) => {
   } else {
     iconClasses.push('fa-chevron-down');
   }
-  const doGetDownloadUrl = React.useCallback(async () => {
-    const { error, data } = await getFileDownloadUrl(file.id);
+  const doGetDownloadUrl = React.useCallback(async id => {
+    const { error, data } = await getFileDownloadUrl(id);
     if (!error) {
       window.open(data.data.url, '_blank');
     }
@@ -41,7 +41,9 @@ const MediaCard = ({ file, object }) => {
               <div className="flex justify-between mb-2" key={version.id}>
                 <p className="font-arial text-sm">{version.filename}</p>
                 <div>
-                  <i className="fa fa-download text-sm" />
+                  <i
+                    onClick={() => doGetDownloadUrl(version.id)}
+                    className="fa fa-download text-sm" />
                 </div>
               </div>
             ))}
@@ -49,7 +51,7 @@ const MediaCard = ({ file, object }) => {
         ) : null}
       </div>
       <button
-        onClick={doGetDownloadUrl}
+        onClick={() => doGetDownloadUrl(file.id)}
         className="bg-tirques px-5 pb-1 pt-2 tracking-wide text-xl w-full">
         <i className="fa fa-download mr-4" />
         Download
