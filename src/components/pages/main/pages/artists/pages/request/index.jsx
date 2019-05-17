@@ -19,9 +19,12 @@ import { IMAGE_SIZE, SUPPORTED_FORMATS } from '@constants/images';
 const Request = ({ type, ...props }) => {
   const [objectives, setObjectives] = React.useState([]);
   const [inventory, setInventory] = React.useState([]);
+  const [details, setDetails] = React.useState({});
 
   const RequestSchema = Yup.object().shape({
-    business_case: Yup.string().max(300),
+    business_case: Yup.string()
+      .max(300)
+      .required('Required'),
     // image: Yup.mixed()
     //   .required('required')
     //   .test(
@@ -109,6 +112,24 @@ const Request = ({ type, ...props }) => {
       Alert.error('Error');
     }
   };
+
+  React.useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const result = await http(
+          `/${type}s/${props.match.params.id}?include=tickets`,
+        );
+
+        setDetails(result.data.data);
+        console.log(result.data.data);
+      } catch (err) {
+        console.log('Error fetching details!');
+      }
+    };
+
+    fetchDetails();
+  }, []);
+  console.log({ details });
   return (
     <div
       className="content-bg"
@@ -117,7 +138,7 @@ const Request = ({ type, ...props }) => {
         <div style={{ maxWidth: '600px', width: '100%' }}>
           <div className="mb-12">
             <h4 className="text-tirques text-2xl">{type} Request</h4>
-            <PrimaryTitle>DreamBeach chile 2018</PrimaryTitle>
+            <PrimaryTitle>{details.name}</PrimaryTitle>
           </div>
 
           <div>
@@ -130,13 +151,7 @@ const Request = ({ type, ...props }) => {
               <TabPanel>
                 <div className="font-arial py-6">
                   <div className="pr-12 mb-12">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Urna condimentum mattis. <br /> <br /> Please fill
-                      in the following form to request your tickets. Click
-                      submit when you are done.
-                    </p>
+                    <p>{details.description}</p>
                   </div>
 
                   <div className="mb-10">
@@ -145,30 +160,36 @@ const Request = ({ type, ...props }) => {
                     </h5>
 
                     <div>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          {type} Date:
-                        </span>
-                        <span>06.01.2019</span>
-                      </p>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          Time:
-                        </span>
-                        <span>20:00</span>
-                      </p>
+                      {details.date && (
+                        <p className="flex py-2">
+                          <span style={{ width: '200px', fontWeight: 'bold' }}>
+                            {type} Date:
+                          </span>
+                          <span>{details.date}</span>
+                        </p>
+                      )}
+                      {details.time && (
+                        <p className="flex py-2">
+                          <span style={{ width: '200px', fontWeight: 'bold' }}>
+                            Time:
+                          </span>
+                          <span>{details.time}</span>
+                        </p>
+                      )}
                       <p className="flex py-2">
                         <span style={{ width: '200px', fontWeight: 'bold' }}>
                           Location:
                         </span>
-                        <span>London, United Kingdom</span>
+                        <span>{details.location}</span>
                       </p>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          Venue:
-                        </span>
-                        <span>Boiler Room</span>
-                      </p>
+                      {details.venue && (
+                        <p className="flex py-2">
+                          <span style={{ width: '200px', fontWeight: 'bold' }}>
+                            Venue:
+                          </span>
+                          <span>{details.venue}</span>
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -182,26 +203,22 @@ const Request = ({ type, ...props }) => {
                         <span style={{ width: '200px', fontWeight: 'bold' }}>
                           Request Deadline:
                         </span>
-                        <span>06.12.2018</span>
+                        <span>{details.order_date_to}</span>
                       </p>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          General Ticket:
-                        </span>
-                        <span>25 Tickets Available</span>
-                      </p>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          VIP Ticket:
-                        </span>
-                        <span>15 Tickets Available</span>
-                      </p>
-                      <p className="flex py-2">
-                        <span style={{ width: '200px', fontWeight: 'bold' }}>
-                          Meet &amp; Greet:
-                        </span>
-                        <span>2 Tickets Available</span>
-                      </p>
+                      {details.tickets &&
+                        details.tickets.data.map(t => (
+                          <p className="flex py-2">
+                            <span
+                              style={{
+                                width: '200px',
+                                fontWeight: 'bold',
+                                textTransform: 'capitalize',
+                              }}>
+                              {t.name.split('_').join(' ')}:
+                            </span>
+                            <span>{t.amount} Tickets Available</span>
+                          </p>
+                        ))}
                     </div>
                   </div>
 
@@ -299,7 +316,7 @@ const Request = ({ type, ...props }) => {
                                         onChange={e => {
                                           if (e.target.checked) push(objective);
                                           else {
-                                            const idx = values.permissions.indexOf(
+                                            const idx = values.objectives.indexOf(
                                               objective,
                                             );
                                             remove(idx);
