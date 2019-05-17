@@ -10,7 +10,7 @@ const MediaCard = ({ file, object, onPreviewClick }) => {
   }
   return (
     <div>
-      <h3 className="font-thin text-2xl mb-1 truncate">{file.filename}</h3>
+      <h3 className="font-thin text-2xl mb-1 truncate">{file.name}</h3>
       <div className="h-48 flex justify-center items-center mb-1 bg-grey-darker px-4">
         <img
           onClick={() => onPreviewClick(file)}
