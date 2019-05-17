@@ -14,7 +14,7 @@ export default ({ match }) => (
         component={AxeMusicIntroduction}
       />
       <Route
-        path={`${match.url}/media-library/manage/:id`}
+        path={`${match.url}/manage/:id`}
         render={props => <ManageFolder {...props} cancelUrl="/axe-music" />}
       />
       <Route path={`${match.url}/media-library`} component={MediaLibrary} />

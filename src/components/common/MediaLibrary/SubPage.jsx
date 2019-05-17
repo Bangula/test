@@ -11,6 +11,7 @@ const SubPage = ({
   foldersData,
   showAdminFeatures,
   manageSectionUrl,
+  previousFolders,
 }) => {
   const data = foldersData.folders.data.filter(
     folder => folder.id === match.params.folder,
@@ -20,7 +21,11 @@ const SubPage = ({
       {match.isExact && (
         <>
           <div className="mb-8">
-            <Breadcrumbs location={location} currentFolder={data} />
+            <Breadcrumbs
+              match={match}
+              previousFolders={previousFolders}
+              currentFolder={data}
+            />
             <PrimaryTitle>{data.name}</PrimaryTitle>
           </div>
           {showAdminFeatures ? (
@@ -54,6 +59,14 @@ const SubPage = ({
               {...props}
               foldersData={data}
               showAdminFeatures={showAdminFeatures}
+              previousFolders={[
+                ...previousFolders,
+                {
+                  id: data.id,
+                  name: data.name,
+                  url: `${match.url}`,
+                },
+              ]}
             />
           )}
         />

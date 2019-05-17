@@ -51,6 +51,7 @@ const TopLevelFolder = ({
           component={props => (
             <SubPage
               {...props}
+              previousFolders={[{ id: data.id, name: data.name, url: match.url }]}
               foldersData={data}
               showAdminFeatures={showAdminFeatures}
               manageSectionUrl={manageSectionUrl}
