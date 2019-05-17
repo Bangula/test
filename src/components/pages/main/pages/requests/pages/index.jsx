@@ -1,47 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactTable from 'react-table';
-
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
-
 import sideImg from '@images/axe-bg-02.png';
+import { connect } from 'react-redux';
+import { userInfo } from '@state/user/selectors';
+import { getRequestsForUser } from '@endpoints/requests';
 
-const event = {
-  id: 'lasdlasjkdlasjd',
-  request_name: 'Dreambeach Chile 2019',
-  category: 'Event',
-  partnerships: 'Martin Garrix',
-  name: 'John Smith',
-  market: 'Europe',
-  date: '18.01.2019',
-  status: 'Pending',
+const mapStateToProps = state => {
+  return {
+    user: userInfo(state),
+  };
 };
 
-const data = Array(10)
-  .fill(undefined)
-  .map(x => event);
-
-const LatestRequests = ({ match: { path } }) => {
+const LatestRequests = ({ match: { path }, user: { id } }) => {
   const columns = [
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Request</div>
       ),
-      accessor: 'request_name',
+      accessor: 'relatesTo.data.name',
     },
 
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Partnerships</div>
       ),
-      accessor: 'partnerships',
+      accessor: 'artist.data.name',
     },
 
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Category</div>
       ),
-      accessor: 'category',
+      accessor: 'relatesTo.data.object',
     },
 
     {
@@ -62,6 +54,18 @@ const LatestRequests = ({ match: { path } }) => {
       ),
     },
   ];
+  const doGetRequests = async () => {
+    const { error, data } = await getRequestsForUser(id);
+    if (!error) {
+      setData(data.data.data);
+    }
+  };
+  React.useEffect(() => {
+    if (id) {
+      doGetRequests();
+    }
+  }, [id]);
+  const [data, setData] = React.useState([]);
   return (
     <div>
       <div className="flex">
@@ -94,4 +98,4 @@ const LatestRequests = ({ match: { path } }) => {
   );
 };
 
-export default LatestRequests;
+export default connect(mapStateToProps)(LatestRequests);

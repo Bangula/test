@@ -6,6 +6,8 @@ export const fullName = state =>
     ? state.user.info.name + ' ' + state.user.info.surname
     : '';
 
+export const userInfo = state => state.user.info;
+
 export const isAdminFeaturesEnabled = state =>
   state.user.isAdminFeaturesEnabled;
 

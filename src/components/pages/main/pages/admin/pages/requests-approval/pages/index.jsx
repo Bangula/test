@@ -4,59 +4,37 @@ import ReactTable from 'react-table';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { getRequests } from '@endpoints/requests';
 
-const event = {
-  id: 'lasdlasjkdlasjd',
-  request_name: 'Dreambeach Chile 2019',
-  category: 'Event',
-  partnerships: 'Martin Garrix',
-  name: 'John Smith',
-  market: 'Europe',
-  date: '18.01.2019',
-};
-
-const data = Array(10)
-  .fill(undefined)
-  .map(x => event);
-
 const LatestRequests = ({ match: { path } }) => {
-  // const [artists, setArtists] = React.useState([]);
-  const [requests, setRequests] = React.useState([]);
   const columns = [
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Request</div>
       ),
-      accessor: 'request_name',
+      accessor: 'relatesTo.data.name',
     },
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Category</div>
       ),
-      accessor: 'category',
+      accessor: 'relatesTo.data.object',
     },
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Partnerships</div>
       ),
-      accessor: 'partnerships',
+      accessor: 'artist.data.name',
     },
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Name</div>
       ),
-      accessor: 'name',
-    },
-    {
-      Header: props => (
-        <div style={{ textAlign: 'left', width: '100%' }}>Market</div>
-      ),
-      accessor: 'market',
+      accessor: 'user.data.name',
     },
     {
       Header: props => (
         <div style={{ textAlign: 'left', width: '100%' }}>Date</div>
       ),
-      accessor: 'date',
+      accessor: 'relatesTo.data.date',
     },
     {
       id: 'open',
@@ -69,7 +47,8 @@ const LatestRequests = ({ match: { path } }) => {
       ),
     },
   ];
-
+  // const [artists, setArtists] = React.useState([]);
+  const [data, setData] = React.useState([]);
   // React.useEffect(() => {
   //   const fetchArtists = async () => {
   //     try {
@@ -87,7 +66,7 @@ const LatestRequests = ({ match: { path } }) => {
   const doGetRequests = async () => {
     const { error, data } = await getRequests();
     if (!error) {
-      setRequests(data.data.data);
+      setData(data.data.data);
     }
   };
   React.useEffect(() => {
