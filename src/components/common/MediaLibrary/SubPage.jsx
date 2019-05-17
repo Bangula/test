@@ -7,7 +7,6 @@ import { Route, Link } from 'react-router-dom';
 
 const SubPage = ({
   match,
-  location,
   foldersData,
   showAdminFeatures,
   manageSectionUrl,
@@ -44,6 +43,7 @@ const SubPage = ({
               folderId={data.id}
               libraryId={data.library_id}
               showAdminFeatures={showAdminFeatures}
+              preventAddingNewFolders={previousFolders.length >= 2}
             />
           </div>
           {data.files.data.length ? (

@@ -11,6 +11,7 @@ const FoldersSection = ({
   folderId,
   libraryId,
   showAdminFeatures,
+  preventAddingNewFolders,
 }) => {
   const [addFolderModal, toggleAddFolderModal] = React.useState(false);
   const context = React.useContext(MediaLibraryContext);
@@ -28,7 +29,7 @@ const FoldersSection = ({
     <section>
       <div className="flex justify-between items-center">
         <h2 className="text-3xl mb-3">Folders</h2>
-        {showAdminFeatures ? (
+        {showAdminFeatures && !preventAddingNewFolders ? (
           <div>
             <button
               onClick={() => toggleAddFolderModal(true)}
