@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import MediaCard from '@components/ui-elements/MediaCard/MediaCard';
+import { getFolderDownloadUrl } from '@endpoints/media-library';
 
-const Sections = ({ sections, object, match, adminFeatures }) => {
+const Sections = ({ sections, object, adminFeatures }) => {
+  const doGetDownloadUrl = React.useCallback(async id => {
+    const { error, data } = await getFolderDownloadUrl(id);
+    if (!error) {
+      window.open(data.data.url, '_blank');
+    }
+  });
   const sectionsToRender = sections.map(section => {
     return (
       <section key={section.id} className="mb-8">
@@ -17,7 +24,9 @@ const Sections = ({ sections, object, match, adminFeatures }) => {
               </Link>
             ) : null}
             {section.files.data.length ? (
-              <button className="uppercase text-white border rounded border-tirques px-5 pb-1 pt-2 ml-2 tracking-wide text-xl">
+              <button
+                onClick={() => doGetDownloadUrl(section.id)}
+                className="uppercase text-white border rounded border-tirques px-5 pb-1 pt-2 ml-2 tracking-wide text-xl">
                 <i className="fa fa-download mr-4" />
                 Download all
               </button>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getFileDownloadUrl } from '@endpoints/media-library';
 
 const MediaCard = ({ file, object }) => {
   const [opened, toggle] = useState(false);
@@ -8,6 +9,12 @@ const MediaCard = ({ file, object }) => {
   } else {
     iconClasses.push('fa-chevron-down');
   }
+  const doGetDownloadUrl = React.useCallback(async () => {
+    const { error, data } = await getFileDownloadUrl(file.id);
+    if (!error) {
+      window.open(data.data.url, '_blank');
+    }
+  });
   return (
     <div>
       <h3 className="font-thin text-2xl mb-1 truncate">{file.filename}</h3>
@@ -41,7 +48,9 @@ const MediaCard = ({ file, object }) => {
           </div>
         ) : null}
       </div>
-      <button className="bg-tirques px-5 pb-1 pt-2 tracking-wide text-xl w-full">
+      <button
+        onClick={doGetDownloadUrl}
+        className="bg-tirques px-5 pb-1 pt-2 tracking-wide text-xl w-full">
         <i className="fa fa-download mr-4" />
         Download
       </button>
