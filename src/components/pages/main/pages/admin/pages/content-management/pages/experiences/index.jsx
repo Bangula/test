@@ -2,7 +2,10 @@ import React from 'react';
 import { Formik, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 
+import Alert from 'react-s-alert';
 import http from '@services/http';
+import history from '@services/history';
+
 import Wizard, { Step, Steps, WithWizard } from '../../../../components/Wizard';
 import NextButton from '../../../../components/NextButton';
 import InputField from '@components/InputField/InputField';
@@ -23,7 +26,7 @@ const requiredFieldsByStep = {
     'order_date_to',
     'description',
   ],
-  2: ['general_admission'],
+  2: ['pass'],
   3: ['image'],
   4: ['permissions'],
 };
@@ -75,13 +78,46 @@ const initialValues = {
   order_date_from: '',
   order_date_to: '',
   description: '',
-  general_admission: 1,
+  pass: 1,
   image: null,
   permissions: [],
 };
 
-const NewExperience = () => {
+const submitNewExperience = (artist_id, inventory) => async values => {
+  values.permissions = values.permissions.map(x => x.id);
+
+  const payload = new FormData();
+
+  for (const field in values) {
+    if (field === 'permissions') {
+      for (let i = 0; i < values.permissions.length; i++) {
+        payload.append('permissions[]', values.permissions[i]);
+      }
+    } else {
+      payload.append(field, values[field]);
+    }
+  }
+  payload.append('artist_id', artist_id);
+  payload.append('date_time', values.date + ' ' + values.time);
+
+  for (let i = 0; i < inventory.length; i++) {
+    payload.append(`tickets[${i}][ticket_type_id]`, inventory[i].id);
+    payload.append(`tickets[${i}][amount]`, values[inventory[i].name]);
+  }
+
+  try {
+    await http.post('/experiences', payload);
+    Alert.success('Success!');
+    history.goBack();
+  } catch (err) {
+    console.log(err);
+    Alert.error('Error');
+  }
+};
+
+const NewExperience = props => {
   const [permissions, setPermissions] = React.useState([]);
+  const [inventory, setInventory] = React.useState([]);
 
   React.useEffect(() => {
     const fetchMarkets = async () => {
@@ -97,13 +133,28 @@ const NewExperience = () => {
 
     fetchMarkets();
   }, []);
+
+  React.useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const result = await http('/ticket-types/models/experience');
+
+        setInventory(result.data.data);
+        console.log(result.data.data);
+      } catch (err) {
+        console.log('Error fetching inventory!');
+      }
+    };
+
+    fetchInventory();
+  }, []);
   return (
     <div>
       <h3 className="text-red">New Experience Form</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={ExperienceSchema}
-        onSubmit={values => console.log(values)}>
+        onSubmit={submitNewExperience(props.match.params.artist_id, inventory)}>
         {({
           values,
           errors,
@@ -236,9 +287,9 @@ const NewExperience = () => {
                       <PrimaryTitle>Inventory</PrimaryTitle>
                       <div className="mt-16">
                         <Counter
-                          onChange={v => setFieldValue('general_admission', v)}
+                          onChange={v => setFieldValue('pass', v)}
                           color="red"
-                          label="General Admission"
+                          label="Pass"
                           initialValue={1}
                         />
                       </div>

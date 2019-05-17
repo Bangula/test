@@ -1,7 +1,9 @@
 import React from 'react';
 import { Formik, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
+import Alert from 'react-s-alert';
 import http from '@services/http';
+import history from '@services/history';
 
 import Wizard, { Step, Steps, WithWizard } from '../../../../components/Wizard';
 import NextButton from '../../../../components/NextButton';
@@ -87,8 +89,41 @@ const initialValues = {
   permissions: [],
 };
 
-const NewEvent = () => {
+const submitNewEvent = (artist_id, inventory) => async values => {
+  const permissions = values.permissions.map(x => x.id);
+
+  const payload = new FormData();
+
+  for (const field in values) {
+    if (field === 'permissions') {
+      for (let i = 0; i < permissions.length; i++) {
+        payload.append('permissions[]', permissions[i]);
+      }
+    } else {
+      payload.append(field, values[field]);
+    }
+  }
+  payload.append('artist_id', artist_id);
+  payload.append('date_time', values.date + ' ' + values.time);
+
+  for (let i = 0; i < inventory.length; i++) {
+    payload.append(`tickets[${i}][ticket_type_id]`, inventory[i].id);
+    payload.append(`tickets[${i}][amount]`, values[inventory[i].name]);
+  }
+
+  try {
+    await http.post('/events', payload);
+    Alert.success('Success!');
+    history.goBack();
+  } catch (err) {
+    console.log(err);
+    Alert.error('Error');
+  }
+};
+
+const NewEvent = props => {
   const [permissions, setPermissions] = React.useState([]);
+  const [inventory, setInventory] = React.useState([]);
 
   React.useEffect(() => {
     const fetchMarkets = async () => {
@@ -104,13 +139,28 @@ const NewEvent = () => {
 
     fetchMarkets();
   }, []);
+
+  React.useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const result = await http('/ticket-types/models/event');
+
+        setInventory(result.data.data);
+        console.log(result.data.data);
+      } catch (err) {
+        console.log('Error fetching inventory!');
+      }
+    };
+
+    fetchInventory();
+  }, []);
   return (
     <div>
       <h3 className="text-red">New Event Form</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={EventSchema}
-        onSubmit={values => console.log(values)}>
+        onSubmit={submitNewEvent(props.match.params.artist_id, inventory)}>
         {({
           values,
           errors,

@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Link } from 'react-router-dom';
 import Counter from '@components/Counter/Counter';
 
-const ExperienceRequest = () => {
+const RequestDetails = () => {
   return (
     <div
       className="content-bg"
@@ -13,7 +13,7 @@ const ExperienceRequest = () => {
       <div className="container mx-auto flex justify-end">
         <div style={{ maxWidth: '600px', width: '100%' }}>
           <div className="mb-12">
-            <h4 className="text-tirques text-2xl">Experiences Request</h4>
+            <h4 className="text-tirques text-2xl">Your Request</h4>
             <PrimaryTitle>DreamBeach chile 2018</PrimaryTitle>
           </div>
 
@@ -21,7 +21,8 @@ const ExperienceRequest = () => {
             <Tabs>
               <TabList>
                 <Tab style={{ marginRight: '35px' }}>Event details</Tab>
-                <Tab>Request Form</Tab>
+                <Tab>Your Request</Tab>
+                <Tab>Edit Request</Tab>
               </TabList>
 
               <TabPanel>
@@ -143,6 +144,7 @@ const ExperienceRequest = () => {
                 </div>
               </TabPanel>
 
+              <TabPanel>Request Details</TabPanel>
               <TabPanel>
                 <div className="font-arial py-6">
                   <p className="mb-10">
@@ -258,4 +260,4 @@ const ExperienceRequest = () => {
   );
 };
 
-export default ExperienceRequest;
+export default RequestDetails;

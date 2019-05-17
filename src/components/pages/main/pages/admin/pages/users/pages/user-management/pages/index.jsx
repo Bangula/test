@@ -10,6 +10,11 @@ import Modal from 'react-responsive-modal';
 
 const UserManagement = ({ match: { path }, id }) => {
   const [data, setData] = React.useState([]);
+  const [pagination, setPagination] = React.useState({
+    total_pages: 1,
+    current_page: 1,
+    per_page: 10,
+  });
   const [isModalOpen, setModal] = React.useState(false);
   const [ongoingAction, setOngoingAction] = React.useState(() => {});
 
@@ -109,13 +114,17 @@ const UserManagement = ({ match: { path }, id }) => {
     },
   ];
 
-  React.useEffect(() => {
-    const fetchUsers = async () => {
-      const { data, error } = await fetchAllUsers();
+  const fetchUsers = async args => {
+    console.log(args);
+    if (args) {
+      const { data, error } = await fetchAllUsers(args.page + 1);
       if (data) {
         setData(data.data.data);
+        setPagination(data.data.meta.pagination);
       }
-    };
+    }
+  };
+  React.useEffect(() => {
     fetchUsers();
   }, []);
 
@@ -160,13 +169,16 @@ const UserManagement = ({ match: { path }, id }) => {
         <PrimaryTitle>User Management</PrimaryTitle>
       </div>
       <ReactTable
+        manual
         className="custom-ReactTable"
-        pageSize={Math.min(data.length, 10)}
+        pageSize={Math.min(data.length, pagination.per_page)}
         showPagination
         showPageSizeOptions={false}
         data={data}
         columns={columns}
         resizable={false}
+        onFetchData={fetchUsers}
+        pages={pagination.total_pages}
       />
     </div>
   );

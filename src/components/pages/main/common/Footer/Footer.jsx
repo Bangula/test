@@ -14,55 +14,63 @@ const Footer = ({ match: { url } }) => {
           </Link>
         </div>
         <ul className="flex items-center">
-          <li className="mr-5">
+          {/* <li className="mr-5">
             <Link className="font-bebas text-md font-thin uppercase text-white">
               Website Guide
             </Link>
           </li>
           <li className="mr-5">
-            <Link className="font-bebas text-md font-thin uppercase text-white">
+            <Link
+              className="font-bebas text-md font-thin uppercase text-white"
+              to={`${url}`}>
               Noticeboard
             </Link>
           </li>
           <li className="mr-5">
-            <Link className="font-bebas text-md font-thin uppercase text-white">
+            <Link
+              className="font-bebas text-md font-thin uppercase text-white"
+              to={`${url}`}>
               Sitemap
             </Link>
-          </li>
+          </li> */}
           <li className="mr-5">
-            <Link className="font-bebas text-md font-thin uppercase text-white">
+            <a
+              href="https://www.unilevernotices.com/united-kingdom/english/cookie-notice/notice.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bebas text-md font-thin uppercase text-white">
               Cookie policy
-            </Link>
+            </a>
           </li>
-          <li>
+          {/* <li>
             <Link className="font-bebas text-md font-thin uppercase text-white">
               Contact us
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
-      <ul className="flex items-center">
+      {/* <ul className="flex items-center">
         <li className="pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-facebook-f text-white" />
           </Link>
         </li>
         <li className="ml-5 pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-twitter text-white" />
           </Link>
         </li>
         <li className="ml-5 pr-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-instagram text-white" />
           </Link>
         </li>
         <li className="ml-5">
-          <Link>
+          <Link to={`${url}`}>
             <i className="fab fa-youtube text-white" />
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </footer>
   );
 };

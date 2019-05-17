@@ -15,7 +15,7 @@ function matchPath(path) {
     path.includes('/artists') ||
     path.includes('/partners') ||
     (path.includes('/content') && !path.includes('management')) ||
-    (!path.includes('/admin') && path.includes('/brand-approval')) ||
+    (!path.includes('/admin') && path.startsWith('/brand-approval')) ||
     path.includes('/profile')
   ) {
     return result;
@@ -211,7 +211,7 @@ const Header = ({ match: { url }, logOut, ...props }) => {
         <div className="container mx-auto relative">
           <Button
             onClick={handleToggleAdminBtn}
-            className="wide flex justify-between btn-bg-pink btn-text-white items-center absolute pin-r rounded-none px-8 text-xl">
+            className="wide flex justify-between btn-bg-pink btn-text-white items-center absolute pin-r rounded-none px-8 text-xl z-10">
             <span className="admin-hide-icon flex align-center">
               <i className={`${icon} text-sm`} />
             </span>
