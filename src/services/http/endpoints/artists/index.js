@@ -14,7 +14,11 @@ export const getArtist = id => {
 };
 
 export const getToursSchedule = id => {
-  return toResponse(http.get(`/tours/artists/${id}`));
+  return toResponse(http.get(`/tours/grouped/date`));
+};
+
+export const assignTourToEvent = (tourId, eventId) => {
+  return toResponse(http.post(`/tours/${tourId}/events/${eventId}`));
 };
 
 export const getEventsRequests = id => {

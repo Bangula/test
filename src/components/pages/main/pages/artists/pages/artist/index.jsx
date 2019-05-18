@@ -7,8 +7,16 @@ import { getArtist } from '@endpoints/artists';
 import Alert from 'react-s-alert';
 import MediaPreview from './components/MediaPreview';
 import ToursSchedule from './components/ToursSchedule';
+import { connect } from 'react-redux';
+import { isAdminFeaturesEnabled } from '@state/user/selectors';
 
-const Artist = ({ match }) => {
+const mapStateToProps = state => {
+  return {
+    isAdminFeaturesEnabled: isAdminFeaturesEnabled(state),
+  };
+};
+
+const Artist = ({ match, isAdminFeaturesEnabled }) => {
   const [artist, setArtist] = React.useState(null);
   const doGetArtist = async () => {
     const { error, data } = await getArtist(match.params.artist);
@@ -111,7 +119,10 @@ const Artist = ({ match }) => {
                   <div>content 3</div>
                 </TabPanel>
                 <TabPanel>
-                  <ToursSchedule artist={match.params.artist} />
+                  <ToursSchedule
+                    artist={match.params.artist}
+                    isAdminFeaturesEnabled={isAdminFeaturesEnabled}
+                  />
                 </TabPanel>
               </Tabs>
             ) : null}
@@ -141,4 +152,4 @@ const Artist = ({ match }) => {
   );
 };
 
-export default Artist;
+export default connect(mapStateToProps)(Artist);
