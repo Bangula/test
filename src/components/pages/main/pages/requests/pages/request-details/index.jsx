@@ -5,22 +5,19 @@ import Alert from 'react-s-alert';
 import http from '@services/http';
 import history from '@services/history';
 
-import InputField from '@components/InputField/InputField';
-
 import Dropzone from '@components/Dropzone/Dropzone';
 import backgroundImage from '@images/concert-lights-music-1370545.png';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Link } from 'react-router-dom';
 import Counter from '@components/Counter/Counter';
-
-import { IMAGE_SIZE, SUPPORTED_FORMATS } from '@constants/images';
 
 const Request = props => {
   const [objectives, setObjectives] = React.useState([]);
   const [inventory, setInventory] = React.useState([]);
   const [details, setDetails] = React.useState({});
   const [request, setRequest] = React.useState({});
+
+  let isFileDropped = false;
 
   const RequestSchema = Yup.object().shape({
     business_case: Yup.string()
@@ -29,9 +26,9 @@ const Request = props => {
   });
 
   const initialValues = {
-    objectives: [],
+    objectives: (request.objectives && request.objectives.data) || [],
     business_case: request.business_case || '',
-    // image: null,
+    file: (request.file && { name: request.file }) || null,
   };
 
   inventory.forEach(i => (initialValues[i.ticket.data.name] = 1));
@@ -39,6 +36,7 @@ const Request = props => {
   React.useEffect(() => {
     const fetchRequest = async () => {
       try {
+        const objectivesData = await http('/objectives');
         const result = await http(
           `/requests/${
             props.match.params.id
@@ -50,7 +48,7 @@ const Request = props => {
         setRequest(data);
         setDetails(data.relatesTo.data);
         setInventory(data.requested_tickets.data);
-        setObjectives(data.objectives.data);
+        setObjectives(objectivesData.data.data);
         console.log(result.data.data);
       } catch (err) {
         console.log('Error fetching request!');
@@ -66,25 +64,36 @@ const Request = props => {
     const payload = new FormData();
 
     for (const field in values) {
-      payload.append(field, values[field]);
+      if (field !== 'file') {
+        payload.append(field, values[field]);
+      }
     }
 
     console.log(inventory);
 
     for (let i = 0; i < inventory.length; i++) {
-      payload.append(`tickets[${i}][ticket_type_id]`, inventory[i].id);
+      payload.append(
+        `tickets[${i}][ticket_type_id]`,
+        inventory[i].ticket.data.id,
+      );
       payload.append(
         `tickets[${i}][requested_amount]`,
         values[inventory[i].ticket.data.name],
       );
     }
 
-    for (let i = 0; i < objectives.length; i++) {
-      payload.append(`objectives[]`, objectives[i].id);
+    for (let i = 0; i < values.objectives.length; i++) {
+      payload.append(`objectives[]`, values.objectives[i].id);
     }
 
+    if (values.file && values.file.type && isFileDropped) {
+      payload.append('file', values.file);
+    }
+
+    payload.append('_method', 'patch');
+
     try {
-      await http.patch(`/requests/${id}`, payload);
+      await http.post(`/requests/${id}`, payload);
       Alert.success('Success!');
       history.goBack();
     } catch (err) {
@@ -93,7 +102,6 @@ const Request = props => {
     }
   };
 
-  console.log({ details, inventory });
   return (
     <div
       className="content-bg"
@@ -300,10 +308,17 @@ const Request = props => {
                                         onChange={e => {
                                           if (e.target.checked) push(objective);
                                           else {
-                                            const idx = values.objectives.indexOf(
-                                              objective,
+                                            // const idx = values.objectives.indexOf(
+                                            //   objective,
+                                            // );
+                                            // remove(idx);
+
+                                            setFieldValue(
+                                              'objectives',
+                                              values.objectives.filter(
+                                                o => o.id !== objective.id,
+                                              ),
                                             );
-                                            remove(idx);
                                           }
                                         }}
                                       />
@@ -349,7 +364,7 @@ const Request = props => {
                         </div>
                       </div>
 
-                      {/* <div className="mb-10">
+                      <div className="mb-10">
                         <p className="font-bebas text-red text-2xl mb-4">
                           Supporting documents:
                         </p>
@@ -359,30 +374,31 @@ const Request = props => {
                           <br />
                           you deem appropriate.
                         </p>
-                      </div> */}
+                      </div>
 
-                      {/* <div className="mt-8">
+                      <div className="mt-8">
                         <Dropzone
                           onDrop={x => {
                             console.log(x[0]);
-                            setFieldValue('image', x[0]);
+                            isFileDropped = true;
+                            setFieldValue('file', x[0]);
                           }}
                         />
                         <div className="my-8 text-red">{errors.image}</div>
-                        {values.image && !errors.image && (
+                        {values.file && !errors.file && (
                           <div className="mt-8">
                             <h3 className="text-red">File Upload</h3>
                             <div className="font-arial">
                               <i className="fas fa-check text-green" />
-                              <span className="mx-4">{values.image.name}</span>
+                              <span className="mx-4">{values.file.name}</span>
                               <i
-                                onClick={() => setFieldValue('image', null)}
+                                onClick={() => setFieldValue('file', null)}
                                 className="fas fa-times text-red"
                               />
                             </div>
                           </div>
                         )}
-                      </div> */}
+                      </div>
 
                       <div className="flex justify-end">
                         <button

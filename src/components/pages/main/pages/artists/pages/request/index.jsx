@@ -25,24 +25,12 @@ const Request = ({ type, ...props }) => {
     business_case: Yup.string()
       .max(300)
       .required('Required'),
-    // image: Yup.mixed()
-    //   .required('required')
-    //   .test(
-    //     'imageSize',
-    //     'Image too large',
-    //     value => value && value.size <= IMAGE_SIZE,
-    //   )
-    //   .test(
-    //     'imageFormat',
-    //     'Unsupported Format',
-    //     value => value && SUPPORTED_FORMATS.includes(value.type),
-    //   ),
   });
 
   const initialValues = {
     objectives: [],
     business_case: '',
-    // image: null,
+    file: null,
   };
 
   inventory.forEach(i => (initialValues[i.name] = 1));
@@ -95,13 +83,17 @@ const Request = ({ type, ...props }) => {
       );
     }
 
-    for (let i = 0; i < objectives.length; i++) {
-      payload.append(`objectives[]`, objectives[i].id);
+    for (let i = 0; i < values.objectives.length; i++) {
+      payload.append(`objectives[]`, values.objectives[i].id);
     }
 
     payload.append('type', type);
     payload.append('type_id', type_id);
     payload.append('artist_id', artist_id);
+
+    if (values.file) {
+      payload.append('file', values.file);
+    }
 
     try {
       await http.post(`/requests`, payload);
@@ -365,7 +357,7 @@ const Request = ({ type, ...props }) => {
                         </div>
                       </div>
 
-                      {/* <div className="mb-10">
+                      <div className="mb-10">
                         <p className="font-bebas text-tirques text-2xl mb-4">
                           Supporting documents:
                         </p>
@@ -375,22 +367,22 @@ const Request = ({ type, ...props }) => {
                           <br />
                           you deem appropriate.
                         </p>
-                      </div> */}
+                      </div>
 
-                      {/* <div className="mt-8">
+                      <div className="mt-8">
                         <Dropzone
                           onDrop={x => {
                             console.log(x[0]);
-                            setFieldValue('image', x[0]);
+                            setFieldValue('file', x[0]);
                           }}
                         />
-                        <div className="my-8 text-red">{errors.image}</div>
-                        {values.image && !errors.image && (
+                        <div className="my-8 text-red">{errors.file}</div>
+                        {values.file && !errors.file && (
                           <div className="mt-8">
                             <h3 className="text-red">File Upload</h3>
                             <div className="font-arial">
                               <i className="fas fa-check text-green" />
-                              <span className="mx-4">{values.image.name}</span>
+                              <span className="mx-4">{values.file.name}</span>
                               <i
                                 onClick={() => setFieldValue('image', null)}
                                 className="fas fa-times text-red"
@@ -398,7 +390,7 @@ const Request = ({ type, ...props }) => {
                             </div>
                           </div>
                         )}
-                      </div> */}
+                      </div>
 
                       <div className="flex justify-end">
                         <button
