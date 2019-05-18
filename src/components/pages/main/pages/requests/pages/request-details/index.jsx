@@ -16,6 +16,7 @@ const Request = props => {
   const [inventory, setInventory] = React.useState([]);
   const [details, setDetails] = React.useState({});
   const [request, setRequest] = React.useState({});
+  const [tab, setTab] = React.useState(0);
 
   let isFileDropped = false;
 
@@ -102,6 +103,17 @@ const Request = props => {
     }
   };
 
+  const deleteRequest = async () => {
+    try {
+      await http.delete(`/requests/${request.id}`);
+      Alert.success('Success!');
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+      Alert.error('Error');
+    }
+  };
+
   return (
     <div
       className="content-bg"
@@ -122,11 +134,11 @@ const Request = props => {
                 {request.status}
               </div>
             </div>
-            <Tabs>
+            <Tabs selectedIndex={tab} onSelect={i => setTab(i)}>
               <TabList>
                 <Tab style={{ marginRight: '35px' }}>details</Tab>
                 <Tab>Request Details</Tab>
-                {request.status === 'pending' && <Tab>Edit Request</Tab>}
+                <Tab disabled={request.status !== 'pending'}>Edit Request</Tab>
               </TabList>
 
               <TabPanel>
@@ -215,6 +227,23 @@ const Request = props => {
                       <p>- Brand Representative (Meet &amp; Greet only)</p>
                     </div>
                   </div>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    onClick={deleteRequest}
+                    className="font-bebas text-2xl text-white border-red border py-2 mx-2 rounded"
+                    style={{ width: '175px' }}>
+                    Delete
+                  </button>
+
+                  {request.status === 'pending' && (
+                    <button
+                      onClick={() => setTab(2)}
+                      className="font-bebas text-2xl text-white bg-red py-2 mx-2 rounded"
+                      style={{ width: '175px' }}>
+                      Edit
+                    </button>
+                  )}
                 </div>
               </TabPanel>
               <TabPanel>

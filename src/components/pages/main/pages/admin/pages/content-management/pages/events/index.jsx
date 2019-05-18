@@ -198,7 +198,7 @@ const NewEvent = props => {
                               <InputField
                                 {...field}
                                 label="Date"
-                                placeholder="DD/MM/YYY"
+                                placeholder="DD-MM-YYY"
                                 hasError={touched.date && errors.date}
                               />
                             )}
@@ -250,7 +250,7 @@ const NewEvent = props => {
                                 <InputField
                                   {...field}
                                   label="Order Date From"
-                                  placeholder="DD/MM/YYYY"
+                                  placeholder="DD-MM-YYYY"
                                   hasError={
                                     touched.order_date_from &&
                                     errors.order_date_from
@@ -266,7 +266,7 @@ const NewEvent = props => {
                                 <InputField
                                   {...field}
                                   label="Order Date To"
-                                  placeholder="DD/MM/YYYY"
+                                  placeholder="DD-MM-YYYY"
                                   hasError={
                                     touched.order_date_to &&
                                     errors.order_date_to

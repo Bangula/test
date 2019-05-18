@@ -13,7 +13,7 @@ import InputField from '@components/InputField/InputField';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Dropzone from '@components/Dropzone/Dropzone';
 
-import { dateRegEx, durationRegEx } from '@constants/regex';
+import { numericRegEx } from '@constants/regex';
 import { IMAGE_SIZE, SUPPORTED_FORMATS } from '@constants/images';
 
 const requiredFieldsByStep = {
@@ -26,7 +26,9 @@ const FormSchema = Yup.object().shape({
     .max(30, 'Too Long!')
     .required('required'),
   content: Yup.string().required('required'),
-  price: Yup.string().required('required'),
+  price: Yup.string()
+    .matches(/(\d+(\.\d{1,2})?)/)
+    .required('required'),
   description: Yup.string()
     .max(255)
     .required('required'),
@@ -144,11 +146,14 @@ const GiftForm = props => {
                         <div className="flex">
                           <Field
                             name="price"
+                            type="number"
                             render={({ field }) => (
                               <InputField
                                 {...field}
+                                type="number"
+                                step="any"
                                 label="Product Price"
-                                placeholder="price"
+                                placeholder="9.99"
                                 hasError={touched.price && errors.price}
                               />
                             )}

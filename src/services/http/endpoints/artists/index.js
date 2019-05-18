@@ -2,7 +2,7 @@ import http from '@services/http';
 import toResponse from '@helpers/to-response';
 
 export const getArtists = () => {
-  return toResponse(http.get('/artists'));
+  return toResponse(http.get('/artists?include=images'));
 };
 
 export const getArtist = id => {
@@ -28,13 +28,9 @@ export const getExperiencesRequests = id => {
 };
 
 export const getGiftsRequests = id => {
-  return toResponse(
-    http.get(`/gifts/artists/${id}`),
-  );
+  return toResponse(http.get(`/gifts/artists/${id}`));
 };
 
 export const getMerchRequests = id => {
-  return toResponse(
-    http.get(`/merchandises/artists/${id}`),
-  );
+  return toResponse(http.get(`/merchandises/artists/${id}`));
 };

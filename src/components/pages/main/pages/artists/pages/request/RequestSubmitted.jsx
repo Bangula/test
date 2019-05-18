@@ -1,8 +1,8 @@
 import React from 'react';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const GiftingRequestSubmitted = () => {
+const GiftingRequestSubmitted = props => {
   return (
     <div style={{ minHeight: '500px' }}>
       <h2 className="text-tirques">Axe regimen gift set</h2>
@@ -17,18 +17,21 @@ const GiftingRequestSubmitted = () => {
         request. To review, edit or track the status of your request, head to My
         Requests.
       </p>
-      <div className="flex">
-        <button className="uppercase border border-tirques text-white rounded px-6 pb-1 pt-2 tracking-wide text-xl mr-4">
+      <div className="flex items-center">
+        <Link
+          to={`/artists/${props.match.params.artist}`}
+          className="uppercase border border-tirques font-bold text-white rounded px-6 pb-1 pt-2 tracking-wide text-xl mr-4">
           Back to Profile
-        </button>
-        <Link to="/requests">
-          <button className="uppercase bg-tirques rounded px-6 pb-1 pt-2 tracking-wide text-xl">
-            My Requests
-          </button>
+        </Link>
+
+        <Link
+          to="/requests"
+          className="uppercase border border-tirques font-bold text-white bg-tirques rounded px-6 pb-1 pt-2 tracking-wide text-xl mr-4">
+          My Requests
         </Link>
       </div>
     </div>
   );
 };
 
-export default GiftingRequestSubmitted;
+export default withRouter(GiftingRequestSubmitted);

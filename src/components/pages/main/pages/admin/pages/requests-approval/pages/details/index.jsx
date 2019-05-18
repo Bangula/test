@@ -1,6 +1,6 @@
 import React from 'react';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
-import Counter from '@components/ui-elements/Counter/Counter';
+import Counter from '@components/Counter/Counter';
 import { Link } from 'react-router-dom';
 import Alert from 'react-s-alert';
 
@@ -9,7 +9,6 @@ import http from '@services/http';
 const Details = props => {
   const [tickets, setTickets] = React.useState([]);
   const [details, setDetails] = React.useState({});
-  // const [status, setStatus] = React.useState('')
   let initialTickets;
   const updateTickets = (type, value) => {
     setTickets(
@@ -88,7 +87,7 @@ const Details = props => {
     }
   };
   return (
-    <div className="container mx-auto flex">
+    <div className="container mx-auto">
       <div className="flex-1">
         <Link to="/admin/requests-approval">
           <button className="text-xl mb-8 px-4 pt-2 pb-1 border border-pink rounded text-white">
@@ -139,7 +138,8 @@ const Details = props => {
               <div>
                 <Counter
                   color="pink"
-                  value={t.value}
+                  initialValue={t.value}
+                  min={0}
                   setValue={value => updateTickets(t.label, value)}
                 />
               </div>
@@ -160,7 +160,9 @@ const Details = props => {
               </div>
               <div className="font-arial pl-4">
                 <div className="font-bold mb-2">Business Case:</div>
-                <p>{details.business_case}</p>
+                <p className="max-w-md" style={{ overflowWrap: 'break-word' }}>
+                  {details.business_case}
+                </p>
               </div>
             </div>
             <div className="mb-4">
@@ -180,9 +182,14 @@ const Details = props => {
                   <i className="fa fa-download" />
                 </p> */}
               </div>
-              <button className="btn text-white" onClick={processRequest}>
-                Proccess
-              </button>
+
+              <div className="flex">
+                <button
+                  className="btn font-bebas text-2xl text-white border-solid border-red border py-2 my-4 rounded"
+                  onClick={processRequest}>
+                  Proccess
+                </button>
+              </div>
             </div>
           </>
         )}
