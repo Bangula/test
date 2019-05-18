@@ -67,7 +67,7 @@ const LatestRequests = ({ match: { path }, user: { id } }) => {
   }, [id]);
   const [data, setData] = React.useState([]);
   return (
-    <div>
+    <div className="container mx-auto mt-12">
       <div className="flex">
         <div className="w-1/4 mr-8">
           <img

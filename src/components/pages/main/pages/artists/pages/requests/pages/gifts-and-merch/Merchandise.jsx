@@ -46,9 +46,13 @@ const Merchandise = ({ data }) => {
             <h1 className="mb-4 font-2xl text-tirques">{m.name}</h1>
             <p className="font-arial">{m.description}</p>
             <div className="flex justify-end">
-              <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
+              <a
+                href={m.link}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-xl font-bold bg-tirques text-black rounded px-8 pt-2 pb-1">
                 Request
-              </button>
+              </a>
             </div>
           </div>
         ))}

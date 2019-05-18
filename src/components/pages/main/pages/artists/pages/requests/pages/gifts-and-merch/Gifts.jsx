@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const Gifts = ({ data }) => {
+const Gifts = ({ data, match }) => {
   return data ? (
     <div>
       <div className="max-w-md px-3 mb-8">
@@ -34,7 +34,7 @@ const Gifts = ({ data }) => {
               <div>£{gift.price}</div>
             </div>
             <div className="flex justify-end">
-              <Link to={`/artists/gifting-request/${gift.id}`}>
+              <Link to={`${match.path}/${gift.id}`}>
                 <button className="text-xl bg-tirques rounded px-8 pt-2 pb-1">
                   Request
                 </button>
@@ -47,4 +47,4 @@ const Gifts = ({ data }) => {
   ) : null;
 };
 
-export default Gifts;
+export default withRouter(Gifts);

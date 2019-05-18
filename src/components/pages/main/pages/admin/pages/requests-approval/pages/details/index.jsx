@@ -2,18 +2,91 @@ import React from 'react';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Counter from '@components/ui-elements/Counter/Counter';
 import { Link } from 'react-router-dom';
+import Alert from 'react-s-alert';
 
-const Details = () => {
-  const [tickets, setTickets] = React.useState({
-    general: 10,
-    vip: 3,
-    meetAndGreet: 2,
-  });
-  const updateTickets = React.useCallback((type, value) => {
-    const pomTickets = { ...tickets };
-    pomTickets[type] = value;
-    setTickets(pomTickets);
+import http from '@services/http';
+
+const Details = props => {
+  const [tickets, setTickets] = React.useState([]);
+  const [details, setDetails] = React.useState({});
+  // const [status, setStatus] = React.useState('')
+  let initialTickets;
+  const updateTickets = (type, value) => {
+    setTickets(
+      tickets.map(t => (t.label === type ? { label: type, value } : t)),
+    );
+  };
+
+  console.log(tickets);
+
+  React.useEffect(() => {
+    const fetchRequest = async () => {
+      try {
+        const result = await http(
+          `/requests/${
+            props.match.params.id
+          }?include=relatesTo,objectives,user.market,requested_tickets,artist,tickets`,
+        );
+
+        console.log(result.data.data);
+        setDetails(result.data.data);
+        initialTickets = result.data.data.requested_tickets.data.map(t => ({
+          label: t.ticket.data.name,
+          value: t.requested_amount,
+        }));
+
+        setTickets(initialTickets);
+
+        console.log(initialTickets);
+      } catch (err) {
+        console.log('Error fetching request!');
+      }
+    };
+
+    fetchRequest();
   }, []);
+
+  const processRequest = async () => {
+    let status;
+    const initialTickets = details.requested_tickets.data.map(t => ({
+      label: t.ticket.data.name,
+      value: t.requested_amount,
+    }));
+    if (JSON.stringify(initialTickets) === JSON.stringify(tickets)) {
+      status = 'approved';
+    } else if (tickets.reduce((a, c) => a + c.value, 0)) {
+      status = 'reallocated';
+    } else {
+      status = 'rejected';
+    }
+
+    const payload = new FormData();
+
+    payload.append('status', status);
+
+    details.requested_tickets.data.forEach((t, i) => {
+      payload.append(`tickets[${i}][ticket_type_id]`, t.ticket.data.id);
+      payload.append(`tickets[${i}][approved_amount]`, tickets[i].value);
+
+      console.log(
+        `tickets[${i}][id]`,
+        t.ticket.data.id,
+        `tickets[${i}][requested_amount]`,
+        tickets[i].value,
+      );
+    });
+
+    console.log('processing...', tickets, status);
+
+    try {
+      await http.post(`/request/${props.match.params.id}/admin`, payload);
+      Alert.success('Success!');
+      props.history.goBack();
+    } catch (err) {
+      console.log(err);
+      Alert.error('Error');
+    }
+  };
   return (
     <div className="container mx-auto flex">
       <div className="flex-1">
@@ -22,109 +95,97 @@ const Details = () => {
             &larr; Go back
           </button>
         </Link>
-        <div className="mb-8">
-          <PrimaryTitle>Dreambeach chile 2019</PrimaryTitle>
-        </div>
-        <div className="mb-8">
-          <h3 className="mb-4 text-pink">Reqeusted by:</h3>
-          <div className="pl-4 flex font-arial mb-2">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              Full Name:
+        {Object.keys(details).length > 0 && (
+          <>
+            <div className="mb-8">
+              <PrimaryTitle>{details.relatesTo.data.name}</PrimaryTitle>
             </div>
-            <div className="font-arial">John Smith</div>
-          </div>
-          <div className="pl-4 flex font-arial">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              Market:
-            </div>
-            <div className="font-arial">Europe</div>
-          </div>
-        </div>
+            {details.user.data.market && (
+              <div className="mb-8">
+                <h3 className="mb-4 text-pink">Reqeusted by:</h3>
+                <div className="pl-4 flex font-arial mb-2">
+                  <div className="font-bold mr-6" style={{ width: '125px' }}>
+                    Full Name:
+                  </div>
+                  <div className="font-arial">
+                    {details.user.data.name} {details.user.data.surname}
+                  </div>
+                </div>
+                <div className="pl-4 flex font-arial">
+                  <div className="font-bold mr-6" style={{ width: '125px' }}>
+                    Market:
+                  </div>
+                  <div className="font-arial">
+                    {details.user.data.market.data.name}
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        )}
         <div className="mb-8">
           <h3 className="mb-4 text-pink">Reqeusted quantity:</h3>
-          <div className="pl-4 flex items-center font-arial mb-8">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              General Ticket:
+
+          {tickets.map(t => (
+            <div className="pl-4 flex items-center font-arial mb-8">
+              <div
+                className="font-bold mr-6"
+                style={{ width: '125px', textTransform: 'capitalize' }}>
+                {t.label.split('_').join(' ')}:
+              </div>
+              <div className="font-arial mr-8" style={{ width: '105px' }}>
+                {t.value} Tickets
+              </div>
+              <div>
+                <Counter
+                  color="pink"
+                  value={t.value}
+                  setValue={value => updateTickets(t.label, value)}
+                />
+              </div>
             </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.general}
-                setValue={value => updateTickets('general', value)}
-              />
-            </div>
-          </div>
-          <div className="pl-4 flex items-center font-arial mb-8">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              VIP Ticket:
-            </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.vip}
-                setValue={value => updateTickets('vip', value)}
-              />
-            </div>
-          </div>
-          <div className="pl-4 flex items-center font-arial">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              Meet & Greet:
-            </div>
-            <div className="font-arial mr-8" style={{ width: '105px' }}>
-              10 Tickets
-            </div>
-            <div>
-              <Counter
-                color="pink"
-                value={tickets.meetAndGreet}
-                setValue={value => updateTickets('meetAndGreet', value)}
-              />
-            </div>
-          </div>
+          ))}
         </div>
-        <div className="mb-8">
-          <h3 className="mb-4 text-pink">Request purpose:</h3>
-          <div className="pl-4 flex font-arial mb-4">
-            <div className="font-bold mr-6" style={{ width: '125px' }}>
-              Objective:
+        {Object.keys(details).length > 0 && (
+          <>
+            <div className="mb-8">
+              <h3 className="mb-4 text-pink">Request purpose:</h3>
+              <div className="pl-4 flex font-arial mb-4">
+                <div className="font-bold mr-6" style={{ width: '125px' }}>
+                  Objectives:
+                </div>
+                <div className="font-arial">
+                  {details.objectives.data.map(o => o.name).join(', ')}
+                </div>
+              </div>
+              <div className="font-arial pl-4">
+                <div className="font-bold mb-2">Business Case:</div>
+                <p>{details.business_case}</p>
+              </div>
             </div>
-            <div className="font-arial">Lorem ipsum</div>
-          </div>
-          <div className="font-arial pl-4">
-            <div className="font-bold mb-2">Business Case:</div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Integer vitae justo eget magna fermentum iaculis eu non. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-        <div className="mb-4">
-          <h3 className="mb-4 text-pink">Supporting documents:</h3>
-          <div className="pl-4 font-arial">
-            <p className="mb-2">
-              <span className="mr-8">Filename_Final Artwork.pdf</span>
-              <i className="fa fa-download" />
-            </p>
-            <p>
-              <span className="mr-8">Filename_Final Artwork.pdf</span>
-              <i className="fa fa-download" />
-            </p>
-          </div>
-        </div>
+            <div className="mb-4">
+              <h3 className="mb-4 text-pink">Supporting document:</h3>
+              <div className="pl-4 font-arial">
+                <p className="mb-2">
+                  <span className="mr-8">{details.file}</span>
+                  <a
+                    href={details.file_url}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i className="fa fa-download" />
+                  </a>
+                </p>
+                {/* <p>
+                  <span className="mr-8">Filename_Final Artwork.pdf</span>
+                  <i className="fa fa-download" />
+                </p> */}
+              </div>
+              <button className="btn text-white" onClick={processRequest}>
+                Proccess
+              </button>
+            </div>
+          </>
+        )}
       </div>
       <div className="flex-1" />
     </div>
