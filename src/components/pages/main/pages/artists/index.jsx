@@ -37,10 +37,12 @@ const Artists = ({ match: { path } }) => {
           path={`${path}/:artist/requests/experiences/:id`}
           render={props => <Request {...props} type="experience" />}
         />
+
         <Route
           path={`${path}/:artist/requests/gifts/:id`}
-          component={GiftingRequest}
+          render={props => <Request {...props} type="gift" />}
         />
+
         <Route path={`${path}/:artist/requests`} component={Requests} />
         <Route
           path={`${path}/:artist/manage/:id`}

@@ -3,7 +3,7 @@ import { Switch, Route, NavLink, Link, Redirect } from 'react-router-dom';
 
 import Events from './pages/events';
 import Experiences from './pages/experiences';
-import Merchandise from './pages/gifts-and-merch';
+import GiftsMerch from './pages/gifts-and-merch';
 
 const Requests = ({ match }) => {
   return (
@@ -20,7 +20,7 @@ const Requests = ({ match }) => {
         <h1 className="mr-8 text-5xl">Requests</h1>
         <div>
           <NavLink
-            exact
+            // exact
             activeClassName="link-tab--selected-tirquise"
             className="link-tab"
             to={`${match.url}/events`}>
@@ -35,7 +35,7 @@ const Requests = ({ match }) => {
           <NavLink
             activeClassName="link-tab--selected-tirquise"
             className="link-tab"
-            to={`${match.url}/merchandise`}>
+            to={`${match.url}/gifts`}>
             Gifts & Merch
           </NavLink>
         </div>
@@ -48,9 +48,9 @@ const Requests = ({ match }) => {
           )}
         />
         <Route
-          path={`${match.url}/merchandise`}
+          path={`${match.url}/gifts`}
           render={props => (
-            <Merchandise {...props} artist={match.params.artist} />
+            <GiftsMerch {...props} artist={match.params.artist} />
           )}
         />
         <Route

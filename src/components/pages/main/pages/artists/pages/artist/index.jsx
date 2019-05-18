@@ -54,23 +54,21 @@ const Artist = ({ match }) => {
                   </button>
                 </Link>
 
-                <Link
-                  to={`${match.url}/requests/merchandise`}
-                  className="block mb-2">
+                <Link to={`${match.url}/requests/gifts`} className="block mb-2">
                   <button
                     className="uppercase text-white border rounded border-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                     style={{ width: '200px' }}>
-                    Merchandise
+                    Gifts & Merch
                   </button>
                 </Link>
 
-                <Link className="block mb-2" to={`${match.url}`}>
+                {/* <Link className="block mb-2" to={`${match.url}`}>
                   <button
                     className="uppercase text-black border rounded border-tirques bg-tirques px-8 pb-2 pt-2 tracking-wide text-2xl"
                     style={{ width: '200px' }}>
                     Talent access
                   </button>
-                </Link>
+                </Link> */}
               </div>
             ) : null}
           </div>
