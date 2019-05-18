@@ -244,12 +244,22 @@ const Request = props => {
                     Request Purpouse:
                   </h5>
                   {request.business_case && (
-                    <p className="flex py-2">
-                      <p style={{ width: '200px', fontWeight: 'bold' }}>
-                        Business Case:
+                    <>
+                      <p className="flex py-2">
+                        <p style={{ width: '200px', fontWeight: 'bold' }}>
+                          Objectives:
+                        </p>
+                        <p>
+                          {request.objectives.data.map(o => o.name).join(', ')}
+                        </p>
                       </p>
-                      <p>{request.business_case}</p>
-                    </p>
+                      <p className="flex py-2">
+                        <p style={{ width: '200px', fontWeight: 'bold' }}>
+                          Business Case:
+                        </p>
+                        <p>{request.business_case}</p>
+                      </p>
+                    </>
                   )}
                 </div>
               </TabPanel>

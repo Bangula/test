@@ -71,7 +71,9 @@ const Request = ({ type, ...props }) => {
     const payload = new FormData();
 
     for (const field in values) {
-      payload.append(field, values[field]);
+      if (field !== 'file') {
+        payload.append(field, values[field]);
+      }
     }
     payload.append('artist_id', artist_id);
 
