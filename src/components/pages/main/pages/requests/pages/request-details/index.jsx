@@ -45,7 +45,7 @@ const Request = props => {
         const result = await http(
           `/requests/${
             props.match.params.id
-          }?include=relatesTo,objectives,user,requested_tickets,artist,tickets`,
+          }?include=relatesTo.tickets,objectives,user,requested_tickets,artist,tickets`,
         );
 
         const data = result.data.data;
