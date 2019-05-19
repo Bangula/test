@@ -302,8 +302,18 @@ const Request = props => {
                   initialValues={initialValues}
                   validationSchema={RequestSchema}
                   onSubmit={submitNewRequest}>
-                  {({ errors, touched, setFieldValue, values, submitForm }) => (
-                    <div className="font-arial py-6">
+                  {({
+                    errors,
+                    touched,
+                    setFieldValue,
+                    values,
+                    submitForm,
+                    isSubmitting,
+                  }) => (
+                    <div
+                      className={`font-arial py-6 ${
+                        isSubmitting ? 'opacity-50' : ''
+                      }`}>
                       <p className="mb-10">
                         Please fill in the following form to request your
                         tickets.
@@ -451,6 +461,7 @@ const Request = props => {
 
                       <div className="flex justify-end">
                         <button
+                          disabled={isSubmitting}
                           onClick={submitForm}
                           className="font-bebas text-2xl text-black bg-red py-2 rounded"
                           style={{ width: '175px' }}>

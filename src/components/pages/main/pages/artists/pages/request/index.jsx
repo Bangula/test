@@ -174,8 +174,12 @@ const Request = ({ type, ...props }) => {
                       setFieldValue,
                       values,
                       submitForm,
+                      isSubmitting,
                     }) => (
-                      <div className="font-arial py-6">
+                      <div
+                        className={`font-arial py-6 ${
+                          isSubmitting ? 'opacity-50' : ''
+                        }`}>
                         <p className="mb-10">
                           Please fill in the following form to request your
                           tickets.
@@ -323,6 +327,7 @@ const Request = ({ type, ...props }) => {
 
                         <div className="flex justify-end">
                           <button
+                            disabled={isSubmitting}
                             onClick={submitForm}
                             className="font-bebas text-2xl text-black bg-tirques py-2 rounded"
                             style={{ width: '175px' }}>
