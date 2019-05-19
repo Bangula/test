@@ -14,6 +14,11 @@ const mapStateToProps = state => {
 };
 
 const LatestRequests = ({ match: { path }, user: { id } }) => {
+  const [pagination, setPagination] = React.useState({
+    total_pages: 1,
+    current_page: 1,
+    per_page: 10,
+  });
   const columns = [
     {
       Header: props => (
@@ -54,10 +59,13 @@ const LatestRequests = ({ match: { path }, user: { id } }) => {
       ),
     },
   ];
-  const doGetRequests = async () => {
-    const { error, data } = await getRequestsForUser(id);
-    if (!error) {
-      setData(data.data.data);
+  const doGetRequests = async args => {
+    if (args) {
+      const { error, data } = await getRequestsForUser(id, args.page + 1);
+      if (!error) {
+        setData(data.data.data);
+        setPagination(data.data.meta.pagination);
+      }
     }
   };
   React.useEffect(() => {
@@ -84,13 +92,16 @@ const LatestRequests = ({ match: { path }, user: { id } }) => {
         <div className="w-3/4">
           <PrimaryTitle>Latest Requests</PrimaryTitle>
           <ReactTable
+            manual
             className="custom-ReactTable"
-            pageSize={Math.min(data.length, 10)}
+            pageSize={Math.min(data.length, pagination.per_page)}
             showPagination
             showPageSizeOptions={false}
             data={data}
             columns={columns}
             resizable={false}
+            onFetchData={doGetRequests}
+            pages={pagination.total_pages}
           />
         </div>
       </div>

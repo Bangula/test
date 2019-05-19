@@ -47,26 +47,21 @@ const LatestRequests = ({ match: { path } }) => {
       ),
     },
   ];
-  // const [artists, setArtists] = React.useState([]);
+
   const [data, setData] = React.useState([]);
-  // React.useEffect(() => {
-  //   const fetchArtists = async () => {
-  //     try {
-  //       const result = await http('/artists');
+  const [pagination, setPagination] = React.useState({
+    total_pages: 1,
+    current_page: 1,
+    per_page: 10,
+  });
 
-  //       setArtists(result.data.data);
-  //       console.log(result.data.data);
-  //     } catch (err) {
-  //       console.log('Error fetching artists!');
-  //     }
-  //   };
-
-  //   fetchArtists();
-  // }, []);
-  const doGetRequests = async () => {
-    const { error, data } = await getRequests();
-    if (!error) {
-      setData(data.data.data);
+  const doGetRequests = async args => {
+    if (args) {
+      const { error, data } = await getRequests(args.page + 1);
+      if (!error) {
+        setData(data.data.data);
+        setPagination(data.data.meta.pagination);
+      }
     }
   };
   React.useEffect(() => {
@@ -74,27 +69,18 @@ const LatestRequests = ({ match: { path } }) => {
   }, []);
   return (
     <div>
-      {/* {artists.length > 0 && (
-        <div className="flex items-center">
-          <div className="text-red">Partnerships:</div>
-          {artists.map(x => (
-            <Link
-              className="border border-white mx-4 p-2 mb-8"
-              to={`${path}/artist/${x.id}`}>
-              {x.name}
-            </Link>
-          ))}
-        </div>
-      )} */}
       <PrimaryTitle>Latest Requests</PrimaryTitle>
       <ReactTable
+        manual
         className="custom-ReactTable"
-        pageSize={Math.min(data.length, 10)}
+        pageSize={Math.min(data.length, pagination.per_page)}
         showPagination
         showPageSizeOptions={false}
         data={data}
         columns={columns}
         resizable={false}
+        onFetchData={doGetRequests}
+        pages={pagination.total_pages}
       />
     </div>
   );
