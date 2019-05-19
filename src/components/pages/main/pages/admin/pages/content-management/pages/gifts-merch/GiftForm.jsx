@@ -26,9 +26,9 @@ const FormSchema = Yup.object().shape({
     .max(30, 'Too Long!')
     .required('required'),
   content: Yup.string().required('required'),
-  price: Yup.string()
-    .matches(/(\d+(\.\d{1,2})?)/)
-    .required('required'),
+  price: Yup.number()
+    .min(0)
+    .max(999.99),
   description: Yup.string()
     .max(255)
     .required('required'),

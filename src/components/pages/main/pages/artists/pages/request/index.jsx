@@ -29,6 +29,9 @@ const Request = ({ type, ...props }) => {
     business_case: Yup.string()
       .max(300)
       .required('Required'),
+    objectives: Yup.array()
+      .min(1)
+      .required('required'),
   });
 
   const initialValues = {
@@ -242,6 +245,9 @@ const Request = ({ type, ...props }) => {
                                 );
                               }}
                             />
+                            <div className="mb-8 text-red">
+                              {errors.objectives}
+                            </div>
                           </div>
                         </div>
 
@@ -274,6 +280,9 @@ const Request = ({ type, ...props }) => {
                                 </div>
                               )}
                             />
+                            <div className="mb-8 text-red">
+                              {touched.business_case && errors.business_case}
+                            </div>
                           </div>
                         </div>
 
@@ -296,7 +305,7 @@ const Request = ({ type, ...props }) => {
                               setFieldValue('file', x[0]);
                             }}
                           />
-                          <div className="my-8 text-red">{errors.file}</div>
+                          <div className="mb-8 text-red">{errors.file}</div>
                           {values.file && !errors.file && (
                             <div className="mt-8">
                               <h3 className="text-red">File Upload</h3>

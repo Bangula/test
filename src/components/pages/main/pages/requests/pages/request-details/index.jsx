@@ -24,6 +24,10 @@ const Request = props => {
     business_case: Yup.string()
       .max(300)
       .required('Required'),
+
+    objectives: Yup.array()
+      .min(1)
+      .required('required'),
   });
 
   const initialValues = {
@@ -368,6 +372,9 @@ const Request = props => {
                               );
                             }}
                           />
+                          <div className="mb-8 text-red">
+                            {errors.objectives}
+                          </div>
                         </div>
                       </div>
 
@@ -400,6 +407,9 @@ const Request = props => {
                               </div>
                             )}
                           />
+                          <div className="mb-8 text-red">
+                            {touched.business_case && errors.business_case}
+                          </div>
                         </div>
                       </div>
 
