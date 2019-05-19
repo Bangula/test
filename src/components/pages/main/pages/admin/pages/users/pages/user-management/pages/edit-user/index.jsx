@@ -8,7 +8,7 @@ import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import InputField from '@components/InputField/InputField';
 import backgroundImage from '@images/2061080.png';
 import SelectField from '@components/SelectField/SelectField';
-import { updateUserInfo } from '@endpoints/user';
+import { updateUserInfo, getRoles } from '@endpoints/user';
 
 import { numericRegEx } from '@constants/regex';
 
@@ -44,9 +44,19 @@ const EditUserSchema = Yup.object().shape({
 });
 
 const EditUser = props => {
-  console.log(props);
   const userId = props.match.params.id;
   const [user, setUser] = React.useState({});
+  const [roles, setRoles] = React.useState([]);
+
+  React.useEffect(() => {
+    const loadRoles = async () => {
+      const { data, error } = await getRoles();
+
+      setRoles(data.data.data);
+    };
+
+    loadRoles();
+  }, []);
 
   React.useEffect(() => {
     const loadUser = async () => {
@@ -137,7 +147,7 @@ const EditUser = props => {
                       )}
                     />
                     <SelectField
-                      options={(user && user.roles && user.roles.data) || []}
+                      options={roles}
                       setFieldValue={setFieldValue}
                       label="role"
                       placeholder="role"

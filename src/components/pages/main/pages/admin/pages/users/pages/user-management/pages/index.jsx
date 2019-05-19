@@ -154,7 +154,7 @@ const UserManagement = ({ match: { path }, id }) => {
               onClick={closeModal}
               className="text-white border-2 border-red rounded py-2 text-2xl"
               style={{ width: '172px' }}>
-              no cancel
+              no, cancel
             </button>
             <button
               onClick={ongoingAction}
