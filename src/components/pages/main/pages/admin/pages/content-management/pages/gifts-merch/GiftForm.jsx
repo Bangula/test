@@ -28,7 +28,8 @@ const FormSchema = Yup.object().shape({
   content: Yup.string().required('required'),
   price: Yup.number()
     .min(0)
-    .max(999.99),
+    .max(999.99)
+    .required('required'),
   description: Yup.string()
     .max(255)
     .required('required'),
