@@ -30,7 +30,11 @@ const ArtistsList = () => {
                 maxWidth: '560px',
                 width: '100%',
                 height: '396px',
-                background: `url(${backgroundImage}) no-repeat center`,
+                background: `url(${
+                  artist.images.data.length
+                    ? artist.images.data[0].path
+                    : backgroundImage
+                }) no-repeat center`,
                 backgroundSize: 'cover',
               }}>
               <div

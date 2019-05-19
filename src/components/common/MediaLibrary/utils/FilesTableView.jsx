@@ -86,6 +86,7 @@ const FilesTableView = ({ files, deployFilePreview }) => {
   return files ? (
     <ReactTable
       getTdProps={getTdProps}
+      noDataText="No Files"
       className="custom-ReactTable"
       data={files}
       columns={columns}

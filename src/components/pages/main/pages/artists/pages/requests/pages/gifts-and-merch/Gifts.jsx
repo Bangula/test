@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 const Gifts = ({ data, match }) => {
+  console.log(data);
   return data ? (
     <div>
       <div className="max-w-md px-3 mb-8">
@@ -18,7 +19,11 @@ const Gifts = ({ data, match }) => {
           <div key={gift.id} className="w-1/3 px-3 mb-10">
             <div
               className="bg-grey-light mb-2"
-              style={{ paddingBottom: '100%' }}
+              style={{
+                paddingBottom: '100%',
+                backgroundImage: `url(${gift.images.data.length &&
+                  gift.images.data[0].path})`,
+              }}
             />
             <h1 className="mb-4 font-2xl text-tirques">{gift.name}</h1>
             <div className="flex font-arial mb-2">

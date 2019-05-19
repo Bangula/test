@@ -8,7 +8,7 @@ const InputField = ({ label, type, placeholder, hasError, ...props }) => {
       <label className="label">
         <span className="label-txt">{label}</span>
         <input
-          className={`input-field${hasError ? ' input-error' : ''}`}
+          className={`input-field${hasError ? ' input-error' : ''} font-arial`}
           type={inputType}
           placeholder={placeholder}
           {...props}

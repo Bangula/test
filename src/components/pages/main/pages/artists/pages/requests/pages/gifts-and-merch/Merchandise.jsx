@@ -41,7 +41,11 @@ const Merchandise = ({ data }) => {
           <div key={m.id} className="w-1/3 px-3 mb-10">
             <div
               className="bg-grey-light mb-2"
-              style={{ paddingBottom: '100%' }}
+              style={{
+                paddingBottom: '100%',
+                backgroundImage: `url(${m.images.data.length &&
+                  m.images.data[0].path})`,
+              }}
             />
             <h1 className="mb-4 font-2xl text-tirques">{m.name}</h1>
             <p className="font-arial">{m.description}</p>

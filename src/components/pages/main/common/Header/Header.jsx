@@ -123,30 +123,29 @@ const Header = ({ match: { url }, logOut, ...props }) => {
               Brand approval
             </NavLink>
           </li>
+
+          <li className="flex items-center">
+            <span className="pipe" />
+          </li>
+          <li>
+            <NavLink
+              to={`${root}/requests`}
+              activeClassName="active active-pink"
+              className="header__link"
+              title="my requests">
+              my requests
+            </NavLink>
+          </li>
           {props.isAdmin && (
-            <>
-              <li className="flex items-center">
-                <span className="pipe" />
-              </li>
-              <li>
-                <NavLink
-                  to={`${root}/requests`}
-                  activeClassName="active active-pink"
-                  className="header__link"
-                  title="my requests">
-                  my requests
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to={`${root}/admin`}
-                  activeClassName="active active-pink"
-                  className="header__link"
-                  title="Admin">
-                  Admin
-                </NavLink>
-              </li>
-            </>
+            <li>
+              <NavLink
+                to={`${root}/admin`}
+                activeClassName="active active-pink"
+                className="header__link"
+                title="Admin">
+                Admin
+              </NavLink>
+            </li>
           )}
         </ul>
       </div>

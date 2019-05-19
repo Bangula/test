@@ -99,7 +99,7 @@ const Details = ({ details, type }) => {
       )}
 
       <div className="flex">
-        <Link className="mr-2">
+        {/* <Link className="mr-2">
           <button
             className="font-bebas text-2xl text-white py-2 rounded"
             style={{
@@ -119,15 +119,15 @@ const Details = ({ details, type }) => {
             }}>
             View Requests
           </button>
-        </Link>
+        </Link> */}
 
-        <Link>
+        {/* <Link>
           <button
             className="font-bebas text-2xl text-black bg-tirques py-2 rounded"
             style={{ width: '175px' }}>
             request
           </button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

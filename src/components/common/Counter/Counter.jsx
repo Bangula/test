@@ -23,9 +23,11 @@ const Counter = ({
     <div
       className="flex justify-between items-center my-6"
       style={{ width: '300px' }}>
-      <span className={`font-bebas text-${color} text-2xl`}>
-        {props.label}:
-      </span>
+      {props.label && (
+        <span className={`font-bebas text-${color} text-2xl`}>
+          {props.label}:
+        </span>
+      )}
       <div
         className={`border-b-4 border-${color} flex justify-between items-center`}
         style={{

@@ -49,7 +49,7 @@ const UserInfo = props => {
                 onClick={closeModal}
                 className="text-white border-2 border-red rounded py-2 text-2xl"
                 style={{ width: '172px' }}>
-                no cancel
+                no, cancel
               </button>
               <button
                 onClick={async () => {
@@ -93,8 +93,10 @@ const UserInfo = props => {
           <h3 className="text-4xl">
             {user.name} {user.surname}
           </h3>
-          <p className="text-sm font-arial font-light">
-            Last Activity: 18.01.2019 12:48:16
+          <p className="text-sm font-arial font-light text-red">
+            {Object.keys(user).length > 0 &&
+              !user.confirmed &&
+              'This user has not signed up yet'}
           </p>
         </div>
 
@@ -107,8 +109,8 @@ const UserInfo = props => {
                   <span className="font-bold mr-4">Email:</span> {user.email}
                 </p>
                 <p className="font-arial py-2 font-light">
-                  <span className="font-bold mr-4">Phone Number:</span> +44 (0)
-                  {user.phone}
+                  <span className="font-bold mr-4">Phone Number:</span>
+                  {user.phone || 'No phone number provided'}
                 </p>
               </div>
             </div>
@@ -118,7 +120,7 @@ const UserInfo = props => {
               <div className="pl-2">
                 <p className="font-arial py-2 font-light">
                   <span className="font-bold mr-4">Job Title:</span>{' '}
-                  {user.job_title}
+                  {user.job_title || 'No job title provided'}
                 </p>
                 <p className="font-arial py-2 font-light">
                   <span className="font-bold mr-4">Market:</span> Europe

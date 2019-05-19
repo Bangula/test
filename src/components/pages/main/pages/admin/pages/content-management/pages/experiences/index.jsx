@@ -235,7 +235,7 @@ const NewExperience = props => {
                                 <InputField
                                   {...field}
                                   label="Order Date From"
-                                  placeholder="DD/MM/YYYY"
+                                  placeholder="DD-MM-YYYY"
                                   hasError={
                                     touched.order_date_from &&
                                     errors.order_date_from
@@ -251,7 +251,7 @@ const NewExperience = props => {
                                 <InputField
                                   {...field}
                                   label="Order Date To"
-                                  placeholder="DD/MM/YYYY"
+                                  placeholder="DD-MM-YYYY"
                                   hasError={
                                     touched.order_date_to &&
                                     errors.order_date_to
@@ -506,7 +506,7 @@ const NewExperience = props => {
                         <button
                           onClick={submitForm}
                           className="btn border-2 border-pink bg-pink text-white rounded py-2 text-2xl ml-2">
-                          Create Event
+                          Create Experience
                         </button>
                       )}
                     </div>

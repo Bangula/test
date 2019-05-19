@@ -25,7 +25,9 @@ const FormSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(30, 'Too Long!')
     .required('required'),
-  link: Yup.string().required('required'),
+  link: Yup.string()
+    .url('link must be valid')
+    .required('required'),
   description: Yup.string()
     .max(255)
     .required('required'),
@@ -113,7 +115,7 @@ const MerchandiseForm = props => {
                               <InputField
                                 {...field}
                                 label="Unicart Link"
-                                placeholder="link"
+                                placeholder="https://www.google.com"
                                 hasError={touched.link && errors.link}
                               />
                             )}
@@ -251,7 +253,7 @@ const MerchandiseForm = props => {
                         <button
                           onClick={submitForm}
                           className="btn border-2 border-pink bg-pink text-white rounded py-2 text-2xl ml-2">
-                          Create Event
+                          Create Merchandise
                         </button>
                       )}
                     </div>

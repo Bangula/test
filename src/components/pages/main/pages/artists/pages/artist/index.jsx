@@ -6,8 +6,17 @@ import AssetHub from '../asset-hub';
 import { getArtist } from '@endpoints/artists';
 import Alert from 'react-s-alert';
 import MediaPreview from './components/MediaPreview';
+import ToursSchedule from './components/ToursSchedule';
+import { connect } from 'react-redux';
+import { isAdminFeaturesEnabled } from '@state/user/selectors';
 
-const Artist = ({ match }) => {
+const mapStateToProps = state => {
+  return {
+    isAdminFeaturesEnabled: isAdminFeaturesEnabled(state),
+  };
+};
+
+const Artist = ({ match, isAdminFeaturesEnabled }) => {
   const [artist, setArtist] = React.useState(null);
   const doGetArtist = async () => {
     const { error, data } = await getArtist(match.params.artist);
@@ -26,7 +35,12 @@ const Artist = ({ match }) => {
         <div className="flex">
           <div className="mr-10" style={{ maxWidth: '200px' }}>
             <div className="mb-6 w-48 h-48 rounded-full overflow-hidden">
-              <img src={profileImg} alt="Artist" />
+              <img
+                src={
+                  artist.images.data.length > 0 && artist.images.data[0].path
+                }
+                alt="Artist"
+              />
             </div>
             <div className="mb-8 text-center">
               <h2 className="mb-1">{artist.name}</h2>
@@ -85,30 +99,20 @@ const Artist = ({ match }) => {
 
                 <TabPanel>
                   <div className="font-arial leading-tight">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Urna condimentum mattis. <br /> <br />
-                      Pellentesque id nibh tortor. Lorem ipsum dolor sit amet
-                      consectetur adipiscing elit ut aliquam. Mollis aliquam ut
-                      porttitor leo a diam.
-                      <br /> <br />
-                      Lacinia at quis risus sed vulputate odio. Semper auctor
-                      neque vitae tempus quam pellentesque nec nam. Congue nisi
-                      vitae suscipit tellus mauris a diam maecenas sed. Pharetra
-                      diam sit amet nisl suscipit adipiscing. Tortor at auctor
-                      urna nunc id.
-                    </p>
+                    <p>{artist.information}</p>
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 2</div>
+                  <div>{artist.guidelines}</div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 3</div>
+                  <div>{artist.toolkits}</div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 4</div>
+                  <ToursSchedule
+                    artist={match.params.artist}
+                    isAdminFeaturesEnabled={isAdminFeaturesEnabled}
+                  />
                 </TabPanel>
               </Tabs>
             ) : null}
@@ -138,4 +142,4 @@ const Artist = ({ match }) => {
   );
 };
 
-export default Artist;
+export default connect(mapStateToProps)(Artist);

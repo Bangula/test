@@ -206,7 +206,9 @@ const ManageFolder = ({ match, cancelUrl }) => {
         </div>
         <div className="flex-1 pl-3">
           <ReactTable
+            noDataText="No Files"
             className="custom-ReactTable"
+            showPagination={false}
             data={section.files.data || []}
             columns={constructTableColumns(true, true)}
             pageSize={Math.min(section.files.data.length, 10)}

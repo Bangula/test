@@ -16,6 +16,7 @@ const Request = props => {
   const [inventory, setInventory] = React.useState([]);
   const [details, setDetails] = React.useState({});
   const [request, setRequest] = React.useState({});
+  const [tab, setTab] = React.useState(0);
 
   let isFileDropped = false;
 
@@ -23,6 +24,10 @@ const Request = props => {
     business_case: Yup.string()
       .max(300)
       .required('Required'),
+
+    objectives: Yup.array()
+      .min(1)
+      .required('required'),
   });
 
   const initialValues = {
@@ -40,7 +45,7 @@ const Request = props => {
         const result = await http(
           `/requests/${
             props.match.params.id
-          }?include=relatesTo,objectives,user,requested_tickets,artist,tickets`,
+          }?include=relatesTo.tickets,objectives,user,requested_tickets,artist,tickets`,
         );
 
         const data = result.data.data;
@@ -102,6 +107,17 @@ const Request = props => {
     }
   };
 
+  const deleteRequest = async () => {
+    try {
+      await http.delete(`/requests/${request.id}`);
+      Alert.success('Success!');
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+      Alert.error('Error');
+    }
+  };
+
   return (
     <div
       className="content-bg"
@@ -122,11 +138,11 @@ const Request = props => {
                 {request.status}
               </div>
             </div>
-            <Tabs>
+            <Tabs selectedIndex={tab} onSelect={i => setTab(i)}>
               <TabList>
                 <Tab style={{ marginRight: '35px' }}>details</Tab>
                 <Tab>Request Details</Tab>
-                {request.status === 'pending' && <Tab>Edit Request</Tab>}
+                <Tab disabled={request.status !== 'pending'}>Edit Request</Tab>
               </TabList>
 
               <TabPanel>
@@ -216,6 +232,23 @@ const Request = props => {
                     </div>
                   </div>
                 </div>
+                <div className="flex justify-end">
+                  <button
+                    onClick={deleteRequest}
+                    className="font-bebas text-2xl text-white border-red border py-2 mx-2 rounded"
+                    style={{ width: '175px' }}>
+                    Delete
+                  </button>
+
+                  {request.status === 'pending' && (
+                    <button
+                      onClick={() => setTab(2)}
+                      className="font-bebas text-2xl text-white bg-red py-2 mx-2 rounded"
+                      style={{ width: '175px' }}>
+                      Edit
+                    </button>
+                  )}
+                </div>
               </TabPanel>
               <TabPanel>
                 <div className="mb-10">
@@ -269,8 +302,18 @@ const Request = props => {
                   initialValues={initialValues}
                   validationSchema={RequestSchema}
                   onSubmit={submitNewRequest}>
-                  {({ errors, touched, setFieldValue, values, submitForm }) => (
-                    <div className="font-arial py-6">
+                  {({
+                    errors,
+                    touched,
+                    setFieldValue,
+                    values,
+                    submitForm,
+                    isSubmitting,
+                  }) => (
+                    <div
+                      className={`font-arial py-6 ${
+                        isSubmitting ? 'opacity-50' : ''
+                      }`}>
                       <p className="mb-10">
                         Please fill in the following form to request your
                         tickets.
@@ -339,6 +382,9 @@ const Request = props => {
                               );
                             }}
                           />
+                          <div className="mb-8 text-red">
+                            {errors.objectives}
+                          </div>
                         </div>
                       </div>
 
@@ -371,6 +417,9 @@ const Request = props => {
                               </div>
                             )}
                           />
+                          <div className="mb-8 text-red">
+                            {touched.business_case && errors.business_case}
+                          </div>
                         </div>
                       </div>
 
@@ -412,6 +461,7 @@ const Request = props => {
 
                       <div className="flex justify-end">
                         <button
+                          disabled={isSubmitting}
                           onClick={submitForm}
                           className="font-bebas text-2xl text-black bg-red py-2 rounded"
                           style={{ width: '175px' }}>

@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Link, withRouter } from 'react-router-dom';
 
 const ExtendedCard = ({ event, match }) => {
+  console.log(event);
   return (
     <div className="flex">
       <div className="flex-1 pr-4">
@@ -18,74 +19,73 @@ const ExtendedCard = ({ event, match }) => {
             </TabList>
             <TabPanel>
               <div className="py-4">
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '76px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Event date:
+                {event.date && (
+                  <div className="flex mb-2">
+                    <div
+                      style={{ width: '76px' }}
+                      className="text-xl mr-6 text-tirques">
+                      Event date:
+                    </div>
+                    <div className="font-arial">{event.date}</div>
                   </div>
-                  <div className="font-arial">{event.date}</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '76px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Time:
+                )}
+                {event.time && (
+                  <div className="flex mb-2">
+                    <div
+                      style={{ width: '76px' }}
+                      className="text-xl mr-6 text-tirques">
+                      Time:
+                    </div>
+                    <div className="font-arial">{event.time}</div>
                   </div>
-                  <div className="font-arial">{event.time}</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '76px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Location:
+                )}
+                {event.location && (
+                  <div className="flex mb-2">
+                    <div
+                      style={{ width: '76px' }}
+                      className="text-xl mr-6 text-tirques">
+                      Location:
+                    </div>
+                    <div className="font-arial">{event.location}</div>
                   </div>
-                  <div className="font-arial">{event.location}</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '76px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Venue:
+                )}
+                {event.venue && (
+                  <div className="flex mb-2">
+                    <div
+                      style={{ width: '76px' }}
+                      className="text-xl mr-6 text-tirques">
+                      Venue:
+                    </div>
+                    <div className="font-arial">{event.venue}</div>
                   </div>
-                  <div className="font-arial">{event.venue}</div>
-                </div>
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="py-4">
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '120px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Request deadline:
+                {event.order_date_to && (
+                  <div className="flex mb-2">
+                    <div
+                      style={{ width: '120px' }}
+                      className="text-xl mr-6 text-tirques">
+                      Request deadline:
+                    </div>
+                    <div className="font-arial">{event.order_date_to}</div>
                   </div>
-                  <div className="font-arial">12.06.2018.</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '120px' }}
-                    className="text-xl mr-6 text-tirques">
-                    General Ticket:
-                  </div>
-                  <div className="font-arial">25 tickets available</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '120px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Vip Ticket:
-                  </div>
-                  <div className="font-arial">15 tickets available</div>
-                </div>
-                <div className="flex mb-2">
-                  <div
-                    style={{ width: '120px' }}
-                    className="text-xl mr-6 text-tirques">
-                    Meet & Greet:
-                  </div>
-                  <div className="font-arial">2 tickets available</div>
-                </div>
+                )}
+                {event.tickets &&
+                  event.tickets.data.map(t => (
+                    <div className="flex mb-2">
+                      <div
+                        style={{ width: '120px' }}
+                        className="text-xl mr-6 text-tirques">
+                        {t.name}:
+                      </div>
+                      <div className="font-arial">
+                        {t.amount} tickets available
+                      </div>
+                    </div>
+                  ))}
               </div>
             </TabPanel>
             <TabPanel>
@@ -115,7 +115,14 @@ const ExtendedCard = ({ event, match }) => {
           </Link>
         </div>
       </div>
-      <div className="w-2/3 bg-grey" style={{ maxHeight: '440px' }} />
+      <div
+        className="w-2/3 bg-grey"
+        style={{
+          maxHeight: '440px',
+          backgroundImage: `url(${event.images.data.length &&
+            event.images.data[0].path})`,
+        }}
+      />
     </div>
   );
 };
