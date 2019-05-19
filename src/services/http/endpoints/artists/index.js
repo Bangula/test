@@ -14,7 +14,9 @@ export const getArtist = id => {
 };
 
 export const getToursSchedule = id => {
-  return toResponse(http.get(`/tours/grouped/date`));
+  return toResponse(
+    http.get(`/tours/artists/${id}/grouped/date?include=event`),
+  );
 };
 
 export const assignTourToEvent = (tourId, eventId) => {

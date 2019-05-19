@@ -6,8 +6,9 @@ import {
 } from '@endpoints/artists';
 import ApplicationModal from '@components/ui-elements/ApplicationModal/ApplicationModal';
 import Alert from 'react-s-alert';
+import { withRouter, Link } from 'react-router-dom';
 
-const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
+const ToursSchedule = ({ artist, isAdminFeaturesEnabled, ...props }) => {
   const [tours, setTours] = React.useState(null);
   const [events, setEvents] = React.useState([]);
   const [event, setEvent] = React.useState('');
@@ -17,6 +18,7 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
     years = Object.keys(tours);
   }
   const doGetData = async () => {
+    console.log('getdata');
     try {
       const response = await Promise.all([
         getToursSchedule(artist),
@@ -30,7 +32,7 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
   };
   React.useEffect(() => {
     doGetData();
-  }, [artist]);
+  }, [artist, tourToLink]);
   const doAssignTourToEvent = React.useCallback((tourId, eventId) => {
     if (eventId) {
       const assign = async () => {
@@ -107,9 +109,14 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
                       />
                     </div>
                   ) : null}
-                  <div>
-                    <i className="fa fa-arrow-right text-blue" />
-                  </div>
+                  {tour.event && (
+                    <Link
+                      to={`${props.match.url}/requests/events/${
+                        tour.event.data.id
+                      }`}>
+                      <i className="fa fa-arrow-right text-blue" />
+                    </Link>
+                  )}
                 </div>
               );
             })}
@@ -166,4 +173,4 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
   );
 };
 
-export default ToursSchedule;
+export default withRouter(ToursSchedule);
