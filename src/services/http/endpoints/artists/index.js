@@ -34,7 +34,7 @@ export const getEventsRequests = id => {
 export const getExperiencesRequests = id => {
   return toResponse(
     http.get(`/experiences/artists/${id}`, {
-      params: { include: 'artist,images' },
+      params: { include: 'tickets,artist,images' },
     }),
   );
 };
