@@ -72,6 +72,7 @@ const LatestRequests = ({ match: { path } }) => {
       <PrimaryTitle>Latest Requests</PrimaryTitle>
       <ReactTable
         manual
+        noDataText="No Requests"
         className="custom-ReactTable"
         pageSize={Math.min(data.length, pagination.per_page)}
         showPagination

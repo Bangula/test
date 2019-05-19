@@ -170,6 +170,7 @@ const UserManagement = ({ match: { path }, id }) => {
       </div>
       <ReactTable
         manual
+        noDataText="No Users"
         className="custom-ReactTable"
         pageSize={Math.min(data.length, pagination.per_page)}
         showPagination
