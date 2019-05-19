@@ -90,7 +90,7 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
               }
               return (
                 <div
-                  className="font-arial text-sm pt-2 pb-3 border-b mb-2 flex justify-between"
+                  className="font-arial text-sm pt-2 pb-3 border-b mb-2 flex justify-between pr-8"
                   key={tour.id}>
                   <div className="mr-4" style={{ width: '55px' }}>
                     {dayOfWeek} {date.getDate()}
@@ -103,10 +103,13 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
                     <div>
                       <i
                         onClick={() => setTourToLink(tour.id)}
-                        className="fa fa-link text-pink"
+                        className="fa fa-link text-pink mx-4"
                       />
                     </div>
                   ) : null}
+                  <div>
+                    <i className="fa fa-arrow-right text-blue" />
+                  </div>
                 </div>
               );
             })}
@@ -131,18 +134,19 @@ const ToursSchedule = ({ artist, isAdminFeaturesEnabled }) => {
               request, by selecting it in the list below.
             </p>
             <div style={{ maxHeight: '300px' }} className="mb-8">
-              {events.map(event => {
+              {events.map(ev => {
                 return (
-                  <div className="flex" key={event.id}>
+                  <div className="flex" key={ev.id}>
                     <input
-                      id={event.id}
-                      onChange={e => setEvent(event.id)}
+                      id={ev.id}
+                      onChange={e => setEvent(ev.id)}
                       className="mr-4"
                       type="radio"
-                      value={event.name}
+                      value={ev.name}
+                      checked={ev.id === event}
                     />
-                    <label htmlFor={event.id} className="text-sm font-arial">
-                      {event.name}
+                    <label htmlFor={ev.id} className="text-sm font-arial">
+                      {ev.name}
                     </label>
                   </div>
                 );
