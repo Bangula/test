@@ -10,7 +10,7 @@ const ContentManagementStart = ({ match: { path } }) => {
   React.useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const result = await http('/artists');
+        const result = await http('/artists?include=images');
 
         setArtists(result.data.data);
         console.log(result.data.data);
@@ -41,15 +41,28 @@ const ContentManagementStart = ({ match: { path } }) => {
 
           <p className="my-8">Please select an artist:</p>
           {artists.map(artist => (
-            <div
-              onClick={() => selectArtist(artist)}
-              className={`p-2 ${
+            // <div
+            //   onClick={() => selectArtist(artist)}
+            //   className={`p-2 ${
+            //     selectedArtist && artist.id === selectedArtist.id
+            //       ? 'text-tirques'
+            //       : ''
+            //   }`}>
+            //   {artist.name}
+            // </div>
+
+            <img
+              className={`rounded mx-4 rounded-full ${
                 selectedArtist && artist.id === selectedArtist.id
-                  ? 'text-tirques'
+                  ? 'border-2 border-tirques border-solid'
                   : ''
-              }`}>
-              {artist.name}
-            </div>
+              }`}
+              style={{ height: '70px', width: '70px' }}
+              alt={artist.name}
+              title={artist.name}
+              src={artist.images.data.length && artist.images.data[0].path}
+              onClick={() => selectArtist(artist)}
+            />
           ))}
 
           {selectedArtist && (

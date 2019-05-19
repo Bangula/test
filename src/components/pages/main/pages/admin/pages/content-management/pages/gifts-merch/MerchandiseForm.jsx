@@ -253,7 +253,7 @@ const MerchandiseForm = props => {
                         <button
                           onClick={submitForm}
                           className="btn border-2 border-pink bg-pink text-white rounded py-2 text-2xl ml-2">
-                          Create Event
+                          Create Merchandise
                         </button>
                       )}
                     </div>
