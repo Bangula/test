@@ -86,6 +86,7 @@ const Details = props => {
       Alert.error('Error');
     }
   };
+
   return (
     <div className="container mx-auto">
       <div className="flex-1">
@@ -165,31 +166,28 @@ const Details = props => {
                 </p>
               </div>
             </div>
-            <div className="mb-4">
-              <h3 className="mb-4 text-pink">Supporting document:</h3>
-              <div className="pl-4 font-arial">
-                <p className="mb-2">
-                  <span className="mr-8">{details.file}</span>
-                  <a
-                    href={details.file_url}
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fa fa-download" />
-                  </a>
-                </p>
-                {/* <p>
-                  <span className="mr-8">Filename_Final Artwork.pdf</span>
-                  <i className="fa fa-download" />
-                </p> */}
+            {details.file && (
+              <div className="mb-4">
+                <h3 className="mb-4 text-pink">Supporting document:</h3>
+                <div className="pl-4 font-arial">
+                  <p className="mb-2">
+                    <span className="mr-8">{details.file}</span>
+                    <a
+                      href={details.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <i className="fa fa-download" />
+                    </a>
+                  </p>
+                </div>
               </div>
-
-              <div className="flex">
-                <button
-                  className="btn font-bebas text-2xl text-white border-solid border-red border py-2 my-4 rounded"
-                  onClick={processRequest}>
-                  Proccess
-                </button>
-              </div>
+            )}
+            <div className="flex">
+              <button
+                className="btn font-bebas text-2xl text-white border-solid border-red border py-2 my-4 rounded"
+                onClick={processRequest}>
+                Proccess
+              </button>
             </div>
           </>
         )}

@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Link, withRouter } from 'react-router-dom';
 
 const ExtendedCard = ({ event, match }) => {
+  console.log(event);
   return (
     <div className="flex">
       <div className="flex-1 pr-4">
@@ -115,7 +116,14 @@ const ExtendedCard = ({ event, match }) => {
           </Link>
         </div>
       </div>
-      <div className="w-2/3 bg-grey" style={{ maxHeight: '440px' }} />
+      <div
+        className="w-2/3 bg-grey"
+        style={{
+          maxHeight: '440px',
+          backgroundImage: `url(${event.images.data.length &&
+            event.images.data[0].path})`,
+        }}
+      />
     </div>
   );
 };

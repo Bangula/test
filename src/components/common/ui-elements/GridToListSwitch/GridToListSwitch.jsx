@@ -2,8 +2,8 @@ import React from 'react';
 
 const ViewSwitch = ({ view, toggleView }) => {
   const iconsClasses = {
-    list: ['fa', 'fa-list', 'text-3xl'],
-    grid: ['fa', 'fa-th', 'text-3xl', 'ml-3'],
+    grid: ['fa', 'fa-list', 'text-3xl mx-2'],
+    list: ['fa', 'fa-th', 'text-3xl', 'mx-2'],
   };
   if (!view) {
     iconsClasses.list.push('text-grey-darker');

@@ -5,7 +5,13 @@ import { withRouter } from 'react-router-dom';
 const EventCard = ({ event, match }) => {
   return (
     <>
-      <div className="h-64 w-full bg-grey" />
+      <div
+        className="h-64 w-full bg-grey"
+        style={{
+          backgroundImage: `url(${event.images.data.length &&
+            event.images.data[0].path})`,
+        }}
+      />
       <div className="pt-3 mb-3">
         <h3>{event.artist.data.name}</h3>
         <h1 className="text-4xl mb-4 text-tirques">{event.name}</h1>

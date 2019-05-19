@@ -35,7 +35,12 @@ const Artist = ({ match, isAdminFeaturesEnabled }) => {
         <div className="flex">
           <div className="mr-10" style={{ maxWidth: '200px' }}>
             <div className="mb-6 w-48 h-48 rounded-full overflow-hidden">
-              <img src={profileImg} alt="Artist" />
+              <img
+                src={
+                  artist.images.data.length > 0 && artist.images.data[0].path
+                }
+                alt="Artist"
+              />
             </div>
             <div className="mb-8 text-center">
               <h2 className="mb-1">{artist.name}</h2>
@@ -94,27 +99,14 @@ const Artist = ({ match, isAdminFeaturesEnabled }) => {
 
                 <TabPanel>
                   <div className="font-arial leading-tight">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Urna condimentum mattis. <br /> <br />
-                      Pellentesque id nibh tortor. Lorem ipsum dolor sit amet
-                      consectetur adipiscing elit ut aliquam. Mollis aliquam ut
-                      porttitor leo a diam.
-                      <br /> <br />
-                      Lacinia at quis risus sed vulputate odio. Semper auctor
-                      neque vitae tempus quam pellentesque nec nam. Congue nisi
-                      vitae suscipit tellus mauris a diam maecenas sed. Pharetra
-                      diam sit amet nisl suscipit adipiscing. Tortor at auctor
-                      urna nunc id.
-                    </p>
+                    <p>{artist.information}</p>
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 2</div>
+                  <div>{artist.guidelines}</div>
                 </TabPanel>
                 <TabPanel>
-                  <div>content 3</div>
+                  <div>{artist.toolkits}</div>
                 </TabPanel>
                 <TabPanel>
                   <ToursSchedule

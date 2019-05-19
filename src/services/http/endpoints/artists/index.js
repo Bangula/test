@@ -8,7 +8,7 @@ export const getArtists = () => {
 export const getArtist = id => {
   return toResponse(
     http.get(`/artists/${id}`, {
-      params: { include: 'mediaLibrary.folders' },
+      params: { include: 'mediaLibrary.folders,images' },
     }),
   );
 };
@@ -24,21 +24,23 @@ export const assignTourToEvent = (tourId, eventId) => {
 export const getEventsRequests = id => {
   return toResponse(
     http.get(`/events/artists/${id}`, {
-      params: { include: 'tickets,artist' },
+      params: { include: 'tickets,artist,images' },
     }),
   );
 };
 
 export const getExperiencesRequests = id => {
   return toResponse(
-    http.get(`/experiences/artists/${id}`, { params: { include: 'artist' } }),
+    http.get(`/experiences/artists/${id}`, {
+      params: { include: 'artist,images' },
+    }),
   );
 };
 
 export const getGiftsRequests = id => {
-  return toResponse(http.get(`/gifts/artists/${id}`));
+  return toResponse(http.get(`/gifts/artists/${id}?include=images`));
 };
 
 export const getMerchRequests = id => {
-  return toResponse(http.get(`/merchandises/artists/${id}`));
+  return toResponse(http.get(`/merchandises/artists/${id}?include=images`));
 };

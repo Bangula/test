@@ -1,8 +1,15 @@
 import React from 'react';
 import ApplicationModal from '@components/ui-elements/ApplicationModal/ApplicationModal';
+import { getFileDownloadUrl } from '@endpoints/media-library';
 
 const FilePreview = ({ close, file }) => {
   console.log(file);
+  const doGetDownloadUrl = React.useCallback(async id => {
+    const { error, data } = await getFileDownloadUrl(id);
+    if (!error) {
+      window.open(data.data.url, '_blank');
+    }
+  });
   return (
     <ApplicationModal open={!!file} close={close} width="650px">
       {!!file ? (
@@ -31,8 +38,9 @@ const FilePreview = ({ close, file }) => {
               Close
             </button>
             <button
+              href={file.url}
               style={{ width: '150px' }}
-              onClick={close}
+              onClick={() => doGetDownloadUrl(file.id)}
               className="py-2 rounded bg-tirques">
               <i className="fa fa-download mr-4" />
               Download

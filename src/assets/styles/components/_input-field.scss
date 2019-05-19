@@ -11,11 +11,9 @@
   width: 100%;
   transition: all 0.3s ease;
   font-size: 17px;
-  font-family: $font-family-1;
   font-weight: normal;
 
   &::placeholder {
-    text-transform: uppercase;
     color: $lightgray;
   }
 
