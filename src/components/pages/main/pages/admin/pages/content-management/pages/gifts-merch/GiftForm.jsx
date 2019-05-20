@@ -35,11 +35,11 @@ const FormSchema = Yup.object().shape({
     .required('required'),
   image: Yup.mixed()
     .required('required')
-    .test(
-      'imageSize',
-      'Image too large',
-      value => value && value.size <= IMAGE_SIZE,
-    )
+    // .test(
+    //   'imageSize',
+    //   'Image too large',
+    //   value => value && value.size <= IMAGE_SIZE,
+    // )
     .test(
       'imageFormat',
       'Unsupported Format',

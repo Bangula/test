@@ -59,11 +59,11 @@ const EventSchema = Yup.object().shape({
   description: Yup.string().max(300),
   image: Yup.mixed()
     .required('required')
-    .test(
-      'imageSize',
-      'Image too large',
-      value => value && value.size <= IMAGE_SIZE,
-    )
+    // .test(
+    //   'imageSize',
+    //   'Image too large',
+    //   value => value && value.size <= IMAGE_SIZE,
+    // )
     .test(
       'imageFormat',
       'Unsupported Format',
