@@ -10,7 +10,7 @@ import backgroundImage from '@images/2061080.png';
 import SelectField from '@components/SelectField/SelectField';
 import { updateUserInfo, getRoles } from '@endpoints/user';
 
-import { numericRegEx } from '@constants/regex';
+import { phoneRegEx } from '@constants/regex';
 
 const EditUserSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,7 +31,7 @@ const EditUserSchema = Yup.object().shape({
     .required(),
 
   phone: Yup.string()
-    .matches(numericRegEx)
+    .matches(phoneRegEx)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),
