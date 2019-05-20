@@ -13,9 +13,6 @@ export default () => {
           <div className="w-24 pr-3 border-r-2 border-grey-dark">
             <img src={logo2x} alt="AXE music logo" />
           </div>
-          <div className="w-24 pl-3">
-            <img src={logo2x} alt="AXE music logo" />
-          </div>
         </div>
         <div className="flex justify-end pt-5">
           <div className="max-w-lg flex pt-5">
@@ -39,17 +36,17 @@ export default () => {
               </p>
               <div className="px-5">
                 <div className="mb-5">
-                  <Link to="/">
-                    <Button className="w-48 font-hairline font-bebas text-2xl uppercase text-white leading-none pb-1 pt-1 btn-border-lightbrown">
-                      axe music
-                    </Button>
+                  <Link
+                    to="/"
+                    className="btn font-hairline font-bebas text-2xl uppercase text-white leading-none pb-1 pt-1 btn-border-lightbrown">
+                    axe music
                   </Link>
                 </div>
                 <div>
                   <Button
                     disabled
                     border="btn-border-lightbrown"
-                    className="opacity-25 w-48 font-hairline font-bebas text-2xl uppercase text-white border-2 leading-none pb-1 pt-1 border-lightbrown">
+                    className="opacity-25  font-hairline font-bebas text-2xl uppercase text-white border-2 leading-none pb-1 pt-1 border-lightbrown">
                     axe gaming
                   </Button>
                 </div>
