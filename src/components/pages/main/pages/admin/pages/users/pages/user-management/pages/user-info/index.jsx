@@ -136,11 +136,11 @@ const UserInfo = props => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="text-pink text-2xl mb-2">activity log:</h4>
 
             <div>table</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
