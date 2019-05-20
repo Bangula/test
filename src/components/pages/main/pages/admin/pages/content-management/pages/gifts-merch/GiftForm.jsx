@@ -13,7 +13,6 @@ import InputField from '@components/InputField/InputField';
 import PrimaryTitle from '@components/ui-elements/PrimaryTitle/PrimaryTitle';
 import Dropzone from '@components/Dropzone/Dropzone';
 
-import { numericRegEx } from '@constants/regex';
 import { IMAGE_SIZE, SUPPORTED_FORMATS } from '@constants/images';
 
 const requiredFieldsByStep = {

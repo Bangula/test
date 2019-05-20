@@ -10,7 +10,7 @@ import InputField from '@components/InputField/InputField';
 import SelectField from '@components/SelectField/SelectField';
 import { getRoles, createUser } from '@endpoints/user';
 
-import { numericRegEx } from '@constants/regex';
+import { phoneRegEx } from '@constants/regex';
 
 const NewUserSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,7 +31,7 @@ const NewUserSchema = Yup.object().shape({
     .required(),
 
   phone: Yup.string()
-    .matches(numericRegEx)
+    .matches(phoneRegEx)
     .min(8, 'Too Short!')
     .max(15, 'Too Long!')
     .required(),
