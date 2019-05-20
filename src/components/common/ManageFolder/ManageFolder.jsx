@@ -136,6 +136,8 @@ const ManageFolder = ({ match, cancelUrl }) => {
           return uploadFile(payload);
         }),
       );
+
+      await getData(match.params.id);
     } catch (e) {
       Alert.error(e);
     }
