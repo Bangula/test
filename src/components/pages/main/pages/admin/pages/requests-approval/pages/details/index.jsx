@@ -35,8 +35,6 @@ const Details = props => {
         }));
 
         setTickets(initialTickets);
-
-        console.log(initialTickets);
       } catch (err) {
         console.log('Error fetching request!');
       }
@@ -54,7 +52,7 @@ const Details = props => {
     if (JSON.stringify(initialTickets) === JSON.stringify(tickets)) {
       status = 'approved';
     } else if (tickets.reduce((a, c) => a + c.value, 0)) {
-      status = 'reallocated';
+      status = 'reallocation';
     } else {
       status = 'rejected';
     }
@@ -141,7 +139,7 @@ const Details = props => {
                   color="pink"
                   initialValue={t.value}
                   min={0}
-                  setValue={value => updateTickets(t.label, value)}
+                  onChange={value => updateTickets(t.label, value)}
                 />
               </div>
             </div>
