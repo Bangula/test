@@ -6,7 +6,7 @@
     "@craco/craco": "^4.1.0",
     "axios": "^0.18.0",
     "formik": "^1.5.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
